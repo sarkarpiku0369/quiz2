@@ -28,7 +28,7 @@ const Main = ({navigation}) => {
 
                     <Button 
                         buttonStyle={styles.submitButton}
-                        title="Sign Up"
+                        title="Sign In"
                         onPress={() => navigation.navigate("Login")}
                     />
                     <Button 

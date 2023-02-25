@@ -66,7 +66,6 @@ const Login = ({navigation}) => {
 
 <TextInput 
         placeholder = "Enter Your Email" 
-        placeholderTextColor = "#000"
        style={styles.input}
         underlineColorAndroid='transparent'
         value={email}

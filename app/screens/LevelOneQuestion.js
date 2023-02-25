@@ -6,15 +6,29 @@ import globalStyles, { buttonColor } from '../styles'
 import { Avatar } from '@rneui/base';
 import { primaryColor } from '../styles';
 import BackButton from '../components/BackButton';
+import axiosInstance from './utils';
 
 const LevelOneQuestion = ({navigation}) => {
-    const [selectedButton, setSelectedButton] = React.useState("")
+    const [selectedButton, setSelectedButton] = React.useState(null)
+    const [questions, setQuestions] = React.useState([])
 
     React.useEffect(() => {
-        if(selectedButton != "") {
-            navigation.navigate("LevelOneAnswerScreen")
+        if(selectedButton) {
+            console.log(questions)
+            navigation.navigate("LevelOneAnswerScreen", {answers: questions[selectedButton]})
         }
     })
+
+    React.useEffect(() => {
+        axiosInstance.get("/question?level=2")
+        .then(response => {
+            if(response.status == 200) {
+                setQuestions(response.data.questions)
+            }
+        })
+    }, [])
+
+    
 
   return (
    <SafeAreaView style={{flex: 1}} forceInset={{top: "always"}}>
@@ -40,29 +54,29 @@ const LevelOneQuestion = ({navigation}) => {
                     </View>
 
                     <View style={{flexDirection: "row", justifyContent: "space-around", marginVertical: 20,top:40}}>
-                        <TouchableOpacity activeOpacity={1} style={[styles.buttonStyle, selectedButton == "1" && styles.buttonHoverStyle]} onPress={() => setSelectedButton("1")}>
+                        <TouchableOpacity activeOpacity={1} style={[styles.buttonStyle, selectedButton == 1 && styles.buttonHoverStyle]} onPress={() => setSelectedButton("1")}>
                             <Text style={styles.buttonTextStyle}>1</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity activeOpacity={1} style={[styles.buttonStyle, selectedButton == "2" && styles.buttonHoverStyle]} onPress={() => setSelectedButton("2")}>
+                        <TouchableOpacity activeOpacity={1} style={[styles.buttonStyle, selectedButton == 2 && styles.buttonHoverStyle]} onPress={() => setSelectedButton("2")}>
                             <Text style={styles.buttonTextStyle}>2</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity activeOpacity={1} style={[styles.buttonStyle, selectedButton == "3" && styles.buttonHoverStyle]} onPress={() => setSelectedButton("3")}>
+                        <TouchableOpacity activeOpacity={1} style={[styles.buttonStyle, selectedButton == 3 && styles.buttonHoverStyle]} onPress={() => setSelectedButton("3")}>
                             <Text style={styles.buttonTextStyle}>3</Text>
                         </TouchableOpacity>
                     </View>
 
                     <View style={{flexDirection: "row", justifyContent: "space-around", marginVertical: 10,top:40}}>
-                        <TouchableOpacity activeOpacity={1} style={[styles.buttonStyle, selectedButton == "4" && styles.buttonHoverStyle]} onPress={() => setSelectedButton("4")}>
+                        <TouchableOpacity activeOpacity={1} style={[styles.buttonStyle, selectedButton == 4 && styles.buttonHoverStyle]} onPress={() => setSelectedButton("4")}>
                             <Text style={styles.buttonTextStyle}>4</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity activeOpacity={1} style={[styles.buttonStyle, selectedButton == "5" && styles.buttonHoverStyle]} onPress={() => setSelectedButton("5")}>
+                        <TouchableOpacity activeOpacity={1} style={[styles.buttonStyle, selectedButton == 5 && styles.buttonHoverStyle]} onPress={() => setSelectedButton("5")}>
                             <Text style={styles.buttonTextStyle}>5</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity activeOpacity={1} style={[styles.buttonStyle, selectedButton == "6" && styles.buttonHoverStyle]} onPress={() => setSelectedButton("6")}>
+                        <TouchableOpacity activeOpacity={1} style={[styles.buttonStyle, selectedButton == 6 && styles.buttonHoverStyle]} onPress={() => setSelectedButton("6")}>
                             <Text style={styles.buttonTextStyle}>6</Text>
                         </TouchableOpacity>
                     </View>

@@ -16,7 +16,6 @@ const Home = ({navigation}) => {
     
     function checkLoggedInStatus() {
         if(state.loggedIn == false) {
-            alert("askjfb")
         }
     }
     
