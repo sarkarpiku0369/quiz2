@@ -54,15 +54,7 @@ const Login = ({navigation}) => {
                         <Text>Email Address</Text>
                         <TouchableOpacity style={{flexDirection: "row", backgroundColor: "white", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 10, borderRadius: 50, marginVertical: 10}}>
                             <MaterialIcons name="email" size={26} color={primaryColor} />
-                            {/* <TextInput 
-                                underlineColorAndroid = "transparent"
-                                placeholder = "Your Email Address"
-                                // placeholderTextColor = "#858494"
-                                placeholderTextColor="#fff"
-                                style={styles.input}
-                                autoCapitalize = "none"
-                                onChangeText={setEmail}
-                            /> */}
+                           
 
 <TextInput 
         placeholder = "Enter Your Email" 

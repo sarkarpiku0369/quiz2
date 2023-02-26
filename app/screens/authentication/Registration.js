@@ -90,16 +90,16 @@ const Registration = ({navigation}) => {
   )
 }
 const styles = StyleSheet.create({
-      input: {
+    input: {
         width: "90%",
         // margin: 15,
-        height: 40,
-        borderColor: '#d9d8dd',
+       // height: 40,
+         borderColor: '#d9d8dd',
         borderWidth: 0,
         borderRadius: 5,
-        paddingVertical: 25,
+         paddingVertical: 10,
         paddingHorizontal: 10,
-     },
+      },
      buttonStyle: {
         flexDirection: "column", 
         justifyContent: "center", 
