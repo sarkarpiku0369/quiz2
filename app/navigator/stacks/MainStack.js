@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import GameDetails from '../../screens/GameDetails';
 import LevelOneQuestion from '../../screens/LevelOneQuestion';
 import LevelOneAnswer from '../../screens/LevelOneAnswer';
-import AnswerCorrect from '../../screens/AnswerCorrect';
+import AnswerCorrect from '../../screens/AnswerStatusScreen';
 import AnswerWrong from '../../screens/AnswerWrong';
 import MyStatus from '../../screens/MyStatus';
 import WinPrize from '../../screens/WinPrize';

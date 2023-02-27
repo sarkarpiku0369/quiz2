@@ -8,7 +8,7 @@ import { primaryColor } from '../styles';
 import BackButton from '../components/BackButton';
 import { StoreContext } from '../App';
 
-const LevelOneAnswer = ({route, navigation}) => {
+const LevelThreeAnswer = ({route, navigation}) => {
     const [buttonPressed, setButtonPressed] = React.useState(false)
     const {state, setState} = React.useContext(StoreContext)
 
@@ -22,17 +22,17 @@ const LevelOneAnswer = ({route, navigation}) => {
     const handleButtonPress = (pressedBtn) => {
             setButtonPressed(true)
         
-             let remainingAttempt = state.levelOneRemainingAttempt - 1
+             let remainingAttempt = state.levelThreeRemainingAttempt - 1
             setState(state => ({...state, 
-                levelOneRemainingAttempt: remainingAttempt,
-                levelOneCorrectAnswerButtons: [...state.levelOneCorrectAnswerButtons, button]}
+                levelThreeRemainingAttempt: remainingAttempt,
+                levelThreeCorrectAnswerButtons: [...state.levelThreeCorrectAnswerButtons, button]}
             ))
             
             navigation.push("AnswerStatusScreen", {
                 answerCorrect: (pressedBtn == correct_option),
-                level: 1, 
+                level: 3, 
                 remainingAttempt, 
-                nextScreenName: "LevelTwoQuestionScreen"
+                nextScreenName: "LevelFourQuestionScreen"
             })
         }
 
@@ -45,7 +45,7 @@ const LevelOneAnswer = ({route, navigation}) => {
                         <BackButton />
 
                         <View style={{flexDirection: "row", justifyContent: "center", alignItems: "center", height: "100%"}}>
-                            <Text style={globalStyles.heading}>Level 1</Text>
+                            <Text style={globalStyles.heading}>Level 3</Text>
                         </View>
                     </View>
     
@@ -123,4 +123,4 @@ const styles = StyleSheet.create({
      }
 })
 
-export default LevelOneAnswer
+export default LevelThreeAnswer

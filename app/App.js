@@ -11,16 +11,48 @@ import AuthDecide from './screens/AuthDecide';
 
 export const StoreContext = React.createContext(null)
 
-
-
-
 export default function App() {
 
   const [state, setState] = React.useState({
     loggedIn: false,
     token: null,
     loading: false,
+    
+    levelOneRemainingAttempt: 2,
+    levelOneTouched: false,
+    levelOnePassed: false,
+    levelOneCorrectAnswerButtons: [],
+    levelOneWrongAnswerButtons: [],
+
+    levelTwoRemainingAttempt: 3,
+    levelTwoTouched: false,
+    levelTwoPassed: false,
+    levelTwoCorrectAnswerButtons: [],
+    levelTwoWrongAnswerButtons: [],
+
+    levelThreeRemainingAttempt: 3,
+    levelThreeTouched: false,
+    levelThreePassed: false,
+    levelThreeCorrectAnswerButtons: [],
+    levelThreeWrongAnswerButtons: [],
+
+    levelFourRemainingAttempt: 3,
+    levelFourTouched: false,
+    levelFourPassed: false,
+    levelFourCorrectAnswerButtons: [],
+    levelFourWrongAnswerButtons: [],
+
+    levelFiveRemainingAttempt: 3,
+    levelFiveTouched: false,
+    levelFivePassed: false,
+    levelFiveCorrectAnswerButtons: [],
+    levelFiveWrongAnswerButtons: [],
+
   })
+
+  React.useEffect(() => {
+    console.log(state)
+  }, [state])
 
   const [loading, setLoading] = React.useState(false)
 

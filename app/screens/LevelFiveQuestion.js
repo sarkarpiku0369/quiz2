@@ -9,20 +9,20 @@ import BackButton from '../components/BackButton';
 import axiosInstance from './utils';
 import { StoreContext } from '../App';
 
-const LevelOneQuestion = ({navigation}) => {
+const LevelFiveQuestion = ({navigation}) => {
     const [selectedButton, setSelectedButton] = React.useState(null)
     const [questions, setQuestions] = React.useState([])
     const {state, setState} = React.useContext(StoreContext)
 
     React.useEffect(() => {
         if(selectedButton) {
-            setState(state => ({...state, levelOneTouched: true}))
-            navigation.navigate("LevelOneAnswerScreen", {answers: questions[selectedButton], button: selectedButton})
+            setState(state => ({...state, levelFiveTouched: true}))
+            navigation.navigate("LevelFiveAnswerScreen", {answers: questions[selectedButton], button: selectedButton})
         }
     }, [selectedButton])
 
     React.useEffect(() => {
-        axiosInstance.get("/question?level=2")
+        axiosInstance.get("/question?level=5")
         .then(response => {
             if(response.status == 200) {
                 console.log(response.data.questions)
@@ -42,13 +42,13 @@ const LevelOneQuestion = ({navigation}) => {
                     <BackButton />
 
                     <View style={{flexDirection: "row", justifyContent: "center", alignItems: "center", height: "100%"}}>
-                        <Text style={globalStyles.heading}>Level 1</Text>
+                        <Text style={globalStyles.heading}>Level 5</Text>
                     </View>
                 </View>
  
                 <View style={globalStyles.bottomView}>
                     <View style={{flexDirection: "column", alignItems: "center"}}>
-                        <Text style={globalStyles.description}>Go to the Next Level with 1</Text>
+                        <Text style={globalStyles.description}>Go to the Next Level with 5</Text>
                         <Text style={globalStyles.description}>Question Answers</Text>
                        
                     </View>
@@ -120,4 +120,4 @@ const styles = StyleSheet.create({
      }
 })
 
-export default LevelOneQuestion
+export default LevelFiveQuestion

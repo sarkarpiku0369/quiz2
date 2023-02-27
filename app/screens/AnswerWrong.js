@@ -8,8 +8,9 @@ import { primaryColor } from '../styles';
 import BackButton from '../components/BackButton';
 
 
-const AnswerWrong = () => {
+const AnswerWrong = ({route, navigation}) => {
     const [selectedButton, setSelectedButton] = React.useState("")
+    const {level, remainingAttempt, nextScreenName} = route.params
 
   return (
    <SafeAreaView style={{flex: 1}} forceInset={{top: "always"}}>
