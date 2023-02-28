@@ -8,9 +8,57 @@ import { Fontisto } from '@expo/vector-icons';
 import globalStyles from '../styles'
 import { Avatar } from '@rneui/base';
 import BackButton from '../components/BackButton';
-
+import { StoreContext } from '../App';
 
 const GameDetails = ({navigation}) => {
+
+    const {state, setState} = React.useContext(StoreContext)
+
+    const startGame = () => {
+        setState(state => ({...state, 
+
+            gameStarted: true,
+            gameEnd: false,
+            prizeSelected: false,
+            
+            levelOneRemainingAttempt: 2,
+            levelOneTouched: false,
+            levelOnePassed: false,
+            levelOnePressedButtons: [],
+            levelOneCorrectAnswerButtons: [],
+            levelOneWrongAnswerButtons: [],
+
+            levelTwoRemainingAttempt: 3,
+            levelTwoTouched: false,
+            levelTwoPassed: false,
+            levelTwoPressedButtons: [],
+            levelTwoCorrectAnswerButtons: [],
+            levelTwoWrongAnswerButtons: [],
+
+            levelThreeRemainingAttempt: 3,
+            levelThreeTouched: false,
+            levelThreePassed: false,
+            levelThreePressedButtons: [],
+            levelThreeCorrectAnswerButtons: [],
+            levelThreeWrongAnswerButtons: [],
+
+            levelFourRemainingAttempt: 3,
+            levelFourTouched: false,
+            levelFourPassed: false,
+            levelFourPressedButtons: [],
+            levelFourCorrectAnswerButtons: [],
+            levelFourWrongAnswerButtons: [],
+
+            levelFiveRemainingAttempt: 3,
+            levelFiveTouched: false,
+            levelFivePassed: false,
+            levelFivePressedButtons: [],
+            levelFiveCorrectAnswerButtons: [],
+            levelFiveWrongAnswerButtons: [],
+        }))
+        navigation.navigate("LevelOneQuestionScreen")
+    }
+
   return (
    <SafeAreaView style={{flex: 1}} forceInset={{top: "always"}}>
     <View style={globalStyles.container}>
@@ -84,7 +132,7 @@ complete all the quizzes</Text>
                 </View>
                 <View>
                     
-<Text style={{color: "#EB1C23",fontWeight:"500",marginTop:15,marginLeft:20}}>Are you ready now ? <Text style={{color: 'green'}} onPress={() => navigation.navigate("LevelOneQuestionScreen")}>
+<Text style={{color: "#EB1C23",fontWeight:"500",marginTop:15,marginLeft:20}}>Are you ready now ? <Text style={{color: 'green'}} onPress={() => startGame()}>
 Start
     </Text></Text>
 </View>

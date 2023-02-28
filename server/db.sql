@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 22, 2023 at 07:39 PM
+-- Generation Time: Feb 18, 2023 at 05:12 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -90,14 +90,6 @@ CREATE TABLE `personal_access_tokens` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `personal_access_tokens`
---
-
-INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `name`, `token`, `abilities`, `last_used_at`, `created_at`, `updated_at`) VALUES
-(3, 'App\\Models\\User', 1, 'trimmeapp', '7acb5a364f6c2a90474f64aca3602dfd8d241897676bea7169ba7d908831ba4d', '[\"*\"]', '2023-02-20 11:04:08', '2023-02-20 11:03:58', '2023-02-20 11:04:08'),
-(4, 'App\\Models\\User', 1, 'trimmeapp', '34cf2a9c1dae2b625e83a692ffb5cce072d39018ba11aa81d119e541d78a5682', '[\"*\"]', NULL, '2023-02-20 11:06:21', '2023-02-20 11:06:21');
 
 -- --------------------------------------------------------
 
@@ -1124,8 +1116,7 @@ INSERT INTO `questions` (`id`, `level`, `question`, `option_1`, `option_2`, `opt
 (997, '2', 'id nulla ultrices aliquet maecenas leo odio condimentum id luctus', 'sed', 'convallis', 'nibh', 'sodales', '4', NULL, NULL),
 (998, '3', 'fringilla rhoncus mauris enim leo rhoncus sed vestibulum sit amet', 'lorem', 'tellus', 'fringilla', 'ut', '2', NULL, NULL),
 (999, '1', 'auctor gravida sem praesent id massa id nisl venenatis lacinia', 'ut', 'lectus', 'sapien', 'tempor', '1', NULL, NULL),
-(1000, '2', 'a ipsum integer a nibh in quis justo maecenas rhoncus', 'pretium', 'augue', 'nibh', 'nulla', '3', NULL, NULL),
-(1001, '3', 'Minus eveniet et en', 'Voluptatibus volupta', 'Et pariatur Quia qu', 'Quasi dolore vel rer', 'Distinctio Aspernat', '3', '2023-02-20 11:05:43', '2023-02-20 11:05:43');
+(1000, '2', 'a ipsum integer a nibh in quis justo maecenas rhoncus', 'pretium', 'augue', 'nibh', 'nulla', '3', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1151,7 +1142,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role`, `name`, `email`, `password`, `otp`, `otp_expired_at`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'USER', 'Raktim Banerjee', 'raktimbanerjee9@gmail.com', '1234', '', NULL, NULL, '2023-02-17 21:12:08', '2023-02-20 11:06:21');
+(1, 'USER', 'Raktim Banerjee', 'raktimbanerjee9@gmail.com', '1234', '', NULL, NULL, '2023-02-17 21:12:08', '2023-02-17 21:20:34');
 
 --
 -- Indexes for dumped tables
@@ -1217,13 +1208,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1002;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1001;
 
 --
 -- AUTO_INCREMENT for table `users`

@@ -66,15 +66,31 @@ const AnswerStatusScreen = ({route, navigation}) => {
                             )}
 
                             {remainingAttempt <= 0 && (
-                                <View style={{flexDirection: "row", justifyContent: "space-between"}}>
+                                <View style={{flexDirection: "column"}}>
                                     <Button 
-                                        onPress={() => navigation.navigate("Home3")}
+                                        type="outline"
+                                        color={primaryColor}
+                                        onPress={() => navigation.navigate("StatusTab")}
                                         title="Check Status"
+                                        titleStyle={{color: primaryColor}}
+                                        buttonStyle={styles.statusButtonStyle}
+                                        containerStyle={{marginVertical: 10}}
                                     />
                                     {level != 5 && (
                                         <Button 
                                             onPress={() => navigation.navigate(nextScreenName)}
                                             title="Go To Next Step"
+                                            buttonStyle={styles.nextStepButtonStyle}
+                                            containerStyle={{marginVertical: 10}}
+                                        />
+                                    )}
+
+                                    {level == 5 && (
+                                        <Button 
+                                            onPress={() => navigation.navigate("PrizeTab")}
+                                            title="Select Your Prize"
+                                            buttonStyle={styles.nextStepButtonStyle}
+                                            containerStyle={{marginVertical: 10}}
                                         />
                                     )}
                                 </View>
@@ -112,7 +128,28 @@ const styles = StyleSheet.create({
         color: "white", 
         fontSize: 40, 
         fontWeight: "400"
-     }
+     },
+     statusButtonStyle: {
+        flexDirection: "column", 
+        justifyContent: "center", 
+        alignItems: "center", 
+        height: 60, 
+        width: "100%", 
+        padding: 10, 
+        borderRadius: 100, 
+        borderColor: primaryColor,
+        borderWidth: 2
+     },
+     nextStepButtonStyle: {
+        flexDirection: "column", 
+        justifyContent: "center", 
+        alignItems: "center", 
+        height: 60, 
+        width: "100%", 
+        padding: 10, 
+        borderRadius: 100, 
+        backgroundColor: primaryColor
+     },
 })
 
 export default AnswerStatusScreen

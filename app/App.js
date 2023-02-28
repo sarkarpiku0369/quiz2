@@ -1,4 +1,4 @@
-import { AsyncStorage, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import AppTab from './navigator/tabs/AppTab';
 import { NavigationContainer } from '@react-navigation/native';
@@ -7,6 +7,7 @@ import React from 'react';
 import axiosInstance from './screens/utils';
 import { useNavigation } from '@react-navigation/native';
 import AuthDecide from './screens/AuthDecide';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 export const StoreContext = React.createContext(null)
@@ -18,75 +19,52 @@ export default function App() {
     token: null,
     loading: false,
     
+    gameStarted: false,
+    gameEnd: false,
+    prizeSelected: false,
+
     levelOneRemainingAttempt: 2,
     levelOneTouched: false,
     levelOnePassed: false,
+    levelOnePressedButtons: [],
     levelOneCorrectAnswerButtons: [],
     levelOneWrongAnswerButtons: [],
 
     levelTwoRemainingAttempt: 3,
     levelTwoTouched: false,
     levelTwoPassed: false,
+    levelTwoPressedButtons: [],
     levelTwoCorrectAnswerButtons: [],
     levelTwoWrongAnswerButtons: [],
 
     levelThreeRemainingAttempt: 3,
     levelThreeTouched: false,
     levelThreePassed: false,
+    levelThreePressedButtons: [],
     levelThreeCorrectAnswerButtons: [],
     levelThreeWrongAnswerButtons: [],
 
     levelFourRemainingAttempt: 3,
     levelFourTouched: false,
     levelFourPassed: false,
+    levelFourPressedButtons: [],
     levelFourCorrectAnswerButtons: [],
     levelFourWrongAnswerButtons: [],
 
     levelFiveRemainingAttempt: 3,
     levelFiveTouched: false,
     levelFivePassed: false,
+    levelFivePressedButtons: [],
     levelFiveCorrectAnswerButtons: [],
     levelFiveWrongAnswerButtons: [],
 
   })
 
-  React.useEffect(() => {
-    console.log(state)
-  }, [state])
-
-  const [loading, setLoading] = React.useState(false)
-
   // React.useEffect(() => {
-  //   try {
-  //     setLoading(true)
-  //     const user = AsyncStorage.getItem("user")
-  //     const token = AsyncStorage.getItem("token")
-  //     axiosInstance.post('/user/verify', {token})
-  //     .then((response) => {
-  //       if(response.status == 200) {
-  //         AsyncStorage.setItem("token", response.data.token)
-  //         setState(state => ({...state, loggedIn: true, token:response.data.token}))
-  //       }
-  //     })
-  //     .catch(console.log)
-  //     .finally(() =>{
-  //       setLoading(false)
-  //     })
-  //   }
-  //   catch(err){
-  //     navigation.navigate("Login")
-  //   }
-  // }, [])
+  //   console.log(state)
+  // }, [state])
 
-  // React.useEffect(() => {
-  //       // AsyncStorage.removeItem("isTouch")
-  //       if(state.token) {
-  //         AsyncStorage.setItem("user", JSON.stringify(state.user))
-  //         AsyncStorage.setItem("token", state.token)
-  //         axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${state.token}`;
-  //       }
-  // }, [state.token])
-
+  AsyncStorage.removeItem("token")
 
   return (
     <>

@@ -28,13 +28,19 @@ const MainStack = () => {
         <Stack.Navigator
             initialRouteName='Main'
             screenOptions={{
-                headerShown: false
+                headerStyle: {
+                    backgroundColor: '#DCFFE0',
+                },
+                headerTintColor: 'black',
+                headerTitleAlign: "center",
+                headerTitleStyle: {
+                },
             }}
         >
-            <Stack.Screen name="Main" component={Main} />
+            <Stack.Screen name="Main" component={Main} options={{headerShown: false}} />
             <Stack.Screen name="Registration" component={Registration} />
             <Stack.Screen name="Login" component={Login} />   
-            <Stack.Screen name="OTPVerification" component={OTPVerification} />
+            <Stack.Screen name="OTPVerification" component={OTPVerification} options={{title: "OTP Verification"}}/>
             <Stack.Screen name="ResetPassword" component={ResetPassword} />
             <Stack.Screen name="ResetVariffcation" component={ResetVariffcation} />
             <Stack.Screen name="NewPassword" component={NewPassword} />

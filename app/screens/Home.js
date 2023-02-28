@@ -38,15 +38,15 @@ const Home = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>
         <View style={{flex:0.4, paddingHorizontal:20, paddingTop: 10}}>
-            <View style={{flexDirection:"row", marginBottom: 5}}>
+            <View style={{flexDirection: "row", marginBottom: 5}}>
                 <Feather name="sun" style={styles.sun} />
-                <Text style={styles.good}>GOOD MORNING</Text>
+                <Text style={styles.good}>GOOD EVENING</Text>
             </View>
             <Text style={styles.mcarol}>Madelyn Carol</Text>
         
         <View style={{justifyContent:"center",alignItems:"center"}}>
              <View style={{paddingHorizontal:10,paddingVertical:10,}}>
-                <Image source={require("../assets/slider-1.png")} style={{height: 200, width: 350}} resizeMode="contain" />
+                <Image source={require("../assets/slider-1.png")} style={{height: 200, width: 300}} resizeMode="contain" />
             </View>
         </View>
         

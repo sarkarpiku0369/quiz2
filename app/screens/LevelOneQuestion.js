@@ -1,13 +1,14 @@
 import React from 'react'
-import { ScrollView, StyleSheet, View, Text, TouchableOpacity } from 'react-native'
+import { ScrollView, StyleSheet, View, Text, TouchableOpacity, Vibration } from 'react-native'
 import SafeAreaView from 'react-native-safe-area-view'
 import { Entypo } from '@expo/vector-icons'; 
 import globalStyles, { buttonColor } from '../styles'
-import { Avatar } from '@rneui/base';
+import { Avatar, Button } from '@rneui/base';
 import { primaryColor } from '../styles';
 import BackButton from '../components/BackButton';
 import axiosInstance from './utils';
 import { StoreContext } from '../App';
+import { Feather } from '@expo/vector-icons';
 
 const LevelOneQuestion = ({navigation}) => {
     const [selectedButton, setSelectedButton] = React.useState(null)
@@ -15,9 +16,13 @@ const LevelOneQuestion = ({navigation}) => {
     const {state, setState} = React.useContext(StoreContext)
 
     React.useEffect(() => {
+        Vibration.vibrate(0.2 * 1000)
         if(selectedButton) {
-            setState(state => ({...state, levelOneTouched: true}))
-            navigation.navigate("LevelOneAnswerScreen", {answers: questions[selectedButton], button: selectedButton})
+            setState(state => ({...state, 
+                levelOneTouched: true, 
+                levelOnePressedButtons: [...state.levelOnePressedButtons, selectedButton]
+            }))
+            navigation.navigate("LevelOneAnswerScreen", {answers: questions[selectedButton-1], button: selectedButton})
         }
     }, [selectedButton])
 
@@ -25,13 +30,11 @@ const LevelOneQuestion = ({navigation}) => {
         axiosInstance.get("/question?level=2")
         .then(response => {
             if(response.status == 200) {
-                console.log(response.data.questions)
                 setQuestions(response.data.questions)
             }
         })
     }, [])
 
-    
 
   return (
    <SafeAreaView style={{flex: 1}} forceInset={{top: "always"}}>
@@ -57,31 +60,85 @@ const LevelOneQuestion = ({navigation}) => {
                     </View>
 
                     <View style={{flexDirection: "row", justifyContent: "space-around", marginVertical: 20,top:40}}>
-                        <TouchableOpacity activeOpacity={1} style={[styles.buttonStyle, selectedButton == 1 && styles.buttonHoverStyle]} onPress={() => setSelectedButton(1)}>
-                            <Text style={styles.buttonTextStyle}>1</Text>
-                        </TouchableOpacity>
+                        <Button 
+                            containerStyle={styles.buttonStyle}
+                            buttonStyle={styles.buttonStyle}
+                            disabled={state.levelOnePressedButtons.includes(1)}
+                            onPress={() => setSelectedButton(1)}
+                        >
+                            {state.levelOnePressedButtons.includes(1) ? (
+                                <Feather name="lock" size={24} color="black" />
+                            ) : (
+                                <Text style={styles.buttonTextStyle}>1</Text>
+                            )}
+                        </Button>
+                        
+                        <Button 
+                            containerStyle={styles.buttonStyle}
+                            buttonStyle={styles.buttonStyle}
+                            disabled={state.levelOnePressedButtons.includes(2)}
+                            onPress={() => setSelectedButton(2)}
+                        >
+                            {state.levelOnePressedButtons.includes(2) ? (
+                                <Feather name="lock" size={24} color="black" />
+                            ) : (
+                                <Text style={styles.buttonTextStyle}>2</Text>
+                            )}
+                        </Button>
 
-                        <TouchableOpacity activeOpacity={1} style={[styles.buttonStyle, selectedButton == 2 && styles.buttonHoverStyle]} onPress={() => setSelectedButton(2)}>
-                            <Text style={styles.buttonTextStyle}>2</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity activeOpacity={1} style={[styles.buttonStyle, selectedButton == 3 && styles.buttonHoverStyle]} onPress={() => setSelectedButton(3)}>
-                            <Text style={styles.buttonTextStyle}>3</Text>
-                        </TouchableOpacity>
+                        <Button 
+                            containerStyle={styles.buttonStyle}
+                            buttonStyle={styles.buttonStyle}
+                            disabled={state.levelOnePressedButtons.includes(3)}
+                            onPress={() => setSelectedButton(3)}
+                        >
+                            {state.levelOnePressedButtons.includes(3) ? (
+                                <Feather name="lock" size={24} color="black" />
+                            ) : (
+                                <Text style={styles.buttonTextStyle}>3</Text>
+                            )}
+                        </Button>
                     </View>
 
                     <View style={{flexDirection: "row", justifyContent: "space-around", marginVertical: 10,top:40}}>
-                        <TouchableOpacity activeOpacity={1} style={[styles.buttonStyle, selectedButton == 4 && styles.buttonHoverStyle]} onPress={() => setSelectedButton(4)}>
-                            <Text style={styles.buttonTextStyle}>4</Text>
-                        </TouchableOpacity>
+                        <Button 
+                            containerStyle={styles.buttonStyle}
+                            buttonStyle={styles.buttonStyle}
+                            disabled={state.levelOnePressedButtons.includes(4)}
+                            onPress={() => setSelectedButton(4)}
+                        >
+                            {state.levelOnePressedButtons.includes(4) ? (
+                                <Feather name="lock" size={24} color="black" />
+                            ) : (
+                                <Text style={styles.buttonTextStyle}>4</Text>
+                            )}
+                        </Button>
+                        
+                        <Button 
+                            containerStyle={styles.buttonStyle}
+                            buttonStyle={styles.buttonStyle}
+                            disabled={state.levelOnePressedButtons.includes(5)}
+                            onPress={() => setSelectedButton(5)}
+                        >
+                            {state.levelOnePressedButtons.includes(5) ? (
+                                <Feather name="lock" size={24} color="black" />
+                            ) : (
+                                <Text style={styles.buttonTextStyle}>5</Text>
+                            )}
+                        </Button>
 
-                        <TouchableOpacity activeOpacity={1} style={[styles.buttonStyle, selectedButton == 5 && styles.buttonHoverStyle]} onPress={() => setSelectedButton(5)}>
-                            <Text style={styles.buttonTextStyle}>5</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity activeOpacity={1} style={[styles.buttonStyle, selectedButton == 6 && styles.buttonHoverStyle]} onPress={() => setSelectedButton(6)}>
-                            <Text style={styles.buttonTextStyle}>6</Text>
-                        </TouchableOpacity>
+                        <Button 
+                            containerStyle={styles.buttonStyle}
+                            buttonStyle={styles.buttonStyle}
+                            disabled={state.levelOnePressedButtons.includes(6)}
+                            onPress={() => setSelectedButton(6)}
+                        >
+                            {state.levelOnePressedButtons.includes(6) ? (
+                                <Feather name="lock" size={24} color="black" />
+                            ) : (
+                                <Text style={styles.buttonTextStyle}>6</Text>
+                            )}
+                        </Button>
                     </View>
                 </View>
             </View>
@@ -97,8 +154,8 @@ const styles = StyleSheet.create({
         flexDirection: "column", 
         justifyContent: "center", 
         alignItems: "center", 
-        height: 80, 
-        width: 80, 
+        height: 70, 
+        width: 70, 
         padding: 10, 
         borderRadius: 100, 
         backgroundColor: "#686565"

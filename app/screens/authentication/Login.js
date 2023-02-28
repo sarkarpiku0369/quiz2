@@ -10,41 +10,39 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { buttonColor, primaryColor } from '../../styles';
 import axiosInstance from '../utils';
+import { StoreContext } from '../../App';
 
 const Login = ({navigation}) => {
 
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
+    const [submitting, setSubmitting] = React.useState(false)
 
     const handleSubmit = () => {
-      
-        axiosInstance.post("/user/login", {
-            email
-        })
+        
+        setSubmitting(true)
+        axiosInstance.post("/user/login", {email, password})
         .then(response => {
             if(response.status === 200) {
                 navigation.navigate("OTPVerification", {email})
             }
         })
         .catch(err => {
-            err.response.status == 401 ? alert("You are not authenticate") : alert("Server Error")
+            err.response.status == 401 ? alert(err.response.data.error) : alert("Server Error")
+        })
+        .finally(() => {
+            setSubmitting(false)
         })
     }
 
   return (
-    <SafeAreaView style={{flex: 1}} forceInset={{top: "always"}}>
         <ScrollView 
-            contentContainerStyle={{flex: 1}} 
+            style={{backgroundColor: "#DCFFE0"}}
             showsHorizontalScrollIndicator={false}
             showsVerticalScrollIndicator={false}
         >
-            <View style={{flex: 1, backgroundColor:"#DCFFE0", padding: 14}}>
-                <View style={{flexDirection: "row", justifyContent: "space-between", alignItems: "center"}}>
-                    <BackButton color="black" />
-                    <Text style={{justifyContent:"center", fontSize: 18, fontWeight: "bold"}}>Login</Text>
-                    <Text>{" "}</Text>
-                </View>
-                <View style={{justifyContent: 'center', alignItems: "center", marginVertical: 40}}>
+            <View style={{flex: 1, backgroundColor: "#DCFFE0", padding: 14}}>
+                <View style={{justifyContent: 'center', alignItems: "center"}}>
                     <Image 
                         source={require("../../assets/Login.png")}
                     />
@@ -53,7 +51,7 @@ const Login = ({navigation}) => {
                     <View style={{flexDirection: "column", paddingHorizontal: 15}}>
                         <Text>Email Address</Text>
                         <TouchableOpacity style={{flexDirection: "row", backgroundColor: "white", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 10, borderRadius: 50, marginVertical: 10}}>
-                            <MaterialIcons name="email" size={26} color={primaryColor} />
+                        <MaterialIcons name="email" size={26} color={primaryColor} />
                            
 
 <TextInput 
@@ -72,6 +70,7 @@ const Login = ({navigation}) => {
                             <AntDesign name="lock" size={24} color={primaryColor} />
                             <TextInput style = {styles.input}
                                 underlineColorAndroid = "transparent"
+                                secureTextEntry={true}
                                 placeholder = "Your Password"
                                 value={password}
                                 // placeholderTextColor = "#858494"
@@ -83,14 +82,17 @@ const Login = ({navigation}) => {
                     </View>
 
                     <Button
-                        
+                        loading={submitting} 
+                        disabled={submitting}
                         buttonStyle={styles.buttonStyle}
                         title="Login"
                         onPress={() => handleSubmit()}
                     />
                     
-                    <View style={{flexDirection:"column", marginTop: 10}}>
-                        <Text style={{color: primaryColor}}>Forgot Password</Text>
+                    <View style={{flexDirection: "column", alignItems: "center", marginTop: 10}}>
+                        <TouchableOpacity onPress={()=> navigation.navigate("ResetPassword")} activeOpacity={1}>
+                            <Text style={{color: primaryColor}}>Forgot Password</Text>
+                        </TouchableOpacity>
                         <Text style={{marginTop: 20}}>
                             By continuing, you agree to the Terms of Services</Text>
                             <Text>& Privacy Policy.
@@ -99,7 +101,6 @@ const Login = ({navigation}) => {
                 </View>
             </View>  
         </ScrollView>
-    </SafeAreaView>
   )
 }
 const styles = StyleSheet.create({

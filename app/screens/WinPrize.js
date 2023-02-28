@@ -1,20 +1,24 @@
 import React from 'react'
-import { ScrollView, StyleSheet, View, Text, TouchableOpacity } from 'react-native'
+import { ScrollView, StyleSheet, View, Text } from 'react-native'
+import { Button } from '@rneui/base';
 import SafeAreaView from 'react-native-safe-area-view'
 import { Entypo } from '@expo/vector-icons'; 
 import globalStyles, { buttonColor } from '../styles'
 import { Feather } from '@expo/vector-icons';
 import { primaryColor } from '../styles';
 import BackButton from '../components/BackButton';
+import { StoreContext } from '../App';
 
 const WinPrize = ({navigation}) => {
-    const [selectedButton, setSelectedButton] = React.useState("")
+    const [selectedButton, setSelectedButton] = React.useState(null)
+    const {state, setState} = React.useContext(StoreContext)
 
     React.useEffect(() => {
-        if(selectedButton != "") {
+        if(selectedButton) {
+            setState(state => ({...state, prizeSelected: true}))
             navigation.navigate("WinSuccess")
         }
-    })
+    }, [selectedButton])
 
   return (
    <SafeAreaView style={{flex: 1}} forceInset={{top: "always"}}>
@@ -34,64 +38,112 @@ const WinPrize = ({navigation}) => {
                         <Text style={{color:"#2DA63D",fontSize:19,fontWeight:"700", textAlign:'center'}}>Win your prize by Selecting </Text>
                     </View>
                     <View style={{flexDirection: "column", alignItems: "center"}}>
-                        <Text style={globalStyles.statustext}>1 BOX</Text>
+                        <Text style={globalStyles.statustext}>{state.prizeSelected ? "You Have Selected Your Prize" : "1 Box"}</Text>
                     </View>
                     
 
                     <View style={{flexDirection: "row", justifyContent: "space-around", marginVertical: 20,top:40}}>
-                        <TouchableOpacity activeOpacity={1} style={[styles.buttonStyle, selectedButton == "1" && styles.buttonHoverStyle]} onPress={() => setSelectedButton("1")}>
-                        <Feather name="gift" size={24} style={styles.buttonTextStyle} />
-                        </TouchableOpacity>
+                        <Button disabled={state.prizeSelected} buttonStyle={styles.buttonStyle} onPress={() => setSelectedButton(1)}>
+                            {state.prizeSelected ? (
+                                <Feather name="lock" size={24} color="black" />
+                            ) : (
+                                <Feather name="gift" size={24} style={styles.buttonTextStyle} />
+                            )}
+                        </Button>
 
-                        <TouchableOpacity activeOpacity={1} style={[styles.buttonStyle, selectedButton == "2" && styles.buttonHoverStyle]} onPress={() => setSelectedButton("2")}>
-                        <Feather name="gift" size={24} style={styles.buttonTextStyle} />
-                        </TouchableOpacity>
+                        <Button disabled={state.prizeSelected} buttonStyle={styles.buttonStyle} onPress={() => setSelectedButton(2)}>
+                            {state.prizeSelected ? (
+                                <Feather name="lock" size={24} color="black" />
+                            ) : (
+                                <Feather name="gift" size={24} style={styles.buttonTextStyle} />
+                            )}
+                        </Button>
 
-                        <TouchableOpacity activeOpacity={1} style={[styles.buttonStyle, selectedButton == "3" && styles.buttonHoverStyle]} onPress={() => setSelectedButton("3")}>
-                        <Feather name="gift" size={24} style={styles.buttonTextStyle} />
-                        </TouchableOpacity>
+                        <Button disabled={state.prizeSelected} buttonStyle={styles.buttonStyle} onPress={() => setSelectedButton(3)}>
+                            {state.prizeSelected ? (
+                                <Feather name="lock" size={24} color="black" />
+                            ) : (
+                                <Feather name="gift" size={24} style={styles.buttonTextStyle} />
+                            )}
+                        </Button>
                     </View>
 
                     <View style={{flexDirection: "row", justifyContent: "space-around", marginVertical: 10,top:40}}>
-                        <TouchableOpacity activeOpacity={1} style={[styles.buttonStyle, selectedButton == "4" && styles.buttonHoverStyle]} onPress={() => setSelectedButton("4")}>
-                            <Feather name="gift" size={24} style={styles.buttonTextStyle} />
-                        </TouchableOpacity>
+                        <Button disabled={state.prizeSelected} buttonStyle={styles.buttonStyle} onPress={() => setSelectedButton(4)}>
+                            {state.prizeSelected ? (
+                                <Feather name="lock" size={24} color="black" />
+                            ) : (
+                                <Feather name="gift" size={24} style={styles.buttonTextStyle} />
+                            )}
+                        </Button>
 
-                        <TouchableOpacity activeOpacity={1} style={[styles.buttonStyle, selectedButton == "5" && styles.buttonHoverStyle]} onPress={() => setSelectedButton("5")}>
-                        <Feather name="gift" size={24} style={styles.buttonTextStyle} />
-                        </TouchableOpacity>
+                        <Button disabled={state.prizeSelected} buttonStyle={styles.buttonStyle} onPress={() => setSelectedButton(5)}>
+                            {state.prizeSelected ? (
+                                <Feather name="lock" size={24} color="black" />
+                            ) : (
+                                <Feather name="gift" size={24} style={styles.buttonTextStyle} />
+                            )}
+                        </Button>
 
-                        <TouchableOpacity activeOpacity={1} style={[styles.buttonStyle, selectedButton == "6" && styles.buttonHoverStyle]} onPress={() => setSelectedButton("6")}>
-                        <Feather name="gift" size={24} style={styles.buttonTextStyle} />
-                        </TouchableOpacity>
+                        <Button disabled={state.prizeSelected} buttonStyle={styles.buttonStyle} onPress={() => setSelectedButton(6)}>
+                            {state.prizeSelected ? (
+                                <Feather name="lock" size={24} color="black" />
+                            ) : (
+                                <Feather name="gift" size={24} style={styles.buttonTextStyle} />
+                            )}
+                        </Button>
                     </View>
 
                     <View style={{flexDirection: "row", justifyContent: "space-around", marginVertical: 10,top:40}}>
-                        <TouchableOpacity activeOpacity={1} style={[styles.buttonStyle, selectedButton == "4" && styles.buttonHoverStyle]} onPress={() => setSelectedButton("4")}>
-                        <Feather name="gift" size={24} style={styles.buttonTextStyle} />
-                        </TouchableOpacity>
+                        <Button disabled={state.prizeSelected} buttonStyle={styles.buttonStyle} onPress={() => setSelectedButton(7)}>
+                            {state.prizeSelected ? (
+                                <Feather name="lock" size={24} color="black" />
+                            ) : (
+                                <Feather name="gift" size={24} style={styles.buttonTextStyle} />
+                            )}
+                        </Button>
 
-                        <TouchableOpacity activeOpacity={1} style={[styles.buttonStyle, selectedButton == "5" && styles.buttonHoverStyle]} onPress={() => setSelectedButton("5")}>
-                        <Feather name="gift" size={24} style={styles.buttonTextStyle} />
-                        </TouchableOpacity>
+                        <Button disabled={state.prizeSelected} buttonStyle={styles.buttonStyle} onPress={() => setSelectedButton(8)}>
+                            {state.prizeSelected ? (
+                                <Feather name="lock" size={24} color="black" />
+                            ) : (
+                                <Feather name="gift" size={24} style={styles.buttonTextStyle} />
+                            )}
+                        </Button>
 
-                        <TouchableOpacity activeOpacity={1} style={[styles.buttonStyle, selectedButton == "6" && styles.buttonHoverStyle]} onPress={() => setSelectedButton("6")}>
-                        <Feather name="gift" size={24} style={styles.buttonTextStyle} />
-                        </TouchableOpacity>
+                        <Button disabled={state.prizeSelected} buttonStyle={styles.buttonStyle} onPress={() => setSelectedButton(9)}>
+                            {state.prizeSelected ? (
+                                <Feather name="lock" size={24} color="black" />
+                            ) : (
+                                <Feather name="gift" size={24} style={styles.buttonTextStyle} />
+                            )}
+                        </Button>
                     </View>
 
                     <View style={{flexDirection: "row", justifyContent: "space-around", marginVertical: 10,top:40}}>
-                        <TouchableOpacity activeOpacity={1} style={[styles.buttonStyle, selectedButton == "4" && styles.buttonHoverStyle]} onPress={() => setSelectedButton("4")}>
-                        <Feather name="gift" size={24} style={styles.buttonTextStyle} />
-                        </TouchableOpacity>
+                        <Button disabled={state.prizeSelected} buttonStyle={styles.buttonStyle} onPress={() => setSelectedButton(10)}>
+                            {state.prizeSelected ? (
+                                <Feather name="lock" size={24} color="black" />
+                            ) : (
+                                <Feather name="gift" size={24} style={styles.buttonTextStyle} />
+                            )}
+                        </Button>
 
-                        <TouchableOpacity activeOpacity={1} style={[styles.buttonStyle, selectedButton == "5" && styles.buttonHoverStyle]} onPress={() => setSelectedButton("5")}>
-                        <Feather name="gift" size={24} style={styles.buttonTextStyle} />
-                        </TouchableOpacity>
+                        <Button disabled={state.prizeSelected} buttonStyle={styles.buttonStyle} onPress={() => setSelectedButton(11)}>
+                            {state.prizeSelected ? (
+                                <Feather name="lock" size={24} color="black" />
+                            ) : (
+                                <Feather name="gift" size={24} style={styles.buttonTextStyle} />
+                            )}
+                        </Button>
 
-                        <TouchableOpacity activeOpacity={1} style={[styles.buttonStyle, selectedButton == "6" && styles.buttonHoverStyle]} onPress={() => setSelectedButton("6")}>
-                        <Feather name="gift" size={24} style={styles.buttonTextStyle} />
-                        </TouchableOpacity>
+                        <Button disabled={state.prizeSelected} buttonStyle={styles.buttonStyle} onPress={() => setSelectedButton(12)}>
+                            {state.prizeSelected ? (
+                                <Feather name="lock" size={24} color="black" />
+                            ) : (
+                                <Feather name="gift" size={24} style={styles.buttonTextStyle} />
+                            )}
+                        </Button>
                     </View>
 
 

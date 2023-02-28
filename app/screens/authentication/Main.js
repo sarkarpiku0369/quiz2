@@ -12,7 +12,7 @@ const Main = ({navigation}) => {
     return(
     <SafeAreaView style={styles.container}>
         <View style={{flex: 1, justifyContent: "center"}}>
-            <View style={{flex: 0.5, justifyContent: "center", alignItems: "center"}}>
+            <View style={{flex: 0.6, justifyContent: "center", alignItems: "center"}}>
                 <Image 
                     source={require("../../assets/Woman-main.png")}
                 />

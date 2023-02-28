@@ -1,5 +1,5 @@
 import React from 'react'
-import { ScrollView, StyleSheet, View, Text, TouchableOpacity } from 'react-native'
+import { ScrollView, StyleSheet, View, Text, TouchableOpacity, Vibration } from 'react-native'
 import SafeAreaView from 'react-native-safe-area-view'
 import { Entypo } from '@expo/vector-icons'; 
 import globalStyles from '../styles'
@@ -15,18 +15,24 @@ const LevelFourAnswer = ({route, navigation}) => {
     const {answers, button} = route.params
     const correct_option = Number(answers.correct_option)
 
-    React.useEffect(() => {
-        console.log(answers)
-    }, [])
-
     const handleButtonPress = (pressedBtn) => {
+            Vibration.vibrate(0.2 * 1000)
             setButtonPressed(true)
         
-             let remainingAttempt = state.levelFourRemainingAttempt - 1
-            setState(state => ({...state, 
-                levelFourRemainingAttempt: remainingAttempt,
-                levelFourCorrectAnswerButtons: [...state.levelFourCorrectAnswerButtons, button]}
-            ))
+            let remainingAttempt = state.levelFourRemainingAttempt - 1
+            
+            if(pressedBtn == correct_option) {
+                setState(state => ({...state, 
+                    levelFourRemainingAttempt: remainingAttempt,
+                    levelFourCorrectAnswerButtons: [...state.levelFourCorrectAnswerButtons, button]}
+                ))
+            }
+            else {
+                setState(state => ({...state, 
+                    levelFourRemainingAttempt: remainingAttempt,
+                    levelFourWrongAnswerButtons: [...state.levelFourWrongAnswerButtons, button]}
+                ))
+            }
             
             navigation.push("AnswerStatusScreen", {
                 answerCorrect: (pressedBtn == correct_option),

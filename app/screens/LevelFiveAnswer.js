@@ -1,5 +1,5 @@
 import React from 'react'
-import { ScrollView, StyleSheet, View, Text, TouchableOpacity } from 'react-native'
+import { ScrollView, StyleSheet, View, Text, TouchableOpacity, Vibration } from 'react-native'
 import SafeAreaView from 'react-native-safe-area-view'
 import { Entypo } from '@expo/vector-icons'; 
 import globalStyles from '../styles'
@@ -20,13 +20,23 @@ const LevelFiveAnswer = ({route, navigation}) => {
     }, [])
 
     const handleButtonPress = (pressedBtn) => {
+            Vibration.vibrate(0.2 * 1000)
             setButtonPressed(true)
         
-             let remainingAttempt = state.levelFiveRemainingAttempt - 1
-            setState(state => ({...state, 
-                levelFiveRemainingAttempt: remainingAttempt,
-                levelFiveCorrectAnswerButtons: [...state.levelFiveCorrectAnswerButtons, button]}
-            ))
+            let remainingAttempt = state.levelFiveRemainingAttempt - 1
+            
+            if(pressedBtn == correct_option) {
+                setState(state => ({...state, 
+                    levelFiveRemainingAttempt: remainingAttempt,
+                    levelFiveCorrectAnswerButtons: [...state.levelFiveCorrectAnswerButtons, button]}
+                ))
+            }
+            else {
+                setState(state => ({...state, 
+                    levelFiveRemainingAttempt: remainingAttempt,
+                    levelFiveWrongAnswerButtons: [...state.levelFiveWrongAnswerButtons, button]}
+                ))
+            }
             
             navigation.push("AnswerStatusScreen", {
                 answerCorrect: (pressedBtn == correct_option),

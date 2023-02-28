@@ -21,7 +21,7 @@ const AppTab = () => {
     
   return (
     <Tab.Navigator
-        initialRouteName='Home4'
+        initialRouteName='HomeTab'
         screenOptions={{
             tabBarActiveTintColor: "#0088E0",
             tabBarInactiveTintColor: "black",
@@ -40,7 +40,7 @@ const AppTab = () => {
             }}
         />
         <Tab.Screen 
-            name="Home2" 
+            name="PrizeTab" 
             component={WinStack}
             options={{
                 tabBarLabel: 'All Prize',
@@ -51,7 +51,7 @@ const AppTab = () => {
         />
 
         <Tab.Screen 
-            name="Home3" 
+            name="StatusTab" 
             component={MyStatus}
             options={{
                 tabBarLabel: 'My Status',
@@ -62,10 +62,10 @@ const AppTab = () => {
         />
 
         <Tab.Screen 
-            name="Home4" 
+            name="ProfileTab" 
             component={MainStack}
             options={{
-                tabBarLabel: 'Main',
+                tabBarLabel: 'Profile',
                 tabBarIcon: ({ color, size }) => (
                     <EvilIcons name="user" size={30} color={color} />
                 ),

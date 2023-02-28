@@ -7,9 +7,14 @@ import { Feather } from '@expo/vector-icons';
 import { primaryColor } from '../styles';
 import BackButton from '../components/BackButton';
 import { Button } from '@rneui/base';
+import { AntDesign } from '@expo/vector-icons';
 
 const Contact = ({navigation}) => {
     const [selectedButton, setSelectedButton] = React.useState("")
+
+    const [name, setName] = React.useState("")
+    const [phone, setPhone] = React.useState("")
+    const [email, setEmail] = React.useState("")
 
     React.useEffect(() => {
         if(selectedButton != "") {
@@ -27,43 +32,35 @@ const Contact = ({navigation}) => {
             </View>
             <View style={styles.subbody}>
 
-                <TextInput style = {styles.input}
-                underlineColorAndroid = "transparent"
-                placeholder = "Name"
-                placeholderTextColor = "#858494"
-                autoCapitalize = "none"
-                />
-                <TextInput style = {styles.input}
-                underlineColorAndroid = "transparent"
-                placeholder = "Phone Number"
-                placeholderTextColor = "#858494"
-                autoCapitalize = "none"
-                />
+                <View style={{flexDirection: "row", backgroundColor: "white", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 10, borderRadius: 50, marginVertical: 10}}>
+                    <TextInput style = {styles.input}
+                        underlineColorAndroid = "transparent"
+                        placeholder = "Name"
+                        placeholderTextColor = "#858494"
+                        autoCapitalize = "none"
+                        onChangeText={(text) => setName(text)}
+                    />
+                </View>
 
-                <TextInput style = {styles.input}
-                underlineColorAndroid = "transparent"
-                placeholder = "Email"
-                placeholderTextColor = "#858494"
-                autoCapitalize = "none"
-                />
+                <View style={{flexDirection: "row", backgroundColor: "white", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 10, borderRadius: 50, marginVertical: 10}}>
+                    <TextInput style = {styles.input}
+                        underlineColorAndroid = "transparent"
+                        placeholder = "Phone Number"
+                        placeholderTextColor = "#858494"
+                        autoCapitalize = "none"
+                        onChangeText={(text) => setPhone(text)}
+                    />
+                </View>
 
-                {/* <Button style = {styles.buttonStyle}
-                    title="Submit"
-                /> */}
-                {/* <TouchableHighlight 
-                    style ={{
-                        height: 40,
-                        width:260,
-                        borderRadius:20,
-                        color: "#fff",
-                        backgroundColor : "#3AB54A",
-                        alignSelf: "center",
-                    }}>
-
-                    
-                
-            /> 
-            </TouchableHighlight>  */}
+                <View style={{flexDirection: "row", backgroundColor: "white", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 10, borderRadius: 50, marginVertical: 10}}>
+                    <TextInput style = {styles.input}
+                        underlineColorAndroid = "transparent"
+                        placeholder = "Email Address"
+                        placeholderTextColor = "#858494"
+                        autoCapitalize = "none"
+                        onChangeText={(text) => setEmail(text)}
+                    />
+                </View>
 
             <Button
                 buttonStyle={styles.submitButton}
@@ -86,8 +83,8 @@ const styles = StyleSheet.create({
     },
     subbody:{
         // flex: 0.6,
-        marginHorizontal: 26,
-        padding: 15,
+        marginHorizontal: 20,
+        padding: 10,
         borderRadius: 31,
         backgroundColor: "#ffffff"
     },
@@ -121,14 +118,13 @@ const styles = StyleSheet.create({
         height: 50,
       },
       input: {
-        margin: 15,
-        height: 40,
+        width: "100%",
         borderColor: '#d9d8dd',
-        borderWidth: 2,
+        borderWidth: 1,
         borderRadius: 5,
-        paddingVertical: 25,
+        paddingVertical: 10,
         paddingHorizontal: 10,
-     },
+      },
      submitButton: {
         backgroundColor: primaryColor,
         padding: 10,

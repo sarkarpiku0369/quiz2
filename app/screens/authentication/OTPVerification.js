@@ -5,16 +5,14 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { AntDesign } from '@expo/vector-icons'; 
 import { primaryColor } from '../../styles';
 import axiosInstance from '../utils';
+import { StoreContext } from '../../App';
 
 
 const OTPVerification = ({route, navigation}) => {
     
-
+    const {state, setState} = React.useContext(StoreContext)
 
     const {email} = route.params
-
-    // const [hasError, setHasError] = React.useState(false)
-    // const [error, setError] = React.useState(false)
 
     const pin1Ref = useRef(null)
     const pin2Ref = useRef(null)
@@ -29,16 +27,14 @@ const OTPVerification = ({route, navigation}) => {
     const [submitting, setSubmitting] = React.useState(false)
 
      const submit = async () => {
-         setSubmitting(false)
+         setSubmitting(true)
          
          const otp = `${pin1}${pin2}${pin3}${pin4}`
          try {
              setSubmitting(false)
              const response = await axiosInstance.post('/user/verify', {email, otp})
              if(response.status === 200) {  
-                      
-                // setState(state => ({...state, user: response.data.user, token: response.data.token}))
-                navigation.navigate("HomeTab")
+                setState(state => ({...state, user: response.data.user, token: response.data.token}))
              }
            }
            catch(err) {
@@ -54,8 +50,6 @@ const OTPVerification = ({route, navigation}) => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <AntDesign name="left" size={24} color="black" onPress={() => navigation.goBack()}/>
-            
             <View style={styles.headingContainer}>
                 <Text h3 h3Style={styles.headingText1}>Enter Verification Code</Text>
                 <Text style={styles.headingText2}>We have send you a 4 digit verification code to your email address</Text>
@@ -124,7 +118,11 @@ const OTPVerification = ({route, navigation}) => {
                 </View>
             )} */}
 
-            <Button buttonStyle={styles.buttonStyle} onPress={submit} loading={submitting} disabled={submitting}>Next</Button>
+            <Button 
+                buttonStyle={styles.buttonStyle} 
+                onPress={submit} 
+                loading={submitting} 
+                disabled={submitting}>Next</Button>
         </SafeAreaView>
     )
 }
@@ -137,7 +135,6 @@ const styles = StyleSheet.create({
     },
     headingContainer: {
         alignItems: "center",
-        marginTop: 20
     },
     headingText1: {
         color: "grey"

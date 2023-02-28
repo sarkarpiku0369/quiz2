@@ -9,69 +9,96 @@ import BackButton from '../../components/BackButton';
 import { MaterialIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { buttonColor, primaryColor } from '../../styles';
+import axiosInstance from '../utils';
 
 
 const Registration = ({navigation}) => {
-  return (
-    <SafeAreaView style={{flex: 1}} forceInset={{top: "always"}}>
-        <ScrollView 
-            contentContainerStyle={{flex: 1}} 
+
+    const [email, setEmail]         = React.useState("")
+    const [name, setName]   = React.useState("")
+    const [password, setPassword]   = React.useState("")
+    const [submitting, setSubmitting] = React.useState(false)
+    
+    const handleSubmit = () => {
+        setSubmitting(true)
+
+        axiosInstance.post("/user/register", {role: "user", email, name, password})
+        .then(response => {
+            if(response.status == 200) {
+                navigation.navigate("OTPVerification", {email})
+            }
+            else {
+                alert("Something went wrong!")
+            }
+        })
+        .catch((err) => {
+            alert(err.response.data.errors[0])
+        })
+        .finally(() => {
+            setSubmitting(false)
+        })
+    }
+
+    return (
+        <ScrollView
+            style={{backgroundColor: "#DCFFE0"}} 
             showsHorizontalScrollIndicator={false}
             showsVerticalScrollIndicator={false}
         >
-           <View style={{flex: 1, backgroundColor:"#DCFFE0", padding: 14}}>
-                <View style={{flexDirection: "row", justifyContent: "space-between", alignItems: "center"}}>
-                        <BackButton color="black" />
-                        <Text style={{justifyContent:"center", fontSize: 18, fontWeight: "bold"}}>Registration</Text>
-                        <Text>{" "}</Text>
-                </View>
-                <View style={{justifyContent: 'center', alignItems: "center", marginVertical: 40}}>
+            <View style={{flex: 1, backgroundColor:"#DCFFE0", padding: 14}}>
+                <View style={{justifyContent: 'center', alignItems: "center"}}>
                     <Image 
                         source={require("../../assets/Login.png")}
                     />
                 </View>
 
                 <View>
-                <View style={{flexDirection: "column", paddingHorizontal: 15}}>
+                    <View style={{flexDirection: "column", paddingHorizontal: 15}}>
                         <Text>Email Address</Text>
-                        <TouchableOpacity style={{flexDirection: "row", backgroundColor: "white", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 10, borderRadius: 50, marginVertical: 10}}>
+                        <View style={{flexDirection: "row", backgroundColor: "white", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 10, borderRadius: 50, marginVertical: 10}}>
                             <MaterialIcons name="email" size={26} color={primaryColor} />
                             <TextInput style = {styles.input}
                                 underlineColorAndroid = "transparent"
                                 placeholder = "Your Email Address"
                                 placeholderTextColor = "#858494"
                                 autoCapitalize = "none"
+                                onChangeText={(text) => setEmail(text)}
                             />
-                        </TouchableOpacity>
+                        </View>
                 </View>
                 <View style={{flexDirection: "column", paddingHorizontal: 15, marginBottom: 20}}>
-                        <Text>Username</Text>
-                        <TouchableOpacity style={{flexDirection: "row", backgroundColor: "white", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 10, borderRadius: 50, marginVertical: 10}}>
+                        <Text>Name</Text>
+                        <View style={{flexDirection: "row", backgroundColor: "white", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 10, borderRadius: 50, marginVertical: 10}}>
                             <AntDesign name="user" size={24} color={primaryColor} />
                             <TextInput style = {styles.input}
                                 underlineColorAndroid = "transparent"
                                 placeholder = "Your username"
                                 placeholderTextColor = "#858494"
                                 autoCapitalize = "none"
+                                onChangeText={(text) => setName(text)}
                             />
-                        </TouchableOpacity>
+                        </View>
                     </View>
                     <View style={{flexDirection: "column", paddingHorizontal: 15, marginBottom: 20}}>
                         <Text>Password</Text>
-                        <TouchableOpacity style={{flexDirection: "row", backgroundColor: "white", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 10, borderRadius: 50, marginVertical: 10}}>
+                        <View style={{flexDirection: "row", backgroundColor: "white", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 10, borderRadius: 50, marginVertical: 10}}>
                             <AntDesign name="lock" size={24} color={primaryColor} />
                             <TextInput style = {styles.input}
+                                secureTextEntry={true}
                                 underlineColorAndroid = "transparent"
                                 placeholder = "Your Password"
                                 placeholderTextColor = "#858494"
                                 autoCapitalize = "none"
+                                onChangeText={(text) => setPassword(text)}
                             />
-                        </TouchableOpacity>
+                        </View>
                     </View>
                     <Button
+                        loading={submitting} 
+                        disabled={submitting}
                         buttonStyle={styles.buttonStyle}
                         title="Create Account"
-                        onPress={() => navigation.push('OTPVerification')}
+                        onPress={() => handleSubmit()}
 
                     />
                     <View style={{flexDirection: "column", alignItems: "center", marginTop: 10}}>
@@ -83,11 +110,10 @@ const Registration = ({navigation}) => {
                             <Text>& Privacy Policy.
                         </Text>
                     </View>
-                    </View>
+                </View>
             </View> 
         </ScrollView>
-    </SafeAreaView>
-  )
+    )
 }
 const styles = StyleSheet.create({
     input: {

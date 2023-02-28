@@ -1,5 +1,5 @@
 import React from 'react'
-import { ScrollView, StyleSheet, View,Image, Text, TextInput ,TouchableHighlight} from 'react-native'
+import { ScrollView, StyleSheet, View,Image, Text, TextInput ,TouchableHighlight, TouchableOpacity} from 'react-native'
 import SafeAreaView from 'react-native-safe-area-view'
 //import { Entypo } from '@expo/vector-icons'; 
 import globalStyles, { buttonColor } from '../styles'
@@ -13,23 +13,24 @@ const ThankYou = ({navigation}) => {
 
     React.useEffect(() => {
         if(selectedButton != "") {
-            navigation.navigate("LevelOneAnswerScreen")
+            navigation.navigate("Home", {screen: 'Home'})
         }
     })
     
   return (
     <SafeAreaView style={styles.container}>
-    <View style={{flex: 1, justifyContent: "center"}}>
-        <View style={{flexDirection: "column", alignItems: "center"}}>
-            <Image 
-                source={require("../assets/thankyou.png")}
-            />
-        </View>
-        <View style={{flexDirection:"row", alignItems: "center"}}>
-            
-        </View>
-     </View>
-</SafeAreaView>
+        <TouchableOpacity 
+            activeOpacity={1} 
+            style={{flex: 1, justifyContent: "center"}}
+            onPress={() => navigation.navigate("HomeTab", {screen: 'Home'})} 
+        >
+                <View style={{flexDirection: "column", alignItems: "center"}}>
+                    <Image 
+                        source={require("../assets/thankyou.png")}
+                    />
+                </View>
+        </TouchableOpacity>
+    </SafeAreaView>
   )
 }
 
