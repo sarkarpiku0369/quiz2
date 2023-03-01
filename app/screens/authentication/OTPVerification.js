@@ -119,7 +119,10 @@ const OTPVerification = ({route, navigation}) => {
             )} */}
 
             <Button 
-                buttonStyle={styles.buttonStyle} 
+                buttonStyle={styles.buttonStyle}
+disabledStyle={{
+    backgroundColor: state.levelOneCorrectAnswerButtons.includes(1) ? primaryColor : "red",
+}} 
                 onPress={submit} 
                 loading={submitting} 
                 disabled={submitting}>Next</Button>

@@ -13,6 +13,7 @@ const LevelOneAnswer = ({route, navigation}) => {
     const {state, setState} = React.useContext(StoreContext)
 
     const {answers, button} = route.params
+
     const correct_option = Number(answers.correct_option)
 
 
@@ -65,28 +66,32 @@ const LevelOneAnswer = ({route, navigation}) => {
                         <View style={{flexDirection: "column", paddingHorizontal: "20%", paddingVertical: 20}}>
                             <Button 
                                 containerStyle={globalStyles.answerButton.containerStyle}
-                                buttonStyle={globalStyles.answerButton.buttonStyle}
+                                                                buttonStyle={globalStyles.answerButton.buttonStyle}
+                         	titleStyle={globalStyles.answerButton.titleStyle}
                                 title={answers.option_1}
                                 disabled={buttonPressed}
                                 onPress={() => handleButtonPress(1)}
                             />
                             <Button 
                                 containerStyle={globalStyles.answerButton.containerStyle}
-                                buttonStyle={globalStyles.answerButton.buttonStyle}
+                                                                buttonStyle={globalStyles.answerButton.buttonStyle}
+                         	titleStyle={globalStyles.answerButton.titleStyle}
                                 title={answers.option_2}
                                 disabled={buttonPressed}
                                 onPress={() => handleButtonPress(2)}
                             />
                             <Button 
                                 containerStyle={globalStyles.answerButton.containerStyle}
-                                buttonStyle={globalStyles.answerButton.buttonStyle}
+                                                                buttonStyle={globalStyles.answerButton.buttonStyle}
+                         	titleStyle={globalStyles.answerButton.titleStyle}
                                 title={answers.option_3}
                                 disabled={buttonPressed}
                                 onPress={() => handleButtonPress(3)}
                             />
                             <Button 
                                 containerStyle={globalStyles.answerButton.containerStyle}
-                                buttonStyle={globalStyles.answerButton.buttonStyle}
+                                                                buttonStyle={globalStyles.answerButton.buttonStyle}
+                         	titleStyle={globalStyles.answerButton.titleStyle}
                                 title={answers.option_4}
                                 disabled={buttonPressed}
                                 onPress={() => handleButtonPress(4)}

@@ -8,6 +8,9 @@ import axiosInstance from './screens/utils';
 import { useNavigation } from '@react-navigation/native';
 import AuthDecide from './screens/AuthDecide';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Splash1 from './screens/Splash1';
+import Splash2 from './screens/Splash2';
+import Splash from './screens/Splash';
 
 
 export const StoreContext = React.createContext(null)
@@ -72,6 +75,9 @@ export default function App() {
       <StatusBar style="dark" />
       <SafeAreaProvider>
         <NavigationContainer>
+          {/* <Splash /> */}
+          {/* <Splash1 /> */}
+          {/* <Splash2 /> */}
          <AuthDecide />
         </NavigationContainer>
       </SafeAreaProvider>

@@ -97,6 +97,9 @@ const Registration = ({navigation}) => {
                         loading={submitting} 
                         disabled={submitting}
                         buttonStyle={styles.buttonStyle}
+disabledStyle={{
+    backgroundColor: state.levelOneCorrectAnswerButtons.includes(1) ? primaryColor : "red",
+}}
                         title="Create Account"
                         onPress={() => handleSubmit()}
 

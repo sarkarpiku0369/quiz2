@@ -132,7 +132,10 @@ const ResetVerification = ({route, navigation}) => {
                 </View>
             )} */}
 
-            <Button buttonStyle={styles.buttonStyle} onPress={submit} loading={submitting} disabled={submitting}>Next</Button>
+            <Button buttonStyle={styles.buttonStyle}
+disabledStyle={{
+    backgroundColor: state.levelOneCorrectAnswerButtons.includes(1) ? primaryColor : "red",
+}} onPress={submit} loading={submitting} disabled={submitting}>Next</Button>
         </SafeAreaView>
     )
 }

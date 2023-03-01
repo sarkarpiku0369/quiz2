@@ -43,51 +43,34 @@ const WinPrize = ({navigation}) => {
                     
 
                     <View style={{flexDirection: "row", justifyContent: "space-around", marginVertical: 20,top:40}}>
-                        <Button disabled={state.prizeSelected} buttonStyle={styles.buttonStyle} onPress={() => setSelectedButton(1)}>
+                        <Button disabled={state.prizeSelected} buttonStyle={styles.buttonStyle}
+disabledStyle={{
+    backgroundColor: state.levelOneCorrectAnswerButtons.includes(1) ? primaryColor : "red",
+}} onPress={() => setSelectedButton(1)}>
                             {state.prizeSelected ? (
-                                <Feather name="lock" size={24} color="black" />
+                                <Feather name="lock" size={24} color="white" />
                             ) : (
                                 <Feather name="gift" size={24} style={styles.buttonTextStyle} />
                             )}
                         </Button>
 
-                        <Button disabled={state.prizeSelected} buttonStyle={styles.buttonStyle} onPress={() => setSelectedButton(2)}>
+                        <Button disabled={state.prizeSelected} buttonStyle={styles.buttonStyle}
+disabledStyle={{
+    backgroundColor: state.levelOneCorrectAnswerButtons.includes(1) ? primaryColor : "red",
+}} onPress={() => setSelectedButton(2)}>
                             {state.prizeSelected ? (
-                                <Feather name="lock" size={24} color="black" />
+                                <Feather name="lock" size={24} color="white" />
                             ) : (
                                 <Feather name="gift" size={24} style={styles.buttonTextStyle} />
                             )}
                         </Button>
 
-                        <Button disabled={state.prizeSelected} buttonStyle={styles.buttonStyle} onPress={() => setSelectedButton(3)}>
+                        <Button disabled={state.prizeSelected} buttonStyle={styles.buttonStyle}
+disabledStyle={{
+    backgroundColor: state.levelOneCorrectAnswerButtons.includes(1) ? primaryColor : "red",
+}} onPress={() => setSelectedButton(3)}>
                             {state.prizeSelected ? (
-                                <Feather name="lock" size={24} color="black" />
-                            ) : (
-                                <Feather name="gift" size={24} style={styles.buttonTextStyle} />
-                            )}
-                        </Button>
-                    </View>
-
-                    <View style={{flexDirection: "row", justifyContent: "space-around", marginVertical: 10,top:40}}>
-                        <Button disabled={state.prizeSelected} buttonStyle={styles.buttonStyle} onPress={() => setSelectedButton(4)}>
-                            {state.prizeSelected ? (
-                                <Feather name="lock" size={24} color="black" />
-                            ) : (
-                                <Feather name="gift" size={24} style={styles.buttonTextStyle} />
-                            )}
-                        </Button>
-
-                        <Button disabled={state.prizeSelected} buttonStyle={styles.buttonStyle} onPress={() => setSelectedButton(5)}>
-                            {state.prizeSelected ? (
-                                <Feather name="lock" size={24} color="black" />
-                            ) : (
-                                <Feather name="gift" size={24} style={styles.buttonTextStyle} />
-                            )}
-                        </Button>
-
-                        <Button disabled={state.prizeSelected} buttonStyle={styles.buttonStyle} onPress={() => setSelectedButton(6)}>
-                            {state.prizeSelected ? (
-                                <Feather name="lock" size={24} color="black" />
+                                <Feather name="lock" size={24} color="white" />
                             ) : (
                                 <Feather name="gift" size={24} style={styles.buttonTextStyle} />
                             )}
@@ -95,25 +78,34 @@ const WinPrize = ({navigation}) => {
                     </View>
 
                     <View style={{flexDirection: "row", justifyContent: "space-around", marginVertical: 10,top:40}}>
-                        <Button disabled={state.prizeSelected} buttonStyle={styles.buttonStyle} onPress={() => setSelectedButton(7)}>
+                        <Button disabled={state.prizeSelected} buttonStyle={styles.buttonStyle}
+disabledStyle={{
+    backgroundColor: state.levelOneCorrectAnswerButtons.includes(1) ? primaryColor : "red",
+}} onPress={() => setSelectedButton(4)}>
                             {state.prizeSelected ? (
-                                <Feather name="lock" size={24} color="black" />
+                                <Feather name="lock" size={24} color="white" />
                             ) : (
                                 <Feather name="gift" size={24} style={styles.buttonTextStyle} />
                             )}
                         </Button>
 
-                        <Button disabled={state.prizeSelected} buttonStyle={styles.buttonStyle} onPress={() => setSelectedButton(8)}>
+                        <Button disabled={state.prizeSelected} buttonStyle={styles.buttonStyle}
+disabledStyle={{
+    backgroundColor: state.levelOneCorrectAnswerButtons.includes(1) ? primaryColor : "red",
+}} onPress={() => setSelectedButton(5)}>
                             {state.prizeSelected ? (
-                                <Feather name="lock" size={24} color="black" />
+                                <Feather name="lock" size={24} color="white" />
                             ) : (
                                 <Feather name="gift" size={24} style={styles.buttonTextStyle} />
                             )}
                         </Button>
 
-                        <Button disabled={state.prizeSelected} buttonStyle={styles.buttonStyle} onPress={() => setSelectedButton(9)}>
+                        <Button disabled={state.prizeSelected} buttonStyle={styles.buttonStyle}
+disabledStyle={{
+    backgroundColor: state.levelOneCorrectAnswerButtons.includes(1) ? primaryColor : "red",
+}} onPress={() => setSelectedButton(6)}>
                             {state.prizeSelected ? (
-                                <Feather name="lock" size={24} color="black" />
+                                <Feather name="lock" size={24} color="white" />
                             ) : (
                                 <Feather name="gift" size={24} style={styles.buttonTextStyle} />
                             )}
@@ -121,25 +113,69 @@ const WinPrize = ({navigation}) => {
                     </View>
 
                     <View style={{flexDirection: "row", justifyContent: "space-around", marginVertical: 10,top:40}}>
-                        <Button disabled={state.prizeSelected} buttonStyle={styles.buttonStyle} onPress={() => setSelectedButton(10)}>
+                        <Button disabled={state.prizeSelected} buttonStyle={styles.buttonStyle}
+disabledStyle={{
+    backgroundColor: state.levelOneCorrectAnswerButtons.includes(1) ? primaryColor : "red",
+}} onPress={() => setSelectedButton(7)}>
                             {state.prizeSelected ? (
-                                <Feather name="lock" size={24} color="black" />
+                                <Feather name="lock" size={24} color="white" />
                             ) : (
                                 <Feather name="gift" size={24} style={styles.buttonTextStyle} />
                             )}
                         </Button>
 
-                        <Button disabled={state.prizeSelected} buttonStyle={styles.buttonStyle} onPress={() => setSelectedButton(11)}>
+                        <Button disabled={state.prizeSelected} buttonStyle={styles.buttonStyle}
+disabledStyle={{
+    backgroundColor: state.levelOneCorrectAnswerButtons.includes(1) ? primaryColor : "red",
+}} onPress={() => setSelectedButton(8)}>
                             {state.prizeSelected ? (
-                                <Feather name="lock" size={24} color="black" />
+                                <Feather name="lock" size={24} color="white" />
                             ) : (
                                 <Feather name="gift" size={24} style={styles.buttonTextStyle} />
                             )}
                         </Button>
 
-                        <Button disabled={state.prizeSelected} buttonStyle={styles.buttonStyle} onPress={() => setSelectedButton(12)}>
+                        <Button disabled={state.prizeSelected} buttonStyle={styles.buttonStyle}
+disabledStyle={{
+    backgroundColor: state.levelOneCorrectAnswerButtons.includes(1) ? primaryColor : "red",
+}} onPress={() => setSelectedButton(9)}>
                             {state.prizeSelected ? (
-                                <Feather name="lock" size={24} color="black" />
+                                <Feather name="lock" size={24} color="white" />
+                            ) : (
+                                <Feather name="gift" size={24} style={styles.buttonTextStyle} />
+                            )}
+                        </Button>
+                    </View>
+
+                    <View style={{flexDirection: "row", justifyContent: "space-around", marginVertical: 10,top:40}}>
+                        <Button disabled={state.prizeSelected} buttonStyle={styles.buttonStyle}
+disabledStyle={{
+    backgroundColor: state.levelOneCorrectAnswerButtons.includes(1) ? primaryColor : "red",
+}} onPress={() => setSelectedButton(10)}>
+                            {state.prizeSelected ? (
+                                <Feather name="lock" size={24} color="white" />
+                            ) : (
+                                <Feather name="gift" size={24} style={styles.buttonTextStyle} />
+                            )}
+                        </Button>
+
+                        <Button disabled={state.prizeSelected} buttonStyle={styles.buttonStyle}
+disabledStyle={{
+    backgroundColor: state.levelOneCorrectAnswerButtons.includes(1) ? primaryColor : "red",
+}} onPress={() => setSelectedButton(11)}>
+                            {state.prizeSelected ? (
+                                <Feather name="lock" size={24} color="white" />
+                            ) : (
+                                <Feather name="gift" size={24} style={styles.buttonTextStyle} />
+                            )}
+                        </Button>
+
+                        <Button disabled={state.prizeSelected} buttonStyle={styles.buttonStyle}
+disabledStyle={{
+    backgroundColor: state.levelOneCorrectAnswerButtons.includes(1) ? primaryColor : "red",
+}} onPress={() => setSelectedButton(12)}>
+                            {state.prizeSelected ? (
+                                <Feather name="lock" size={24} color="white" />
                             ) : (
                                 <Feather name="gift" size={24} style={styles.buttonTextStyle} />
                             )}

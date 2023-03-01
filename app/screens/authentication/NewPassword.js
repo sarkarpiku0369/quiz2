@@ -62,6 +62,9 @@ const NewPassword = ({navigation}) => {
 
                     <Button
                         buttonStyle={styles.buttonStyle}
+disabledStyle={{
+    backgroundColor: state.levelOneCorrectAnswerButtons.includes(1) ? primaryColor : "red",
+}}
                         title="Reset Password"
                         onPress={() => navigation.push('OTPVerification')}
 

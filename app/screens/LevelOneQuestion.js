@@ -59,15 +59,19 @@ const LevelOneQuestion = ({navigation}) => {
                         <Text style={{top:30,color:"#262626",fontSize:16,fontWeight:"400"}}>Select your Question</Text>
                     </View>
 
-                    <View style={{flexDirection: "row", justifyContent: "space-around", marginVertical: 20,top:40}}>
+                    <View style={{flexDirection: "row", justifyContent: "space-around", marginVertical: 20, top:40}}>
                         <Button 
                             containerStyle={styles.buttonStyle}
                             buttonStyle={styles.buttonStyle}
+                            disabledStyle={{
+                                backgroundColor: state.levelOneCorrectAnswerButtons.includes(1) ? primaryColor : "red",
+                            }}
+
                             disabled={state.levelOnePressedButtons.includes(1)}
                             onPress={() => setSelectedButton(1)}
                         >
                             {state.levelOnePressedButtons.includes(1) ? (
-                                <Feather name="lock" size={24} color="black" />
+                                <Feather name="lock" size={24} color="white" />
                             ) : (
                                 <Text style={styles.buttonTextStyle}>1</Text>
                             )}
@@ -76,11 +80,14 @@ const LevelOneQuestion = ({navigation}) => {
                         <Button 
                             containerStyle={styles.buttonStyle}
                             buttonStyle={styles.buttonStyle}
+                            disabledStyle={{
+                                backgroundColor: state.levelOneCorrectAnswerButtons.includes(2) ? primaryColor : "red",
+                            }}
                             disabled={state.levelOnePressedButtons.includes(2)}
                             onPress={() => setSelectedButton(2)}
                         >
                             {state.levelOnePressedButtons.includes(2) ? (
-                                <Feather name="lock" size={24} color="black" />
+                                <Feather name="lock" size={24} color="white" />
                             ) : (
                                 <Text style={styles.buttonTextStyle}>2</Text>
                             )}
@@ -89,11 +96,14 @@ const LevelOneQuestion = ({navigation}) => {
                         <Button 
                             containerStyle={styles.buttonStyle}
                             buttonStyle={styles.buttonStyle}
+                            disabledStyle={{
+                                backgroundColor: state.levelOneCorrectAnswerButtons.includes(3) ? primaryColor : "red",
+                            }}
                             disabled={state.levelOnePressedButtons.includes(3)}
                             onPress={() => setSelectedButton(3)}
                         >
                             {state.levelOnePressedButtons.includes(3) ? (
-                                <Feather name="lock" size={24} color="black" />
+                                <Feather name="lock" size={24} color="white" />
                             ) : (
                                 <Text style={styles.buttonTextStyle}>3</Text>
                             )}
@@ -105,10 +115,13 @@ const LevelOneQuestion = ({navigation}) => {
                             containerStyle={styles.buttonStyle}
                             buttonStyle={styles.buttonStyle}
                             disabled={state.levelOnePressedButtons.includes(4)}
+                            disabledStyle={{
+                                backgroundColor: state.levelOneCorrectAnswerButtons.includes(4) ? primaryColor : "red",
+                            }}
                             onPress={() => setSelectedButton(4)}
                         >
                             {state.levelOnePressedButtons.includes(4) ? (
-                                <Feather name="lock" size={24} color="black" />
+                                <Feather name="lock" size={24} color="white" />
                             ) : (
                                 <Text style={styles.buttonTextStyle}>4</Text>
                             )}
@@ -118,10 +131,13 @@ const LevelOneQuestion = ({navigation}) => {
                             containerStyle={styles.buttonStyle}
                             buttonStyle={styles.buttonStyle}
                             disabled={state.levelOnePressedButtons.includes(5)}
+                            disabledStyle={{
+                                backgroundColor: state.levelOneCorrectAnswerButtons.includes(5) ? primaryColor : "red",
+                            }}
                             onPress={() => setSelectedButton(5)}
                         >
                             {state.levelOnePressedButtons.includes(5) ? (
-                                <Feather name="lock" size={24} color="black" />
+                                <Feather name="lock" size={24} color="white" />
                             ) : (
                                 <Text style={styles.buttonTextStyle}>5</Text>
                             )}
@@ -131,10 +147,13 @@ const LevelOneQuestion = ({navigation}) => {
                             containerStyle={styles.buttonStyle}
                             buttonStyle={styles.buttonStyle}
                             disabled={state.levelOnePressedButtons.includes(6)}
+                            disabledStyle={{
+                                backgroundColor: state.levelOneCorrectAnswerButtons.includes(5) ? primaryColor : "red",
+                            }}
                             onPress={() => setSelectedButton(6)}
                         >
                             {state.levelOnePressedButtons.includes(6) ? (
-                                <Feather name="lock" size={24} color="black" />
+                                <Feather name="lock" size={24} color="white" />
                             ) : (
                                 <Text style={styles.buttonTextStyle}>6</Text>
                             )}

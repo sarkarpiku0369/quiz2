@@ -20,13 +20,16 @@ import OTPVerification from '../../screens/authentication/OTPVerification';
 import ResetPassword from '../../screens/authentication/ResetPassword';
 import ResetVariffcation from '../../screens/authentication/ResetVerification';
 import NewPassword from '../../screens/authentication/NewPassword';
+import Splash from '../../screens/Splash';
+import Splash1 from '../../screens/Splash1';
+import Splash2 from '../../screens/Splash2';
 const MainStack = () => {
   
     const Stack = createNativeStackNavigator();
 
     return (
         <Stack.Navigator
-            initialRouteName='Main'
+            initialRouteName='Splash'
             screenOptions={{
                 headerStyle: {
                     backgroundColor: '#DCFFE0',
@@ -37,6 +40,10 @@ const MainStack = () => {
                 },
             }}
         >
+            <Stack.Screen name="Splash" component={Splash} options={{headerShown: false}} />
+            <Stack.Screen name="Splash1" component={Splash1} options={{headerShown: false}} />
+            <Stack.Screen name="Splash2" component={Splash2} options={{headerShown: false}} />
+
             <Stack.Screen name="Main" component={Main} options={{headerShown: false}} />
             <Stack.Screen name="Registration" component={Registration} />
             <Stack.Screen name="Login" component={Login} />   

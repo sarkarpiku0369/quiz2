@@ -60,9 +60,15 @@ const styles = StyleSheet.create({
             paddingVertical: 10
         },
         buttonStyle: {
-            backgroundColor: buttonColor,
+            backgroundColor: secondaryColor,
+            border: 1,
+            borderColor: primaryColor,
+            borderWidth: 0.5,
             paddingVertical: 10,
             borderRadius: 8,
+        },
+        titleStyle: {
+            color: primaryColor
         }
     }
 })
