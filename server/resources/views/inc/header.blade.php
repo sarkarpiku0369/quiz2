@@ -21,17 +21,37 @@
     <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
 
     <style>
-        th, td {
-            text-align: center;
+        table, th, td {
+            /* border: 1px solid black !important; */
+            color: black;
         }
+        
         .my-sidebar-container {
-            background-color: #35AF45;
+            background-color: #44c657;
         }
 
         .my-sidebar {
             background-color: rgb(0, 0, 0, 0.6) !important;
             font-weight: bold !important;
           	height: 100% !important;
+        }
+
+        .page-item.active .page-link {
+            z-index: 3;
+            color: #fff !important;
+            background-color: #44c657 !important;
+            border-color: #44c657 !important;
+        }
+
+        .page-link {
+            position: relative;
+            display: block;
+            padding: 0.5rem 0.75rem;
+            margin-left: -1px;
+            line-height: 1.25;
+            color: #44c657 !important;
+            background-color: #fff;
+            border: 1px solid #dddfeb;
         }
     </style>
 </head>

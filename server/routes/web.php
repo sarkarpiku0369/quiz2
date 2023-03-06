@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\PrizeController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\BannerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +21,12 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
-Route::get('/', function () {
-    return view('dashboard');
+Route::get('/login', function () {
+    return view('login');
 });
 
-
+Route::resource("user", UserController::class);
+Route::get("user/signin", [UserController::class,"signin"]);
 Route::resource("question", QuestionController::class);
+Route::resource("prize", PrizeController::class);
+Route::resource("banner", BannerController::class);

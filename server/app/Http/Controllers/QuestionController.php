@@ -17,14 +17,15 @@ class QuestionController extends Controller
         $level = $request->query("level");
 
         if($level) {
-            $questions = array();
-
-            $questions = $level == 1 ? $this->get_random_question(4, $level) : $this->get_random_question(12, $level);
-
-            return response(["questions" => $questions]);
+            if($level == 1) {
+                return response(["questions" => $this->get_random_question(6, $level)]);
+            }
+            else {
+                return response(["questions" => $this->get_random_question(12, $level)]);
+            }
         }
         else {
-            return view("Question.index", ["questions" => Question::all()]);
+            return view("Question.index", ["questions" => Question::paginate(10)]);
         }
     }
 
@@ -56,7 +57,7 @@ class QuestionController extends Controller
             'correct_option'   => $request->correct_option,
         ]);
 
-        return back()->with('success', 'Question Added successfully');
+        return back()->with('success', 'Question Added Successfully');
     }
 
     /**
@@ -76,9 +77,9 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Question $question)
     {
-        //
+        return view("Question.edit", ["question" => $question]);
     }
 
     /**
@@ -88,9 +89,18 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Question $question)
     {
-        //
+        $question->level          = $request->level;
+        $question->question       = $request->question;
+        $question->option_1       = $request->option_1;
+        $question->option_2       = $request->option_2;
+        $question->option_3       = $request->option_3;
+        $question->option_4       = $request->option_4;
+        $question->correct_option = $request->correct_option;
+
+        $question->save();
+        return back()->with('success', 'Question Updated Successfully');
     }
 
     /**
@@ -101,7 +111,8 @@ class QuestionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Question::destroy($id);
+        return back()->with('success', 'Question Deleted Successfully');
     }
 
     public function get_random_question($total, $level) {

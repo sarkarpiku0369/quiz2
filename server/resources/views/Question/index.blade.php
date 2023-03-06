@@ -21,30 +21,34 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Level</th>
-                    <th>Question</th>
-                    <th>Option 1</th>
-                    <th>Option 2</th>
-                    <th>Option 3</th>
-                    <th>Option 4</th>
-                    <th>Correct Option</th>
-                    <th>Action</th>
+                    <th style="text-align: left;">Level</th>
+                    <th style="text-align: left;">Question</th>
+                    <th style="text-align: left;">Option 1</th>
+                    <th style="text-align: left;">Option 2</th>
+                    <th style="text-align: left;">Option 3</th>
+                    <th style="text-align: left;">Option 4</th>
+                    <th style="text-align: left;">Correct Option</th>
+                    <th style="text-align: left;">Action</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($questions as $question)
                     <tr>
-                        <td>{{$question->level}}</td>
-                        <td>{{$question->question}}</td>
-                        <td>{{$question->option_1}}</td>
-                        <td>{{$question->option_2}}</td>
-                        <td>{{$question->option_3}}</td>
-                        <td>{{$question->option_4}}</td>
-                        <td>{{$question->correct_option}}</td>
-                        <td>
+                        <td style="text-align: left;">{{$question->level}}</td>
+                        <td style="text-align: left;">{{$question->question}}</td>
+                        <td style="text-align: left;">{{$question->option_1}}</td>
+                        <td style="text-align: left;">{{$question->option_2}}</td>
+                        <td style="text-align: left;">{{$question->option_3}}</td>
+                        <td style="text-align: left;">{{$question->option_4}}</td>
+                        <td style="text-align: left;">{{$question->correct_option}}</td>
+                        <td style="text-align: left;">
                             <div class="btn-group" role="group">
-                                <a href="{{url('/question/edit/')}}<?php echo "/".$question->id?>"  class="btn btn-sm btn-outline-secondary mx-1"><i class="fa fa-pen"></i></a>
-                                <a href="{{url('/question/delete/')}}<?php echo "/".$question->id?>"  class="btn btn-sm btn-outline-secondary"><i class="fa fa-trash"></i></a>
+                                <a href="{{route('question.edit', $question->id)}}" class="btn btn-sm btn-outline-secondary mx-1"><i class="fa fa-pen"></i></a>
+                                <form action="{{route('question.destroy', $question->id)}}" method="POST">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button type="submit" class="btn btn-sm btn-outline-secondary"><i class="fa fa-trash"></i></button>
+                                </form>
                             </div>
                         </td>
                     </tr>
@@ -53,6 +57,9 @@
         </table>
     </div>
 
+    <div class="row justify-content-center">
+        {{ $questions->links('pagination::bootstrap-4') }}
+    </div>
 </div>
 
 <!-- /.container-fluid -->

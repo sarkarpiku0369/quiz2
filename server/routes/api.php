@@ -37,10 +37,4 @@ Route::group([
     Route::get("/{role?}", [UserController::class, 'index']);
 });
 
-
-Route::resource('question', QuestionController::class);
-
-
-
-
-// Route::resource('chat', ChatController::class)->middleware("auth:sanctum");
+Route::get("/question", [QuestionController::class, 'index']);

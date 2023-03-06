@@ -19,13 +19,15 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($role = null)
+    public function index(Request $request)
     {
+        $role = $request->query("role");
+        
         if($role == null){
             return response(["users" => User::all()]);
         }
         else {
-            return response(["users" => User::where("role", strtoupper($role))->get()]);
+            return view("Player.index", ["users" => User::where("role", strtoupper($role))->paginate(10)]);
         }
     }
 
@@ -38,6 +40,17 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         //
+    }
+    
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Prize  $prize
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(User $user)
+    {
+        // return view("User.edit", ["prize" => $prize]);
     }
 
     /**
@@ -137,6 +150,7 @@ class UserController extends Controller
             return response(["user" => null, 'token' => null, "error" => "Invalid email address"], 401);
         }
     }
+
 
     public function verify (Request $request) {
         $otp = $request->otp;
