@@ -151,6 +151,31 @@ class UserController extends Controller
         }
     }
 
+    public function signin (Request $request) {
+        $email = $request->email;
+        $password = $request->password;
+
+        $user = User::where('email', $email)->first();
+
+        if($user) {
+            if ($email == $user->email && $password == $user->password) {
+
+                $request->session()->put('loggedin', true);
+                return redirect("/");
+            }
+            else {
+                return view("login_error");
+            }
+        }
+        else {
+            return view("login_error");
+        }
+    }
+
+    public function signout (Request $request) {
+        $request->session()->forget('loggedin');
+        return redirect('/');
+    }
 
     public function verify (Request $request) {
         $otp = $request->otp;
@@ -173,6 +198,15 @@ class UserController extends Controller
         }
         else {
             return response(["user" => null], 400);
+        }
+    }
+
+    public function dashboard(Request $request) {
+        if($request->session()->get('loggedin')) {
+            return view("dashboard");
+        }
+        else {
+            return view('login');
         }
     }
 

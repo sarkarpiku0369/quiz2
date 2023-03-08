@@ -17,16 +17,15 @@ use App\Http\Controllers\BannerController;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard');
-});
+Route::get('/', [UserController::class, 'dashboard']);
 
-Route::get('/login', function () {
-    return view('login');
-});
 
+Route::get('/dashboard', [UserController::class, 'dashboard']);
+Route::post("user/signin", [UserController::class,"signin"]);
+Route::get("user/signout", [UserController::class,"signout"]);
 Route::resource("user", UserController::class);
-Route::get("user/signin", [UserController::class,"signin"]);
+
+
 Route::resource("question", QuestionController::class);
 Route::resource("prize", PrizeController::class);
 Route::resource("banner", BannerController::class);

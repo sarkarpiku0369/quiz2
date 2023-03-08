@@ -51,6 +51,10 @@
                                 <div class="p-5">
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                        <div class="alert alert-danger alert-dismissible">
+                                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                            <strong>Error!</strong> Invalid Login Password
+                                        </div>
                                     </div>
                                     <form class="user" action="{{ url('/user/signin') }}" method="POST">
                                         @csrf
