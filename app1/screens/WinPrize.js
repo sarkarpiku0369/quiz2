@@ -12,7 +12,7 @@ import { StoreContext } from '../App';
 const WinPrize = ({navigation}) => {
     const [selectedButton, setSelectedButton] = React.useState(null)
     const {state, setState} = React.useContext(StoreContext)
-
+    
     React.useEffect(() => {
         if(selectedButton) {
             setState(state => ({...state, prizeSelected: true}))

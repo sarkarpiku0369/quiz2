@@ -2,23 +2,18 @@ import React from 'react'
 import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeStack from '../stacks/HomeStack';
-
 import MyStatus from '../../screens/MyStatus';
-import WinPrize from '../../screens/WinPrize';
 import { SimpleLineIcons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { EvilIcons } from '@expo/vector-icons';
-//login
-//import Main from '../../screens/authentication/Main';
-import MainStack from '../stacks/MainStack';
-import Login from '../../screens/authentication/Login';
-import Main from '../../screens/authentication/Main';
 import WinStack from '../stacks/WinStack';
 import ProfileStack from '../stacks/ProfileStack';
+import { StoreContext } from '../../App';
 
 const AppTab = () => {
     const Tab = createBottomTabNavigator()
     
+    const { state, setState } = React.useContext(StoreContext)
     
   return (
     <Tab.Navigator

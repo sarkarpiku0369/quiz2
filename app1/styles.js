@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     topView: {
         flex: 0.2,
         backgroundColor: primaryColor,
-        padding: 14
+        padding: 14,
     },
     bottomView: {
         flex: 0.8,

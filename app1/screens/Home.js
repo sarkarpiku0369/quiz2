@@ -38,8 +38,8 @@ const Home = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>
-        <View style={{flex:0.4, paddingHorizontal: 20, paddingTop: 10}}>
-            <View>
+        <View style={{flex:0.4, paddingTop: 10}}>
+            <View style={{marginHorizontal: 20, marginBottom: 10}}>
                 <View style={{flexDirection: "row", marginBottom: 5}}>
                     <Feather name="sun" style={styles.sun} />
                     <Text style={styles.good}>{greet}</Text>
@@ -58,7 +58,7 @@ const Home = ({navigation}) => {
                     autoPlay={true}   
                     showHeader={false}
                     preview={false}
-                    onItemChanged={(item) => console.log("item", item)}
+                    onItemChanged={(item) => {}}
                     headerLeftComponent={<Icon name="arrow-back" color="#fff" size={34} onPress={() => Alert.alert("alert")} />}
                     headerCenterComponent={<Text style={{ color: '#fff', fontSize: 24, fontWeight: 'bold' }}>Header</Text>}
                     headerStyle={{ padding: 10, backgroundColor: 'rgba(0,0,0, 0.6)', }}
@@ -73,14 +73,14 @@ const Home = ({navigation}) => {
                 <Text style={{fontSize: 18, fontWeight: "bold"}}>How to play this game ?</Text>
                 <Text style={{fontSize: 16, color: primaryColor}}>Ses All Winners</Text>
             </View>
-            <View style={{flexDirection: "row", justifyContent: "center", marginTop: 30, marginBottom: 20}}>
+            <View style={{flexDirection: "row", justifyContent: "center", marginTop: 30}}>
                 <Image 
                     source={require("../assets/quizbanner.png")}
                 />
             </View>
-            <View style={{flexDirection: "row", justifyContent: "center", marginVertical: 20}}>
+            <View style={{flexDirection: "row", justifyContent: "center", alignItems: "flex-start", marginVertical: 20}}>
                <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")} activeOpacity={0.5}>
-                <Image style={{width:350,height:200,resizeMode:"contain"}}
+                <Image style={{width: 180, height: 180, resizeMode: "center"}}
                     source={require("../assets/playnotbtn.png")}
                     
                 />

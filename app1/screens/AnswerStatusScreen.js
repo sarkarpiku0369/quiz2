@@ -13,29 +13,30 @@ const AnswerStatusScreen = ({route, navigation}) => {
     const [selectedButton, setSelectedButton] = React.useState("")
     const {level, remainingAttempt, nextScreenName, answerCorrect} = route.params
 
-    // React.useEffect(() => {
-    //     navigation.addListener('beforeRemove', (e) => {
-    //         e.preventDefault()
-            
-    //         if(remainingAttempt > 0 ) {
-    //             if(level == 1) {
-    //                 navigation.navigate("LevelOneQuestionScreen")
-    //             }
-    //             else if(level == 2) {
-    //                 navigation.navigate("LevelTwoQuestionScreen")
-    //             }
-    //             else if(level == 3) {
-    //                 navigation.navigate("LevelThreeQuestionScreen")
-    //             }
-    //             else if(level == 4) {
-    //                 navigation.navigate("LevelFourQuestionScreen")
-    //             }
-    //             else {
-    //                 navigation.navigate("LevelFiveQuestionScreen")
-    //             }
-    //         }
-    //     })
-    // }, [navigation])
+    React.useEffect(() => {
+        if(remainingAttempt == 0){
+            navigation.addListener('beforeRemove', (e) => {
+                e.preventDefault()
+                // if(remainingAttempt > 0 ) {
+                //     if(level == 1) {
+                //         navigation.navigate("LevelOneQuestionScreen")
+                //     }
+                //     else if(level == 2) {
+                //         navigation.navigate("LevelTwoQuestionScreen")
+                //     }
+                //     else if(level == 3) {
+                //         navigation.navigate("LevelThreeQuestionScreen")
+                //     }
+                //     else if(level == 4) {
+                //         navigation.navigate("LevelFourQuestionScreen")
+                //     }
+                //     else {
+                //         navigation.navigate("LevelFiveQuestionScreen")
+                //     }
+                // }
+            })
+        }
+    }, [remainingAttempt])
 
     return (
         <SafeAreaView style={{flex: 1}} forceInset={{top: "always"}}>

@@ -7,6 +7,8 @@ import { Avatar, Button, ButtonGroup } from '@rneui/base';
 import { primaryColor } from '../styles';
 import BackButton from '../components/BackButton';
 import { StoreContext } from '../App';
+import CircularProgress from 'react-native-circular-progress-indicator';
+
 
 const LevelOneAnswer = ({route, navigation}) => {
     const [buttonPressed, setButtonPressed] = React.useState(false)
@@ -15,6 +17,30 @@ const LevelOneAnswer = ({route, navigation}) => {
     const {answers, button} = route.params
 
     const correct_option = Number(answers.correct_option)
+    
+    const [start, startTimer] = React.useState(200)
+    const [duration, setDuration] = React.useState(1)
+    const [remainingTime, setRemainingTime] = React.useState(10)
+
+    const [focus, setFocus] = React.useState(true)
+    const [timerId, setTimerId] = React.useState(null)
+    
+    React.useEffect(() => {
+        navigation.addListener("blur", () => {setFocus(false)})
+
+        const id = setTimeout(() => {
+            if(focus)
+                navigation.navigate("LevelOneQuestionScreen")
+        }, 10000)
+
+        setTimerId(id)
+
+    }, [navigation])
+
+    React.useEffect(() => {
+        console.log(focus)
+        clearTimeout(timerId)
+    }, [focus])
 
 
     const handleButtonPress = (pressedBtn) => {
@@ -46,63 +72,86 @@ const LevelOneAnswer = ({route, navigation}) => {
 
     return (
     <SafeAreaView style={{flex: 1}} forceInset={{top: "always"}}>
-        <View style={globalStyles.container}>
-            {/* <ScrollView> */}
-                <View style={globalStyles.innerContainer}>
-                    <View style={globalStyles.topView}>
-                        <BackButton />
+        <ScrollView 
+            style={{backgroundColor: "#DCFFE0"}}
+            showsHorizontalScrollIndicator={false}
+            showsVerticalScrollIndicator={false}
+        >
+            <View style={globalStyles.innerContainer}>
+                <View style={globalStyles.topView}>
+                    <BackButton />
 
-                        <View style={{flexDirection: "row", justifyContent: "center", alignItems: "center", height: "100%"}}>
-                            <Text style={globalStyles.heading}>Level 1</Text>
-                        </View>
-                    </View>
-    
-                    <View style={globalStyles.bottomView}>
-                        <View style={{flexDirection: "column", alignItems: "center"}}>
-                            <Text style={globalStyles.description}>Your Question</Text>
-                            <Text style={[globalStyles.description, {fontSize: 20, fontWeight: 'bold'}]}>{answers.question}</Text>
-                        </View>
-
-                        <View style={{flexDirection: "column", paddingHorizontal: "20%", paddingVertical: 20}}>
-                            <Button 
-                                containerStyle={globalStyles.answerButton.containerStyle}
-                                                                buttonStyle={globalStyles.answerButton.buttonStyle}
-                         	titleStyle={globalStyles.answerButton.titleStyle}
-                                title={answers.option_1}
-                                disabled={buttonPressed}
-                                onPress={() => handleButtonPress(1)}
-                            />
-                            <Button 
-                                containerStyle={globalStyles.answerButton.containerStyle}
-                                                                buttonStyle={globalStyles.answerButton.buttonStyle}
-                         	titleStyle={globalStyles.answerButton.titleStyle}
-                                title={answers.option_2}
-                                disabled={buttonPressed}
-                                onPress={() => handleButtonPress(2)}
-                            />
-                            <Button 
-                                containerStyle={globalStyles.answerButton.containerStyle}
-                                                                buttonStyle={globalStyles.answerButton.buttonStyle}
-                         	titleStyle={globalStyles.answerButton.titleStyle}
-                                title={answers.option_3}
-                                disabled={buttonPressed}
-                                onPress={() => handleButtonPress(3)}
-                            />
-                            <Button 
-                                containerStyle={globalStyles.answerButton.containerStyle}
-                                                                buttonStyle={globalStyles.answerButton.buttonStyle}
-                         	titleStyle={globalStyles.answerButton.titleStyle}
-                                title={answers.option_4}
-                                disabled={buttonPressed}
-                                onPress={() => handleButtonPress(4)}
-                            />
-                        </View>
-    
+                    <View style={{flexDirection: "row", justifyContent: "center", alignItems: "center", height: "100%"}}>
+                        <Text style={globalStyles.heading}>Level 1</Text>
                     </View>
                 </View>
-            {/* </ScrollView> */}
 
-        </View>
+                <View style={globalStyles.bottomView}>
+                    <View style={{flexDirection: "column", alignItems: "center"}}>
+                        <Text style={globalStyles.description}>Your Question</Text>
+                        <Text style={[globalStyles.description, {fontSize: 20, fontWeight: 'bold'}]}>{answers.question}</Text>
+                    </View>
+
+                    <View style={{flexDirection: "column", paddingHorizontal: "20%", paddingVertical: 20}}>
+                        <Button 
+                            containerStyle={globalStyles.answerButton.containerStyle}
+                                                            buttonStyle={globalStyles.answerButton.buttonStyle}
+                        titleStyle={globalStyles.answerButton.titleStyle}
+                            title={answers.option_1}
+                            disabled={buttonPressed}
+                            onPress={() => handleButtonPress(1)}
+                        />
+                        <Button 
+                            containerStyle={globalStyles.answerButton.containerStyle}
+                                                            buttonStyle={globalStyles.answerButton.buttonStyle}
+                        titleStyle={globalStyles.answerButton.titleStyle}
+                            title={answers.option_2}
+                            disabled={buttonPressed}
+                            onPress={() => handleButtonPress(2)}
+                        />
+                        <Button 
+                            containerStyle={globalStyles.answerButton.containerStyle}
+                                                            buttonStyle={globalStyles.answerButton.buttonStyle}
+                        titleStyle={globalStyles.answerButton.titleStyle}
+                            title={answers.option_3}
+                            disabled={buttonPressed}
+                            onPress={() => handleButtonPress(3)}
+                        />
+                        <Button 
+                            containerStyle={globalStyles.answerButton.containerStyle}
+                                                            buttonStyle={globalStyles.answerButton.buttonStyle}
+                        titleStyle={globalStyles.answerButton.titleStyle}
+                            title={answers.option_4}
+                            disabled={buttonPressed}
+                            onPress={() => handleButtonPress(4)}
+                        />
+                    </View>
+                    
+                    <View style={{flexDirection: "row", justifyContent: "center"}}>
+                        <CircularProgress
+                            value={0}
+                            radius={50}
+                            maxValue={10}
+                            initialValue={10}
+                            progressValueColor={primaryColor}
+                            activeStrokeWidth={10}
+                            inActiveStrokeWidth={10}
+                            duration={10000}
+                            title={'Second'}
+                            titleColor={primaryColor}
+                            titleStyle={{fontWeight: 'bold'}}
+                            inActiveStrokeColor={'#2ecc71'}
+                            inActiveStrokeOpacity={0.2}
+                            strokeColorConfig={[
+                                { color: 'red', value: 0 },
+                                { color: 'yellowgreen', value: 6 },
+                                { color:  primaryColor, value: 10 },
+                              ]}
+                        />
+                    </View>
+                </View>
+            </View>
+        </ScrollView>
     </SafeAreaView>
     )
 }
