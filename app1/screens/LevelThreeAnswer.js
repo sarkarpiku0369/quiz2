@@ -7,6 +7,7 @@ import { Avatar, Button, ButtonGroup } from '@rneui/base';
 import { primaryColor } from '../styles';
 import BackButton from '../components/BackButton';
 import { StoreContext } from '../App';
+import CircularProgressIndicator from '../components/CircularProgressIndicator';
 
 const LevelThreeAnswer = ({route, navigation}) => {
     const [buttonPressed, setButtonPressed] = React.useState(false)
@@ -45,7 +46,11 @@ const LevelThreeAnswer = ({route, navigation}) => {
 
     return (
     <SafeAreaView style={{flex: 1}} forceInset={{top: "always"}}>
-        <View style={globalStyles.container}>
+        <ScrollView 
+            style={{backgroundColor: "#DCFFE0"}}
+            showsHorizontalScrollIndicator={false}
+            showsVerticalScrollIndicator={false}
+        >
             {/* <ScrollView> */}
                 <View style={globalStyles.innerContainer}>
                     <View style={globalStyles.topView}>
@@ -96,12 +101,12 @@ const LevelThreeAnswer = ({route, navigation}) => {
                                 onPress={() => handleButtonPress(4)}
                             />
                         </View>
-    
+                        <CircularProgressIndicator navigation={navigation} level={3} />
                     </View>
                 </View>
             {/* </ScrollView> */}
 
-        </View>
+        </ScrollView>
     </SafeAreaView>
     )
 }

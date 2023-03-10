@@ -1,5 +1,5 @@
 import React from 'react'
-import { ScrollView, StyleSheet, View, Text, TouchableOpacity, Vibration } from 'react-native'
+import { ScrollView, StyleSheet, View, Text, TouchableOpacity, Vibration, ActivityIndicator } from 'react-native'
 import { Button } from '@rneui/base';
 import SafeAreaView from 'react-native-safe-area-view'
 import { Entypo } from '@expo/vector-icons'; 
@@ -13,6 +13,7 @@ import { Feather } from '@expo/vector-icons';
 
 const LevelThreeQuestion = ({navigation}) => {
     const [selectedButton, setSelectedButton] = React.useState(null)
+    const [loading, setLoading] = React.useState(false)
     const [questions, setQuestions] = React.useState([])
     const {state, setState} = React.useContext(StoreContext)
 
@@ -29,10 +30,12 @@ const LevelThreeQuestion = ({navigation}) => {
     }, [selectedButton])
 
     React.useEffect(() => {
+        setLoading(true)
         axiosInstance.get("/question?level=3")
         .then(response => {
             if(response.status == 200) {
                 setQuestions(response.data.questions)
+                setLoading(false)
             }
         })
     }, [])
@@ -63,7 +66,13 @@ const LevelThreeQuestion = ({navigation}) => {
                         <Text style={{color:"#262626",fontSize:16,fontWeight:"400"}}>Select your Question</Text>
                     </View>
 
-                    <View style={{flexDirection: "row", justifyContent: "space-around", marginVertical: 20}}>
+                    {loading ? (
+                        <View style={{flexDirection: "row", justifyContent: "center", alignItems: "center", marginVertical: 20, top:40}}>
+                            <ActivityIndicator size="large" color={primaryColor} />
+                        </View>
+                    ) : (
+                        <>
+                        <View style={{flexDirection: "row", justifyContent: "space-around", marginVertical: 20}}>
                         <Button 
                             containerStyle={styles.buttonStyle}
                             buttonStyle={styles.buttonStyle}
@@ -262,6 +271,10 @@ const LevelThreeQuestion = ({navigation}) => {
                             )}
                         </Button>
                     </View>
+                        </>
+                    )}
+
+
                 </ScrollView>
             </View>
         {/* </ScrollView> */}
@@ -276,9 +289,8 @@ const styles = StyleSheet.create({
         flexDirection: "column", 
         justifyContent: "center", 
         alignItems: "center", 
-        height: 65, 
-        width: 65, 
-        padding: 10, 
+        height: 60, 
+        width: 60, 
         borderRadius: 100, 
         backgroundColor: "#686565"
      },
@@ -294,7 +306,7 @@ const styles = StyleSheet.create({
      },
      buttonTextStyle: {
         color: "white", 
-        fontSize: 40, 
+        fontSize: 30, 
         fontWeight: "400"
      }
 })

@@ -7,41 +7,14 @@ import { Avatar, Button, ButtonGroup } from '@rneui/base';
 import { primaryColor } from '../styles';
 import BackButton from '../components/BackButton';
 import { StoreContext } from '../App';
-import CircularProgress from 'react-native-circular-progress-indicator';
+import CircularProgressIndicator from '../components/CircularProgressIndicator';
 
 
 const LevelOneAnswer = ({route, navigation}) => {
     const [buttonPressed, setButtonPressed] = React.useState(false)
     const {state, setState} = React.useContext(StoreContext)
-
     const {answers, button} = route.params
-
     const correct_option = Number(answers.correct_option)
-    
-    const [start, startTimer] = React.useState(200)
-    const [duration, setDuration] = React.useState(1)
-    const [remainingTime, setRemainingTime] = React.useState(10)
-
-    const [focus, setFocus] = React.useState(true)
-    const [timerId, setTimerId] = React.useState(null)
-    
-    React.useEffect(() => {
-        navigation.addListener("blur", () => {setFocus(false)})
-
-        const id = setTimeout(() => {
-            if(focus)
-                navigation.navigate("LevelOneQuestionScreen")
-        }, 10000)
-
-        setTimerId(id)
-
-    }, [navigation])
-
-    React.useEffect(() => {
-        console.log(focus)
-        clearTimeout(timerId)
-    }, [focus])
-
 
     const handleButtonPress = (pressedBtn) => {
             Vibration.vibrate(0.2 * 1000)
@@ -95,60 +68,39 @@ const LevelOneAnswer = ({route, navigation}) => {
                     <View style={{flexDirection: "column", paddingHorizontal: "20%", paddingVertical: 20}}>
                         <Button 
                             containerStyle={globalStyles.answerButton.containerStyle}
-                                                            buttonStyle={globalStyles.answerButton.buttonStyle}
-                        titleStyle={globalStyles.answerButton.titleStyle}
+                            buttonStyle={globalStyles.answerButton.buttonStyle}
+                            titleStyle={globalStyles.answerButton.titleStyle}
                             title={answers.option_1}
                             disabled={buttonPressed}
                             onPress={() => handleButtonPress(1)}
                         />
                         <Button 
                             containerStyle={globalStyles.answerButton.containerStyle}
-                                                            buttonStyle={globalStyles.answerButton.buttonStyle}
-                        titleStyle={globalStyles.answerButton.titleStyle}
+                            buttonStyle={globalStyles.answerButton.buttonStyle}
+                            titleStyle={globalStyles.answerButton.titleStyle}
                             title={answers.option_2}
                             disabled={buttonPressed}
                             onPress={() => handleButtonPress(2)}
                         />
                         <Button 
                             containerStyle={globalStyles.answerButton.containerStyle}
-                                                            buttonStyle={globalStyles.answerButton.buttonStyle}
-                        titleStyle={globalStyles.answerButton.titleStyle}
+                            buttonStyle={globalStyles.answerButton.buttonStyle}
+                            titleStyle={globalStyles.answerButton.titleStyle}
                             title={answers.option_3}
                             disabled={buttonPressed}
                             onPress={() => handleButtonPress(3)}
                         />
                         <Button 
                             containerStyle={globalStyles.answerButton.containerStyle}
-                                                            buttonStyle={globalStyles.answerButton.buttonStyle}
-                        titleStyle={globalStyles.answerButton.titleStyle}
+                            buttonStyle={globalStyles.answerButton.buttonStyle}
+                            titleStyle={globalStyles.answerButton.titleStyle}
                             title={answers.option_4}
                             disabled={buttonPressed}
                             onPress={() => handleButtonPress(4)}
                         />
                     </View>
                     
-                    <View style={{flexDirection: "row", justifyContent: "center"}}>
-                        <CircularProgress
-                            value={0}
-                            radius={50}
-                            maxValue={10}
-                            initialValue={10}
-                            progressValueColor={primaryColor}
-                            activeStrokeWidth={10}
-                            inActiveStrokeWidth={10}
-                            duration={10000}
-                            title={'Second'}
-                            titleColor={primaryColor}
-                            titleStyle={{fontWeight: 'bold'}}
-                            inActiveStrokeColor={'#2ecc71'}
-                            inActiveStrokeOpacity={0.2}
-                            strokeColorConfig={[
-                                { color: 'red', value: 0 },
-                                { color: 'yellowgreen', value: 6 },
-                                { color:  primaryColor, value: 10 },
-                              ]}
-                        />
-                    </View>
+                    <CircularProgressIndicator navigation={navigation} level={1} />
                 </View>
             </View>
         </ScrollView>

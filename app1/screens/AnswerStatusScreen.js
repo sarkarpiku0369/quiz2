@@ -7,6 +7,7 @@ import { Avatar, Button, ButtonGroup } from '@rneui/base';
 import { primaryColor } from '../styles';
 import BackButton from '../components/BackButton';
 import { AntDesign } from '@expo/vector-icons'; 
+import { Ionicons } from '@expo/vector-icons';
 
 
 const AnswerStatusScreen = ({route, navigation}) => {
@@ -14,29 +15,32 @@ const AnswerStatusScreen = ({route, navigation}) => {
     const {level, remainingAttempt, nextScreenName, answerCorrect} = route.params
 
     React.useEffect(() => {
-        if(remainingAttempt == 0){
+        if(remainingAttempt == 0 ) {
             navigation.addListener('beforeRemove', (e) => {
                 e.preventDefault()
-                // if(remainingAttempt > 0 ) {
-                //     if(level == 1) {
-                //         navigation.navigate("LevelOneQuestionScreen")
-                //     }
-                //     else if(level == 2) {
-                //         navigation.navigate("LevelTwoQuestionScreen")
-                //     }
-                //     else if(level == 3) {
-                //         navigation.navigate("LevelThreeQuestionScreen")
-                //     }
-                //     else if(level == 4) {
-                //         navigation.navigate("LevelFourQuestionScreen")
-                //     }
-                //     else {
-                //         navigation.navigate("LevelFiveQuestionScreen")
-                //     }
-                // }
             })
         }
     }, [remainingAttempt])
+
+    const back = () => {
+        if(remainingAttempt > 0 ) {
+            if(level == 1) {
+                navigation.navigate("LevelOneQuestionScreen")
+            }
+            else if(level == 2) {
+                navigation.navigate("LevelTwoQuestionScreen")
+            }
+            else if(level == 3) {
+                navigation.navigate("LevelThreeQuestionScreen")
+            }
+            else if(level == 4) {
+                navigation.navigate("LevelFourQuestionScreen")
+            }
+            else {
+                navigation.navigate("LevelFiveQuestionScreen")
+            }
+        }
+    }
 
     return (
         <SafeAreaView style={{flex: 1}} forceInset={{top: "always"}}>
@@ -58,11 +62,23 @@ const AnswerStatusScreen = ({route, navigation}) => {
                                 <View style={{flexDirection: "column", alignItems: "center", paddingTop: 20}}>
                                     <AntDesign name="checkcircleo" size={80} color={primaryColor} />
                                     <Text style={{fontSize: 30, fontWeight: "bold", paddingTop: 10, color: primaryColor}}>Correct</Text>
+                                    {remainingAttempt > 0 && (
+                                        <TouchableOpacity onPress={() => back()} activeOpacity={1} style={{flexDirection: "row", justifyContent: "center", alignItems: "center", marginTop: 10}}>
+                                            <Ionicons name="ios-arrow-back-outline" size={15} color="grey" />
+                                            <Text style={{color: "grey", fontSize: 15, marginLeft: 10}}>Back</Text>
+                                        </TouchableOpacity>
+                                    )}
                                 </View>
                             ) : (
                                 <View style={{flexDirection: "column", alignItems: "center", paddingTop: 20}}>
                                     <Entypo name="cross" size={80} color="red" />
                                     <Text style={{fontSize: 30, fontWeight: "bold", paddingTop: 10, color: "red"}}>Wrong</Text>
+                                    {remainingAttempt > 0 && (
+                                        <TouchableOpacity onPress={() => back()} activeOpacity={1} style={{flexDirection: "row", justifyContent: "center", alignItems: "center", marginTop: 10}}>
+                                            <Ionicons name="ios-reload" size={15} color="grey" />
+                                            <Text style={{color: "grey", fontSize: 15, marginLeft: 10}}>Try again</Text>
+                                        </TouchableOpacity>
+                                    )}
                                 </View>
                             )}
 
