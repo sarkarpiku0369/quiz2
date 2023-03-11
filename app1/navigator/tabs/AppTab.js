@@ -9,6 +9,7 @@ import { EvilIcons } from '@expo/vector-icons';
 import WinStack from '../stacks/WinStack';
 import ProfileStack from '../stacks/ProfileStack';
 import { StoreContext } from '../../App';
+import AppPrize from '../../screens/AppPrize';
 
 const AppTab = () => {
     const Tab = createBottomTabNavigator()
@@ -37,7 +38,7 @@ const AppTab = () => {
         />
         <Tab.Screen 
             name="PrizeTab" 
-            component={WinStack}
+            component={AppPrize}
             options={{
                 tabBarLabel: 'All Prize',
                 tabBarIcon: ({ color, size }) => (

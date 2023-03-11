@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 18, 2023 at 05:12 AM
+-- Generation Time: Mar 10, 2023 at 02:46 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -21,6 +21,29 @@ SET time_zone = "+00:00";
 --
 -- Database: `quiz`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `banners`
+--
+
+CREATE TABLE `banners` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `order` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `banners`
+--
+
+INSERT INTO `banners` (`id`, `image`, `order`, `created_at`, `updated_at`) VALUES
+(4, '1678121609.png', NULL, '2023-03-06 11:23:30', '2023-03-06 11:23:30'),
+(5, '1678121620.png', NULL, '2023-03-06 11:23:40', '2023-03-06 11:23:40'),
+(6, '1678121637.png', NULL, '2023-03-06 11:23:57', '2023-03-06 11:23:57');
 
 -- --------------------------------------------------------
 
@@ -59,7 +82,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (2, '2014_10_12_100000_create_password_resets_table', 1),
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
 (4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(5, '2023_02_17_075714_create_questions_table', 2);
+(5, '2023_02_17_075714_create_questions_table', 2),
+(6, '2023_03_02_152626_create_prizes_table', 3),
+(7, '2023_03_06_121838_create_banners_table', 4),
+(9, '2023_03_10_131216_create_winners_table', 5);
 
 -- --------------------------------------------------------
 
@@ -91,6 +117,38 @@ CREATE TABLE `personal_access_tokens` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `personal_access_tokens`
+--
+
+INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `name`, `token`, `abilities`, `last_used_at`, `created_at`, `updated_at`) VALUES
+(3, 'App\\Models\\User', 1, 'trimmeapp', '7acb5a364f6c2a90474f64aca3602dfd8d241897676bea7169ba7d908831ba4d', '[\"*\"]', '2023-02-20 11:04:08', '2023-02-20 11:03:58', '2023-02-20 11:04:08'),
+(4, 'App\\Models\\User', 1, 'trimmeapp', '34cf2a9c1dae2b625e83a692ffb5cce072d39018ba11aa81d119e541d78a5682', '[\"*\"]', NULL, '2023-02-20 11:06:21', '2023-02-20 11:06:21'),
+(5, 'App\\Models\\User', 1, 'trimmeapp', '6a2670a76d8a36a12248c1e3c26566bff9a64691fc9df17610423ddf48a449a3', '[\"*\"]', '2023-03-10 08:00:28', '2023-03-10 07:50:34', '2023-03-10 08:00:28');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `prizes`
+--
+
+CREATE TABLE `prizes` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `active` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `prizes`
+--
+
+INSERT INTO `prizes` (`id`, `name`, `active`, `created_at`, `updated_at`) VALUES
+(2, 'Gareth Alston', 'no', '2023-03-06 03:15:36', '2023-03-06 03:15:36'),
+(3, 'Carolyn Simpson', 'yes', '2023-03-06 03:53:10', '2023-03-06 03:53:10'),
+(4, 'Jermaine Franklin', 'yes', '2023-03-06 03:58:13', '2023-03-06 03:59:40');
+
 -- --------------------------------------------------------
 
 --
@@ -115,7 +173,7 @@ CREATE TABLE `questions` (
 --
 
 INSERT INTO `questions` (`id`, `level`, `question`, `option_1`, `option_2`, `option_3`, `option_4`, `correct_option`, `created_at`, `updated_at`) VALUES
-(1, '1', 'feugiat et eros vestibulum ac est lacinia nisi venenatis tristique', 'convallis', 'pede', 'nulla', 'ut', '1', NULL, NULL),
+(1, '1', 'feugiat et eros vestibulum ac est lacinia nisi venenatis tristique', 'convallis', 'pede', 'nulla', 'ut', '1', NULL, '2023-03-06 00:39:44'),
 (2, '2', 'purus sit amet nulla quisque arcu libero rutrum ac lobortis', 'potenti', 'nullam', 'proin', 'maecenas', '4', NULL, NULL),
 (3, '2', 'posuere cubilia curae nulla dapibus dolor vel est donec odio', 'pede', 'donec', 'magna', 'suspendisse', '1', NULL, NULL),
 (4, '1', 'etiam justo etiam pretium iaculis justo in hac habitasse platea', 'at', 'quam', 'turpis', 'sit', '3', NULL, NULL),
@@ -124,7 +182,6 @@ INSERT INTO `questions` (`id`, `level`, `question`, `option_1`, `option_2`, `opt
 (7, '4', 'nulla tellus in sagittis dui vel nisl duis ac nibh', 'vestibulum', 'donec', 'elit', 'et', '3', NULL, NULL),
 (8, '3', 'auctor sed tristique in tempus sit amet sem fusce consequat', 'pede', 'et', 'feugiat', 'hac', '3', NULL, NULL),
 (9, '2', 'lorem quisque ut erat curabitur gravida nisi at nibh in', 'accumsan', 'ac', 'orci', 'libero', '4', NULL, NULL),
-(10, '1', 'interdum in ante vestibulum ante ipsum primis in faucibus orci', 'erat', 'nulla', 'curabitur', 'eget', '4', NULL, NULL),
 (11, '1', 'congue eget semper rutrum nulla nunc purus phasellus in felis', 'rhoncus', 'turpis', 'quam', 'eget', '4', NULL, NULL),
 (12, '3', 'vel enim sit amet nunc viverra dapibus nulla suscipit ligula', 'venenatis', 'ornare', 'eget', 'adipiscing', '2', NULL, NULL),
 (13, '1', 'in eleifend quam a odio in hac habitasse platea dictumst', 'ultrices', 'lacus', 'aenean', 'placerat', '3', NULL, NULL),
@@ -494,9 +551,9 @@ INSERT INTO `questions` (`id`, `level`, `question`, `option_1`, `option_2`, `opt
 (377, '2', 'sed magna at nunc commodo placerat praesent blandit nam nulla', 'non', 'vehicula', 'eget', 'aliquet', '1', NULL, NULL),
 (378, '5', 'eros viverra eget congue eget semper rutrum nulla nunc purus', 'iaculis', 'praesent', 'amet', 'vel', '4', NULL, NULL),
 (379, '5', 'et magnis dis parturient montes nascetur ridiculus mus vivamus vestibulum', 'ac', 'lorem', 'in', 'mattis', '2', NULL, NULL),
-(380, '2', 'sed lacus morbi sem mauris laoreet ut rhoncus aliquet pulvinar', 'nec', 'morbi', 'blandit', 'tortor', '1', NULL, NULL);
+(380, '2', 'sed lacus morbi sem mauris laoreet ut rhoncus aliquet pulvinar', 'nec', 'morbi', 'blandit', 'tortor', '1', NULL, NULL),
+(381, '5', 'ipsum primis in faucibus orci luctus et ultrices posuere cubilia', 'est', 'id', 'curae', 'dapibus', '2', NULL, NULL);
 INSERT INTO `questions` (`id`, `level`, `question`, `option_1`, `option_2`, `option_3`, `option_4`, `correct_option`, `created_at`, `updated_at`) VALUES
-(381, '5', 'ipsum primis in faucibus orci luctus et ultrices posuere cubilia', 'est', 'id', 'curae', 'dapibus', '2', NULL, NULL),
 (382, '2', 'odio donec vitae nisi nam ultrices libero non mattis pulvinar', 'ut', 'pede', 'in', 'libero', '3', NULL, NULL),
 (383, '5', 'ultrices vel augue vestibulum ante ipsum primis in faucibus orci', 'cubilia', 'congue', 'rhoncus', 'fusce', '4', NULL, NULL),
 (384, '4', 'justo morbi ut odio cras mi pede malesuada in imperdiet', 'aliquet', 'nulla', 'morbi', 'donec', '2', NULL, NULL),
@@ -872,9 +929,9 @@ INSERT INTO `questions` (`id`, `level`, `question`, `option_1`, `option_2`, `opt
 (754, '2', 'semper porta volutpat quam pede lobortis ligula sit amet eleifend', 'vel', 'metus', 'in', 'consequat', '2', NULL, NULL),
 (755, '4', 'vestibulum eget vulputate ut ultrices vel augue vestibulum ante ipsum', 'scelerisque', 'at', 'rutrum', 'dignissim', '2', NULL, NULL),
 (756, '5', 'tristique in tempus sit amet sem fusce consequat nulla nisl', 'ultrices', 'tincidunt', 'nisi', 'odio', '3', NULL, NULL),
-(757, '5', 'molestie sed justo pellentesque viverra pede ac diam cras pellentesque', 'nisi', 'in', 'cras', 'eu', '1', NULL, NULL);
+(757, '5', 'molestie sed justo pellentesque viverra pede ac diam cras pellentesque', 'nisi', 'in', 'cras', 'eu', '1', NULL, NULL),
+(758, '5', 'lacinia sapien quis libero nullam sit amet turpis elementum ligula', 'lobortis', 'pellentesque', 'tellus', 'magnis', '2', NULL, NULL);
 INSERT INTO `questions` (`id`, `level`, `question`, `option_1`, `option_2`, `option_3`, `option_4`, `correct_option`, `created_at`, `updated_at`) VALUES
-(758, '5', 'lacinia sapien quis libero nullam sit amet turpis elementum ligula', 'lobortis', 'pellentesque', 'tellus', 'magnis', '2', NULL, NULL),
 (759, '2', 'luctus et ultrices posuere cubilia curae donec pharetra magna vestibulum', 'ut', 'viverra', 'condimentum', 'pede', '1', NULL, NULL),
 (760, '5', 'nisl aenean lectus pellentesque eget nunc donec quis orci eget', 'cubilia', 'in', 'posuere', 'nisl', '2', NULL, NULL),
 (761, '3', 'purus aliquet at feugiat non pretium quis lectus suspendisse potenti', 'vestibulum', 'venenatis', 'orci', 'volutpat', '3', NULL, NULL),
@@ -1116,7 +1173,8 @@ INSERT INTO `questions` (`id`, `level`, `question`, `option_1`, `option_2`, `opt
 (997, '2', 'id nulla ultrices aliquet maecenas leo odio condimentum id luctus', 'sed', 'convallis', 'nibh', 'sodales', '4', NULL, NULL),
 (998, '3', 'fringilla rhoncus mauris enim leo rhoncus sed vestibulum sit amet', 'lorem', 'tellus', 'fringilla', 'ut', '2', NULL, NULL),
 (999, '1', 'auctor gravida sem praesent id massa id nisl venenatis lacinia', 'ut', 'lectus', 'sapien', 'tempor', '1', NULL, NULL),
-(1000, '2', 'a ipsum integer a nibh in quis justo maecenas rhoncus', 'pretium', 'augue', 'nibh', 'nulla', '3', NULL, NULL);
+(1000, '2', 'a ipsum integer a nibh in quis justo maecenas rhoncus', 'pretium', 'augue', 'nibh', 'nulla', '3', NULL, NULL),
+(1001, '3', 'Minus eveniet et en', 'Voluptatibus volupta', 'Et pariatur Quia qu', 'Quasi dolore vel rer', 'Distinctio Aspernat', '3', '2023-02-20 11:05:43', '2023-02-20 11:05:43');
 
 -- --------------------------------------------------------
 
@@ -1142,11 +1200,42 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role`, `name`, `email`, `password`, `otp`, `otp_expired_at`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'USER', 'Raktim Banerjee', 'raktimbanerjee9@gmail.com', '1234', '', NULL, NULL, '2023-02-17 21:12:08', '2023-02-17 21:20:34');
+(1, 'USER', 'Raktim Banerjee', 'raktimbanerjee9@gmail.com', '1234', '', NULL, NULL, '2023-02-17 21:12:08', '2023-03-10 07:50:34');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `winners`
+--
+
+CREATE TABLE `winners` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `winners`
+--
+
+INSERT INTO `winners` (`id`, `user_id`, `name`, `email`, `phone`, `created_at`, `updated_at`) VALUES
+(1, '1', 'Raktim Banerjee', 'raktimbanerjee9@gmail.com', '9903811256', '2023-03-10 07:58:07', '2023-03-10 07:58:07'),
+(2, '1', 'Raktim Banerjee', 'raktimbanerjee9@gmail.com', '9903811256', '2023-03-10 08:00:21', '2023-03-10 08:00:21'),
+(3, '1', 'Raktim Banerjee', 'raktimbanerjee9@gmail.com', '9903811256', '2023-03-10 08:00:28', '2023-03-10 08:00:28');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `banners`
+--
+ALTER TABLE `banners`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `failed_jobs`
@@ -1176,6 +1265,12 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
+-- Indexes for table `prizes`
+--
+ALTER TABLE `prizes`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `questions`
 --
 ALTER TABLE `questions`
@@ -1189,8 +1284,20 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
+-- Indexes for table `winners`
+--
+ALTER TABLE `winners`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `banners`
+--
+ALTER TABLE `banners`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -1202,25 +1309,37 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `prizes`
+--
+ALTER TABLE `prizes`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1001;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1003;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `winners`
+--
+ALTER TABLE `winners`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
 

@@ -17,6 +17,10 @@ class BannerController extends Controller
         return view("Banner.index", ["banners" => Banner::all()]);
     }
 
+    public function get_all_banner() {
+        return response(["prizes" => Banner::all()]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *

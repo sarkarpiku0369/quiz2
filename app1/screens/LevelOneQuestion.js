@@ -189,9 +189,8 @@ const styles = StyleSheet.create({
         flexDirection: "column", 
         justifyContent: "center", 
         alignItems: "center", 
-        height: 70, 
-        width: 70, 
-        padding: 10, 
+        height: 60, 
+        width: 60, 
         borderRadius: 100, 
         backgroundColor: "#686565"
      },
@@ -207,7 +206,7 @@ const styles = StyleSheet.create({
      },
      buttonTextStyle: {
         color: "white", 
-        fontSize: 40, 
+        fontSize: 30, 
         fontWeight: "400"
      }
 })

@@ -32,6 +32,7 @@ export default function App() {
     levelOnePressedButtons: [],
     levelOneCorrectAnswerButtons: [],
     levelOneWrongAnswerButtons: [],
+    levelOneMinimumCorrectAnswerRequire: 2,
 
     levelTwoRemainingAttempt: 3,
     levelTwoTouched: false,
@@ -39,6 +40,7 @@ export default function App() {
     levelTwoPressedButtons: [],
     levelTwoCorrectAnswerButtons: [],
     levelTwoWrongAnswerButtons: [],
+    levelTwoMinimumCorrectAnswerRequire: 2,
 
     levelThreeRemainingAttempt: 3,
     levelThreeTouched: false,
@@ -46,6 +48,7 @@ export default function App() {
     levelThreePressedButtons: [],
     levelThreeCorrectAnswerButtons: [],
     levelThreeWrongAnswerButtons: [],
+    levelThreeMinimumCorrectAnswerRequire: 2,
 
     levelFourRemainingAttempt: 3,
     levelFourTouched: false,
@@ -53,6 +56,7 @@ export default function App() {
     levelFourPressedButtons: [],
     levelFourCorrectAnswerButtons: [],
     levelFourWrongAnswerButtons: [],
+    levelFourMinimumCorrectAnswerRequire: 2,
 
     levelFiveRemainingAttempt: 3,
     levelFiveTouched: false,
@@ -60,6 +64,7 @@ export default function App() {
     levelFivePressedButtons: [],
     levelFiveCorrectAnswerButtons: [],
     levelFiveWrongAnswerButtons: [],
+    levelFiveMinimumCorrectAnswerRequire: 2
 
   })
 

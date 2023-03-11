@@ -53,7 +53,7 @@ const Profile = ({navigation}) => {
                 </View>
             </TouchableOpacity>
 
-            <TouchableOpacity activeOpacity={1} style={{flexDirection: "row", justifyContent: 'space-between', backgroundColor: "white", borderRadius: 10, marginHorizontal: 20, paddingVertical: 30, marginVertical: 10}}>
+            <TouchableOpacity onPress={() => navigation.navigate("PasswordReset")} activeOpacity={1} style={{flexDirection: "row", justifyContent: 'space-between', backgroundColor: "white", borderRadius: 10, marginHorizontal: 20, paddingVertical: 30, marginVertical: 10}}>
                 <View style={{flexDirection: "column", justifyContent: "center", marginHorizontal: 20}}>
                     <AntDesign name="lock" size={24} color={primaryColor} />
                 </View>

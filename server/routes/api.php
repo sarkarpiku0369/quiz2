@@ -4,6 +4,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\PrizeController;
+use App\Http\Controllers\BannerController;
+use App\Http\Controllers\WinnerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,4 +40,7 @@ Route::group([
     Route::get("/{role?}", [UserController::class, 'index']);
 });
 
-Route::get("/question", [QuestionController::class, 'index']);
+Route::get("/question", [QuestionController::class, 'index'])->middleware("auth:sanctum");
+Route::get("/all-prize", [PrizeController::class, 'get_all_prizes'])->middleware("auth:sanctum");
+Route::get("/all-banner", [BannerController::class, 'get_all_banner'])->middleware("auth:sanctum");
+Route::resource("/winner", WinnerController::class)->middleware("auth:sanctum");

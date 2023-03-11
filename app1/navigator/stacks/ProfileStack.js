@@ -1,11 +1,8 @@
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import LevelOneQuestion from '../../screens/LevelOneQuestion';
-import LevelOneAnswer from '../../screens/LevelOneAnswer';
-import Contact from '../../screens/Contact';
-import WinSuccess from '../../screens/WinSuccess';
-import ThankYou from '../../screens/ThankYou';
 import Profile from '../../screens/authentication/Profile';
+import NewPassword from '../../screens/authentication/NewPassword';
+import PasswordResetVerification from '../../screens/authentication/PasswordResetVerification';
 
 const ProfileStack = () => {
   
@@ -18,6 +15,8 @@ const ProfileStack = () => {
             }}
         >
             <Stack.Screen name="ProfileScreen" component={Profile} options={{title: "Profile"}} />
+            <Stack.Screen name="PasswordReset" component={NewPassword} options={{title: "Reset Password"}} />
+            <Stack.Screen name="PasswordResetVerification" component={PasswordResetVerification} options={{title: "OTP Verification"}} />
         </Stack.Navigator>
     )
 }

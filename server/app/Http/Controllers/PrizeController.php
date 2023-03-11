@@ -17,6 +17,10 @@ class PrizeController extends Controller
         return view("Prize.index", ["prizes" => Prize::paginate(10)]);
     }
 
+    public function get_all_prizes() {
+        return response(["prizes" => Prize::all()]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -24,7 +28,7 @@ class PrizeController extends Controller
      */
     public function create()
     {
-        return view('prize.create');
+        return view('Prize.create');
     }
 
     /**

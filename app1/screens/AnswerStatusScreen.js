@@ -8,11 +8,15 @@ import { primaryColor } from '../styles';
 import BackButton from '../components/BackButton';
 import { AntDesign } from '@expo/vector-icons'; 
 import { Ionicons } from '@expo/vector-icons';
+import { StoreContext } from '../App';
 
 
 const AnswerStatusScreen = ({route, navigation}) => {
     const [selectedButton, setSelectedButton] = React.useState("")
+    const { state, setState } = React.useContext(StoreContext)
+    const [ showNextScreen, setShowNextScreen ] = React.useState(false)
     const {level, remainingAttempt, nextScreenName, answerCorrect} = route.params
+
 
     React.useEffect(() => {
         if(remainingAttempt == 0 ) {
@@ -21,6 +25,24 @@ const AnswerStatusScreen = ({route, navigation}) => {
             })
         }
     }, [remainingAttempt])
+
+    React.useEffect(() => {
+        if(level == 1) {
+            setShowNextScreen(remainingAttempt == 0 && (state.levelOneCorrectAnswerButtons.length >= state.levelOneMinimumCorrectAnswerRequire))
+        }
+        else if(level == 2) {
+            setShowNextScreen(remainingAttempt == 0 && (state.levelTwoCorrectAnswerButtons.length >= state.levelTwoMinimumCorrectAnswerRequire))
+        }
+        else if(level == 3) {
+            setShowNextScreen(remainingAttempt == 0 && (state.levelThreeCorrectAnswerButtons.length >= state.levelThreeMinimumCorrectAnswerRequire))
+        }
+        else if(level == 4) {
+            setShowNextScreen(remainingAttempt == 0 && (state.levelFourCorrectAnswerButtons.length >= state.levelFourMinimumCorrectAnswerRequire))
+        }
+        else {
+            setShowNextScreen(remainingAttempt == 0 && (state.levelFiveCorrectAnswerButtons.length >= state.levelFiveMinimumCorrectAnswerRequire))
+        }
+    }, [])
 
     const back = () => {
         if(remainingAttempt > 0 ) {
@@ -93,7 +115,7 @@ const AnswerStatusScreen = ({route, navigation}) => {
                                         buttonStyle={styles.statusButtonStyle}
                                         containerStyle={{marginVertical: 10}}
                                     />
-                                    {level != 5 && (
+                                    {level != 5 && showNextScreen && (
                                         <Button 
                                             onPress={() => navigation.navigate(nextScreenName)}
                                             title="Go To Next Step"
@@ -102,7 +124,7 @@ const AnswerStatusScreen = ({route, navigation}) => {
                                         />
                                     )}
 
-                                    {level == 5 && (
+                                    {level == 5 && showNextScreen && (
                                         <Button 
                                             onPress={() => navigation.navigate("PrizeTab")}
                                             title="Select Your Prize"
