@@ -16,45 +16,50 @@ const GameDetails = ({navigation}) => {
 
     const startGame = () => {
         setState(state => ({...state, 
-
-            gameStarted: true,
+            gameStarted: false,
             gameEnd: false,
             prizeSelected: false,
-            
+        
             levelOneRemainingAttempt: 2,
             levelOneTouched: false,
             levelOnePassed: false,
             levelOnePressedButtons: [],
             levelOneCorrectAnswerButtons: [],
             levelOneWrongAnswerButtons: [],
-
+            levelOneMinimumCorrectAnswerRequire: 2,
+        
             levelTwoRemainingAttempt: 3,
             levelTwoTouched: false,
             levelTwoPassed: false,
             levelTwoPressedButtons: [],
             levelTwoCorrectAnswerButtons: [],
             levelTwoWrongAnswerButtons: [],
-
+            levelTwoMinimumCorrectAnswerRequire: 2,
+        
             levelThreeRemainingAttempt: 3,
             levelThreeTouched: false,
             levelThreePassed: false,
             levelThreePressedButtons: [],
             levelThreeCorrectAnswerButtons: [],
             levelThreeWrongAnswerButtons: [],
-
+            levelThreeMinimumCorrectAnswerRequire: 2,
+        
             levelFourRemainingAttempt: 3,
             levelFourTouched: false,
             levelFourPassed: false,
             levelFourPressedButtons: [],
             levelFourCorrectAnswerButtons: [],
             levelFourWrongAnswerButtons: [],
-
+            levelFourMinimumCorrectAnswerRequire: 2,
+        
             levelFiveRemainingAttempt: 3,
             levelFiveTouched: false,
             levelFivePassed: false,
             levelFivePressedButtons: [],
             levelFiveCorrectAnswerButtons: [],
             levelFiveWrongAnswerButtons: [],
+            levelFiveMinimumCorrectAnswerRequire: 2
+        
         }))
         navigation.navigate("LevelOneQuestionScreen")
     }

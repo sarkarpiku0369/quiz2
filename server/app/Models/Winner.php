@@ -14,5 +14,6 @@ class Winner extends Model
         'name',
         'email',
         'phone',
+        'prize_id'
     ];
 }

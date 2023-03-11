@@ -12,6 +12,8 @@ import Splash from '../../screens/Splash';
 import Splash1 from '../../screens/Splash1';
 import Splash2 from '../../screens/Splash2';
 import Profile from '../../screens/authentication/Profile';
+import ResetVerification from '../../screens/authentication/ResetVerification';
+import PasswordChange from '../../screens/authentication/PasswordChange';
 const MainStack = () => {
   
     const Stack = createNativeStackNavigator();
@@ -37,9 +39,10 @@ const MainStack = () => {
             <Stack.Screen name="Registration" component={Registration} options={{title: "Register New Account"}} />
             <Stack.Screen name="Login" component={Login} />   
             <Stack.Screen name="OTPVerification" component={OTPVerification} options={{title: "OTP Verification"}}/>
-            <Stack.Screen name="ResetPassword" component={ResetPassword} />
-            <Stack.Screen name="ResetVariffcation" component={ResetVariffcation} />
+            <Stack.Screen name="ResetPassword" component={ResetPassword} options={{title: "Forgot Password"}} />
+            <Stack.Screen name="ResetVerification" component={ResetVerification} options={{title: "OTP Verification"}} />
             <Stack.Screen name="NewPassword" component={NewPassword} />
+            <Stack.Screen name="PasswordChange" component={PasswordChange} options={{title: "Reset Password"}} />
             <Stack.Screen name="Home" component={Home} />
         </Stack.Navigator>
     )

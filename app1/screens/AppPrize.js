@@ -42,7 +42,7 @@ const AppPrize = () => {
                         <ActivityIndicator size={"large"} color={primaryColor} />
                     </View>
                 ) : (
-                    <View style={{flexDirection: "row", justifyContent: "center", paddingHorizontal: 15}}>
+                    <View style={{flex: 1, flexDirection: "row", justifyContent: "center", paddingHorizontal: 15}}>
                         <FlatList 
                             data={banner}
                             keyExtractor={item => item.id}
@@ -57,6 +57,7 @@ const AppPrize = () => {
                         />
                     </View>
                 )}
+                <View style={{marginBottom: 20}}></View>
             </View>
         </SafeAreaView>
     )

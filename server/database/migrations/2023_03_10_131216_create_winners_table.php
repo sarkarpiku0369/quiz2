@@ -16,6 +16,7 @@ class CreateWinnersTable extends Migration
         Schema::create('winners', function (Blueprint $table) {
             $table->id();
             $table->string("user_id");
+            $table->string("prize_id");
             $table->string("name");
             $table->string("email");
             $table->string("phone");

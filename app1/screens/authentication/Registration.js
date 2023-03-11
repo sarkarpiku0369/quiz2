@@ -47,11 +47,11 @@ const Registration = ({navigation}) => {
             showsVerticalScrollIndicator={false}
         >
             <View style={{flex: 1, backgroundColor:"#DCFFE0", padding: 14}}>
-                <View style={{justifyContent: 'center', alignItems: "center"}}>
+                {/* <View style={{justifyContent: 'center', alignItems: "center"}}>
                     <Image 
                         source={require("../../assets/Login.png")}
                     />
-                </View>
+                </View> */}
 
                 <View>
                     <View style={{flexDirection: "column", paddingHorizontal: 15}}>
@@ -103,7 +103,7 @@ const Registration = ({navigation}) => {
 
                     />
                     <View style={{flexDirection: "column", alignItems: "center", marginTop: 10}}>
-                        <TouchableOpacity onPress={()=> {}} activeOpacity={1}>
+                        <TouchableOpacity onPress={()=> {navigation.navigate("ResetPassword")}} activeOpacity={1}>
                             <Text style={{color: primaryColor}}>Forgot Password</Text>
                         </TouchableOpacity>
                         <Text style={{marginTop: 20}}>

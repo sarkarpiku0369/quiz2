@@ -10,6 +10,7 @@ import WinStack from '../stacks/WinStack';
 import ProfileStack from '../stacks/ProfileStack';
 import { StoreContext } from '../../App';
 import AppPrize from '../../screens/AppPrize';
+import WinPrize from '../../screens/WinPrize';
 
 const AppTab = () => {
     const Tab = createBottomTabNavigator()

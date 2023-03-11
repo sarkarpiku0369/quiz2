@@ -4,16 +4,15 @@ import { StyleSheet, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { AntDesign } from '@expo/vector-icons'; 
 import { primaryColor } from '../../styles';
+import axiosInstance from '../utils';
+import { StoreContext } from '../../App';
 
 
 const ResetVerification = ({route, navigation}) => {
     
+    const {state, setState} = React.useContext(StoreContext)
 
-
-    // const {email} = route.params
-
-    // const [hasError, setHasError] = React.useState(false)
-    // const [error, setError] = React.useState(false)
+    const {email} = route.params
 
     const pin1Ref = useRef(null)
     const pin2Ref = useRef(null)
@@ -27,46 +26,33 @@ const ResetVerification = ({route, navigation}) => {
 
     const [submitting, setSubmitting] = React.useState(false)
 
-    // const submit = async () => {
-    //     setSubmitting(true)
-
-    //     setTimeout(() => navigation.navigate("MainScreen"), 1000)
-    // }
-
      const submit = async () => {
-        navigation.navigate("NewPassword")
-        //  setSubmitting(true)
-        //  setHasError(false)
-        //  setError([])
-        //  const otp = `${pin1}${pin2}${pin3}${pin4}`
-        //  try {
-        //      setSubmitting(false)
-        //      const response = await axios.post('/user/verify', {email, otp})
-        //      if(response.status === 200) {         
-        //         setState(state => ({...state, user: response.data.user, token: response.data.token}))
-        //         navigation.navigate("MainScreen")
-        //      }
-        //    }
-        //    catch(err) {
-        //      setSubmitting(false)
-        //      if(err.response.status === 401) {
-        //          setHasError(true)
-        //          setError([err.response.data.error])
-        //      }
-        //      else {
-        //          setHasError(true)
-        //          setError(["Oops! Something went wrong"])
-        //      }
-        //    }
+         setSubmitting(true)
+         
+         const otp = `${pin1}${pin2}${pin3}${pin4}`
+         try {
+             setSubmitting(false)
+             const response = await axiosInstance.post('/user/verify', {email, otp})
+             if(response.status === 200) {  
+                navigation.navigate("PasswordChange", {email})
+             }
+           }
+           catch(err) {
+             setSubmitting(false)
+             if(err.response.status === 401) {
+                 alert("Invalid OTP")
+             }
+             else {
+                 alert("Something went wrong")
+             }
+           }
      }
 
     return (
         <SafeAreaView style={styles.container}>
-            <AntDesign name="left" size={24} color="black" onPress={() => navigation.goBack()}/>
-            
             <View style={styles.headingContainer}>
-                <Text h3 h3Style={styles.headingText1}>Enter verification code</Text>
-                <Text style={styles.headingText2}>We have send you a 4 digit verification code on ‎+12027953213</Text>
+                <Text h3 h3Style={styles.headingText1}>Enter Verification Code</Text>
+                <Text style={styles.headingText2}>We have send you a 4 digit verification code to your email address</Text>
 
                 <View style={styles.inputContainer}>
                     <View>
@@ -132,10 +118,11 @@ const ResetVerification = ({route, navigation}) => {
                 </View>
             )} */}
 
-            <Button buttonStyle={styles.buttonStyle}
-disabledStyle={{
-    backgroundColor: state.levelOneCorrectAnswerButtons.includes(1) ? primaryColor : "red",
-}} onPress={submit} loading={submitting} disabled={submitting}>Next</Button>
+            <Button 
+                buttonStyle={styles.buttonStyle}
+                onPress={submit} 
+                loading={submitting} 
+                disabled={submitting}>Reset Password</Button>
         </SafeAreaView>
     )
 }
@@ -148,7 +135,6 @@ const styles = StyleSheet.create({
     },
     headingContainer: {
         alignItems: "center",
-        marginTop: 20
     },
     headingText1: {
         color: "grey"

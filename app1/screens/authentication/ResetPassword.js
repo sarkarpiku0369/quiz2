@@ -1,83 +1,79 @@
 //rafce
-import { Button, Input } from '@rneui/base';
+import { Button } from '@rneui/base';
 import React from 'react';
 import { ScrollView, TouchableOpacity } from 'react-native';
 import { View,Text,StyleSheet,Image } from "react-native";
-import { TextInput } from 'react-native-gesture-handler';
-import SafeAreaView from 'react-native-safe-area-view';
-import BackButton from '../../components/BackButton';
-import { MaterialIcons } from '@expo/vector-icons';
-import { AntDesign } from '@expo/vector-icons';
-import { buttonColor, primaryColor } from '../../styles';
-
+import { TextInput } from 'react-native';
+import { primaryColor } from '../../styles';
+import axiosInstance from '../utils';
+import { Fontisto } from '@expo/vector-icons';
 
 const ResetPassword = ({navigation}) => {
+
+    const [email, setEmail] = React.useState("");
+    const [submitting, setSubmitting] = React.useState(false)
+
+    const handleSubmit = () => {
+        setSubmitting(true)
+        axiosInstance.post("/user/forgot-password", {email})
+        .then(response => {
+            if(response.status === 200) {
+                navigation.navigate("ResetVerification", {email})
+            }
+        })
+        .catch(err => {
+            console.log(err.response)
+            err.response.status == 401 ? alert("You Are Not Registered!") : alert("Server Error")
+        })
+        .finally(() => {
+            setSubmitting(false)
+        })
+    }
+
   return (
-    <SafeAreaView style={{flex: 1}} forceInset={{top: "always"}}>
         <ScrollView 
-            contentContainerStyle={{flex: 1}} 
+            style={{backgroundColor: "#DCFFE0"}}
             showsHorizontalScrollIndicator={false}
             showsVerticalScrollIndicator={false}
         >
-            <View style={{flex: 1, backgroundColor:"#DCFFE0", padding: 14}}>
-                <View style={{flexDirection: "row", justifyContent: "space-between", alignItems: "center"}}>
-                    <BackButton color="black" />
-                    <Text style={{justifyContent:"center", fontSize: 18, fontWeight: "bold"}}>Reset Password</Text>
-                    <Text>{" "}</Text>
+            <View style={{flex: 1, backgroundColor: "#DCFFE0", padding: 14}}>
+                <View style={{justifyContent: 'center', alignItems: "center", marginVertical: 10, paddingHorizontal: 10, marginBottom: 40}}>
+                    <Text style={{color:"#858494", fontSize: 16, fontWeight: "500"}}>Enter your email and we will send you a OTP to reset your password</Text>
                 </View>
-
-                <View style={{marginBottom:90,justifyContent:"left",alignItems:"left",top:40}}>
-                     <Text style={{color:"#858494"}}>
-                         Enter your email and we will send you a link
-                     </Text>
-                     <Text style={{color:"#858494"}}> to reset your password.
-                     </Text>
-                  </View>
-                
                 <View>
-                  
-                    <View style={{flexDirection: "column", paddingHorizontal: 15, marginVertical: 20}}>
+                    <View style={{flexDirection: "column", paddingHorizontal: 15}}>
                         <Text>Email Address</Text>
-                        <TouchableOpacity style={{flexDirection: "row", backgroundColor: "white", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 10, borderRadius: 50, marginVertical: 10}}>
-                            <MaterialIcons name="email" size={26} color={primaryColor} />
-                            <TextInput style = {styles.input}
-                                underlineColorAndroid = "transparent"
-                                placeholder = "Your Email Address"
-                                placeholderTextColor = "#858494"
-                                autoCapitalize = "none"
+                        <TouchableOpacity activeOpacity={1} style={{flexDirection: "row", backgroundColor: "white", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 10, borderRadius: 50, marginVertical: 10, marginBottom: 20}}>
+                            <Fontisto name="email" size={24} color={primaryColor} />
+                            <TextInput 
+                                placeholder = "Enter Your Email" 
+                                style={styles.input}
+                                underlineColorAndroid='transparent'
+                                value={email}
+                                onChangeText={(text) => setEmail(text)}
                             />
                         </TouchableOpacity>
                     </View>
 
-                    
-
-                    
-
                     <Button
+                        loading={submitting} 
+                        disabled={submitting}
                         buttonStyle={styles.buttonStyle}
-disabledStyle={{
-    backgroundColor: state.levelOneCorrectAnswerButtons.includes(1) ? primaryColor : "red",
-}}
                         title="Reset Password"
-                        onPress={() => navigation.push('ResetVariffcation')}
-
+                        onPress={() => handleSubmit()}
                     />
-                    
                 </View>
             </View>  
         </ScrollView>
-    </SafeAreaView>
   )
 }
 const styles = StyleSheet.create({
       input: {
         width: "90%",
-        // margin: 15,
-        height: 40,
         borderColor: '#d9d8dd',
         borderWidth: 0,
         borderRadius: 5,
-        paddingVertical: 25,
+        paddingVertical: 10,
         paddingHorizontal: 10,
      },
      buttonStyle: {
@@ -88,8 +84,7 @@ const styles = StyleSheet.create({
         width: "100%", 
         padding: 10, 
         borderRadius: 100, 
-        backgroundColor: primaryColor,
-       
+        backgroundColor: primaryColor
      },
      buttonHoverStyle: {
         flexDirection: "column", 

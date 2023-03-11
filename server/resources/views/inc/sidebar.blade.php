@@ -29,12 +29,12 @@
         </li>
 
         <!-- Nav Item - Winner List -->
-        <!-- <li class="nav-item">
+        <li class="nav-item">
             <a class="nav-link" href="{{url('/winner')}}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Winner List</span>
             </a>
-        </li> -->
+        </li>
 
         <!-- Nav Item - Banner -->
         <li class="nav-item">

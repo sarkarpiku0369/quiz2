@@ -63,7 +63,7 @@ const WinPrize = ({navigation}) => {
                             <Button 
                                 disabled={state.prizeSelected}
                                 disabledStyle={{backgroundColor: "red"}}
-                                buttonStyle={[styles.buttonStyle, {margin: 25}]}
+                                buttonStyle={[styles.buttonStyle, {margin: 25, marginBottom: 10}]}
                                 onPress={() => setSelectedPrize(item)}>
                                 {state.prizeSelected ? (
                                     <Feather name="lock" size={24} color="white" />

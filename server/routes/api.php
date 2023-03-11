@@ -36,6 +36,9 @@ Route::group([
     Route::get("/is-authenticate", [UserController::class, 'isAuthenticate'])->name("isAuthenticate");
     Route::get("/logout", [UserController::class, 'logout']);
     Route::post("/user/verify", [UserController::class, 'verify']);
+    Route::post("/update", [UserController::class, 'update']);
+    Route::post("/change-password", [UserController::class, 'change_password']);
+    Route::post("/reset-password", [UserController::class, 'reset_password']);
     
     Route::get("/{role?}", [UserController::class, 'index']);
 });
@@ -43,4 +46,4 @@ Route::group([
 Route::get("/question", [QuestionController::class, 'index'])->middleware("auth:sanctum");
 Route::get("/all-prize", [PrizeController::class, 'get_all_prizes'])->middleware("auth:sanctum");
 Route::get("/all-banner", [BannerController::class, 'get_all_banner'])->middleware("auth:sanctum");
-Route::resource("/winner", WinnerController::class)->middleware("auth:sanctum");
+Route::post("/winner", [WinnerController::class, 'store'])->middleware("auth:sanctum");

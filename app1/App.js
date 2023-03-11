@@ -21,6 +21,7 @@ export default function App() {
     loggedIn: false,
     token: null,
     loading: false,
+    user: {},
     
     gameStarted: false,
     gameEnd: false,

@@ -5,6 +5,7 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\PrizeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\WinnerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,4 @@ Route::resource("user", UserController::class);
 Route::resource("question", QuestionController::class);
 Route::resource("prize", PrizeController::class);
 Route::resource("banner", BannerController::class);
+Route::resource("winner", WinnerController::class);

@@ -64,7 +64,7 @@ const Home = ({navigation}) => {
                         <Feather name="sun" style={styles.sun} />
                         <Text style={styles.good}>{greet}</Text>
                     </View>
-                    <Text style={styles.mcarol}>Madelyn Carol</Text>
+                    <Text style={styles.mcarol}>{state.user.name}</Text>
                 </View>
             
                 <View>

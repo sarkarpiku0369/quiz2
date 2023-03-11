@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Winner;
+use App\Models\Prize;
+use App\Models\User;
 use Validator;
 use Auth;
 
@@ -16,7 +18,15 @@ class WinnerController extends Controller
      */
     public function index()
     {
-        //
+        $winners =  Winner::paginate(10);
+        $winner_list = [];
+
+        for($i = 0 ; $i < count($winners) ; $i++) {
+            $winners[$i]->player_name = User::find($winners[$i]->user_id)->name;
+            $winners[$i]->prize_name = Prize::find($winners[$i]->prize_id)->name;
+        }
+
+        return view("Winner.index", ["winners" => $winners]);
     }
 
     /**
@@ -44,6 +54,7 @@ class WinnerController extends Controller
             'name' => 'required',
             'email' => 'required|email',
             'phone' => 'required',
+            'prize_id' => 'required'
         ]);
 
         if($validation->fails()) {
@@ -53,9 +64,10 @@ class WinnerController extends Controller
 
         $winner = Winner::create([
             "user_id" => Auth::user()->id,
+            "prize_id" => $request->input('prize_id'),
             'name' => $request->input('name'),
             "phone" => $request->input('phone'),
-            "email" => $request->input('email')
+            "email" => $request->input('email'),
         ]);
 
         if($winner) {
@@ -108,6 +120,7 @@ class WinnerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Winner::destroy($id);
+        return redirect()->back();
     }
 }

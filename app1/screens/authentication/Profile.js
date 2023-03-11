@@ -50,7 +50,7 @@ const Profile = ({navigation}) => {
                 </View>
                 <View>
                     <Text style={{fontWeight: "bold", fontSize: 18}}>Update Profile</Text>
-                    <Text style={{color: "grey"}}>Update Username, Country etc</Text>
+                    <Text style={{color: "grey"}}>Update username, email etc</Text>
                 </View>
                 <View style={{flexDirection: "column", justifyContent: "center", marginHorizontal: 20}}>
                     <FontAwesome name="chevron-right" size={18} color="black" />
@@ -63,7 +63,7 @@ const Profile = ({navigation}) => {
                 </View>
                 <View>
                     <Text style={{fontWeight: "bold", fontSize: 18}}>Change Password{"          "}</Text>
-                    <Text style={{color: "grey"}}>last change 1 year ago</Text>
+                    <Text style={{color: "grey"}}>update your password</Text>
                 </View>
                 <View style={{flexDirection: "column", justifyContent: "center", marginHorizontal: 20}}>
                     <FontAwesome name="chevron-right" size={18} color="black" />

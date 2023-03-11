@@ -17,8 +17,6 @@ const NewPassword = ({navigation}) => {
     const [confirmPassword, setConfirmPassword] = React.useState("")
 
     const handleSubmit = () => {
-        setSubmitting(false)
-
         if(password.length < 8) {
             return alert("Password must be at least 8 characters long")
         }
@@ -27,6 +25,7 @@ const NewPassword = ({navigation}) => {
         }
         else {}
 
+        setSubmitting(true)
         axiosInstance.post("/user/change-password", {password})
         .then(response => {
             if(response.status == 200) {
@@ -35,6 +34,9 @@ const NewPassword = ({navigation}) => {
         })
         .catch(err => {
             alert("Something Went Wrong!")
+        })
+        .finally(() => {
+            setSubmitting(false)
         })
         
     }
@@ -58,10 +60,11 @@ const NewPassword = ({navigation}) => {
                     <View>
                         <View style={{flexDirection: "column", paddingHorizontal: 15, marginBottom: 20}}>
                             <Text>New Password</Text>
-                            <TouchableOpacity style={{flexDirection: "row", backgroundColor: "white", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 10, borderRadius: 50, marginVertical: 10}}>
+                            <TouchableOpacity activeOpacity={1} style={{flexDirection: "row", backgroundColor: "white", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 10, borderRadius: 50, marginVertical: 10}}>
                                 <AntDesign name="lock" size={24} color={primaryColor} />
                                 <TextInput style = {styles.input}
                                     underlineColorAndroid = "transparent"
+                                    secureTextEntry={true}
                                     placeholder = "Your Password"
                                     placeholderTextColor = "#858494"
                                     autoCapitalize = "none"
@@ -73,10 +76,11 @@ const NewPassword = ({navigation}) => {
 
                         <View style={{flexDirection: "column", paddingHorizontal: 15, marginBottom: 20}}>
                             <Text>Confirm Password</Text>
-                            <TouchableOpacity style={{flexDirection: "row", backgroundColor: "white", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 10, borderRadius: 50, marginVertical: 10}}>
+                            <TouchableOpacity activeOpacity={1} style={{flexDirection: "row", backgroundColor: "white", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 10, borderRadius: 50, marginVertical: 10}}>
                                 <AntDesign name="lock" size={24} color={primaryColor} />
                                 <TextInput style = {styles.input}
                                     underlineColorAndroid = "transparent"
+                                    secureTextEntry={true}
                                     placeholder = "Confirm Password"
                                     placeholderTextColor = "#858494"
                                     autoCapitalize = "none"

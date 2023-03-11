@@ -31,7 +31,7 @@ const WinSuccess = ({route, navigation}) => {
                 <Button 
                     buttonStyle={styles.submitButton}
                     title="Collect Your Prize"
-                    onPress={() => navigation.navigate("Contact")}
+                    onPress={() => navigation.navigate("Contact", {item})}
                 />
             </View>
             {/* <View style={{borderWidth: 1, borderColor: "#bcf0c2", padding: 10, borderRadius: 100, marginLeft: 12 }}>

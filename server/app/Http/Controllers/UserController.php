@@ -71,9 +71,13 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateUserRequest $request, User $user)
+    public function update(Request $request)
     {
-        //
+        $user = Auth::user();
+        $user->email = $request->email ? $request->email : $user->email;
+        $user->name = $request->name ? $request->name : $user->name;
+        $user->save();
+        return response(["user" => $user], 200);
     }
 
     /**
@@ -122,19 +126,20 @@ class UserController extends Controller
         }
     }
 
-    public function login (Request $request) {
+    public function login(Request $request) {
 
         $input = $request->all();
 
         $validation = Validator::make($input, [
             'email' => 'required|email',
+            'password' => 'required',
         ]);
 
         if($validation->fails()) {
             return response()->json(['errors' => $validation->errors()->all()], 400);
         }
 
-        $user = User::where('email', $input["email"])->first();
+        $user = User::where(['email' => $input["email"], "password" => $input["password"]])->first();
 
         if($user) {
             $otp = mt_rand(1111,9999);
@@ -142,12 +147,12 @@ class UserController extends Controller
             $user->otp = $otp;
             $user->save();
 
-            // Mail::to($user)->send(new OTPVerification($user->name, $otp));
+            Mail::to($user)->send(new OTPVerification($user->name, $otp));
 
             return response(["user" => $user]);
         }
         else {
-            return response(["user" => null, 'token' => null, "error" => "Invalid email address"], 401);
+            return response(["error" => "Invalid email address or Password"], 401);
         }
     }
 
@@ -208,6 +213,33 @@ class UserController extends Controller
         else {
             return view('login');
         }
+    }
+    
+    public function change_password() {
+        $user = Auth::user();
+        $otp = mt_rand(1111,9999);
+
+        $user->otp = $otp;
+        $user->save();
+
+        Mail::to($user)->send(new OTPVerification($user->name, $otp));
+        return response(["user" => $user], 200);
+    }
+
+    public function reset_password(Request $request) {
+        $user = Auth::user();
+        
+        if($user->otp == $request->otp) {
+            $user->password = $request->password;
+            $user->otp = "";
+            $user->save();
+            return response(["user" => $user], 200);
+        }
+        else {
+            return response(["error" => "Invalid OTP"], 401);
+        }
+                
+
     }
 
     public function isAuthenticate () {
