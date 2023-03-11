@@ -11,32 +11,27 @@ import { primaryColor } from '../../styles';
 import axiosInstance from '../utils';
 
 
-const NewPassword = ({navigation}) => {
+const UpdateProfile = ({navigation}) => {
     const [submitting, setSubmitting] = React.useState(false)
-    const [password, setPassword] = React.useState("")
-    const [confirmPassword, setConfirmPassword] = React.useState("")
+    const [name, setName] = React.useState("")
+    const [email, setEmailAddress] = React.useState("")
 
     const handleSubmit = () => {
-        setSubmitting(false)
+        setSubmitting(true)
 
-        if(password.length < 8) {
-            return alert("Password must be at least 8 characters long")
-        }
-        else if(password != confirmPassword) {
-            return alert("Password does not match")
-        }
-        else {}
-
-        axiosInstance.post("/user/change-password", {password})
+        axiosInstance.post("/user/update", {name, email})
         .then(response => {
             if(response.status == 200) {
-                navigation.navigate('PasswordResetVerification', {password})
+                Alert.alert('', 'Profile Updated Successfully', [
+                    {text: 'OK', onPress: () => navigation.navigate("ProfileTab", {screen: 'ProfileScreen'})},
+                ]);
+                setSubmitting(false)
             }
         })
         .catch(err => {
             alert("Something Went Wrong!")
+            setSubmitting(false)
         })
-        
     }
 
     return (
@@ -49,38 +44,37 @@ const NewPassword = ({navigation}) => {
                 <View style={{flex: 1, backgroundColor:"#DCFFE0", padding: 14}}>
                     <View style={{flexDirection: "row", justifyContent: "space-between", alignItems: "center"}}>
                         <BackButton color="black" />
-                        <Text style={{justifyContent:"center", fontSize: 18, fontWeight: "bold"}}>New Password</Text>
+                        <Text style={{justifyContent:"center", fontSize: 18, fontWeight: "bold"}}>Update Profile</Text>
                         <Text>{" "}</Text>
                     </View>
                     <View style={{justifyContent: 'center', alignItems: "center", marginVertical: 10, paddingHorizontal: 10}}>
-                        <Text style={{color:"#858494", fontSize: 16, fontWeight: "500"}}>Your new password must be different from previous used passwords</Text>
+                        
                     </View>
                     <View>
                         <View style={{flexDirection: "column", paddingHorizontal: 15, marginBottom: 20}}>
-                            <Text>New Password</Text>
+                            <Text>Name</Text>
                             <TouchableOpacity style={{flexDirection: "row", backgroundColor: "white", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 10, borderRadius: 50, marginVertical: 10}}>
-                                <AntDesign name="lock" size={24} color={primaryColor} />
+                                <AntDesign name="user" size={24} color={primaryColor} />
                                 <TextInput style = {styles.input}
                                     underlineColorAndroid = "transparent"
-                                    placeholder = "Your Password"
+                                    placeholder = "Your Name"
                                     placeholderTextColor = "#858494"
                                     autoCapitalize = "none"
-                                    onChangeText={(text) => setPassword(text.trim())}
+                                    onChangeText={(text) => setName(text.trim())}
                                 />
                             </TouchableOpacity>
-                            <Text style={{color:"#858494"}}>Must be at least 8 characters.</Text>
                         </View>
 
                         <View style={{flexDirection: "column", paddingHorizontal: 15, marginBottom: 20}}>
-                            <Text>Confirm Password</Text>
+                            <Text>Email</Text>
                             <TouchableOpacity style={{flexDirection: "row", backgroundColor: "white", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 10, borderRadius: 50, marginVertical: 10}}>
                                 <AntDesign name="lock" size={24} color={primaryColor} />
                                 <TextInput style = {styles.input}
                                     underlineColorAndroid = "transparent"
-                                    placeholder = "Confirm Password"
+                                    placeholder = "Your Email Address"
                                     placeholderTextColor = "#858494"
                                     autoCapitalize = "none"
-                                    onChangeText={(text) => setConfirmPassword(text.trim())}
+                                    onChangeText={(text) => setEmailAddress(text.trim())}
                                 />
                             </TouchableOpacity>
                         </View>
@@ -88,7 +82,7 @@ const NewPassword = ({navigation}) => {
                         <Button
                             buttonStyle={styles.buttonStyle}
                             disabled={submitting}
-                            title="Reset Password"
+                            title="Update Profile"
                             onPress={() => handleSubmit()}
                         />
                     </View>
@@ -131,7 +125,6 @@ const styles = StyleSheet.create({
         fontSize: 30, 
         fontWeight: "400"
      },
-     
 })
 
-export default NewPassword
+export default UpdateProfile

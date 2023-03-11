@@ -68,10 +68,6 @@ export default function App() {
 
   })
 
-  // React.useEffect(() => {
-  //   console.log(state)
-  // }, [state])
-
   // AsyncStorage.removeItem("token")
 
   return (

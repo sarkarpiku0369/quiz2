@@ -73,7 +73,7 @@ const Registration = ({navigation}) => {
                             <AntDesign name="user" size={24} color={primaryColor} />
                             <TextInput style = {styles.input}
                                 underlineColorAndroid = "transparent"
-                                placeholder = "Your username"
+                                placeholder = "Your Username"
                                 placeholderTextColor = "#858494"
                                 autoCapitalize = "none"
                                 onChangeText={(text) => setName(text)}

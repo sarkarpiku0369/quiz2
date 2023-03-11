@@ -54,6 +54,10 @@ const AuthDecide = () => {
             }
       }, [state.token])
 
+      React.useEffect(() => {
+          console.log(state)
+      }, [state])
+
 
   return (
       loading == true ? (

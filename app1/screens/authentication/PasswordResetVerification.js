@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { Button, Input, Text } from "@rneui/base"
-import { StyleSheet, View } from 'react-native'
+import { Alert, StyleSheet, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { AntDesign } from '@expo/vector-icons'; 
 import { primaryColor } from '../../styles';
@@ -34,17 +34,19 @@ const PasswordResetVerification = ({route, navigation}) => {
              setSubmitting(false)
              const response = await axiosInstance.post('/user/reset-password', {password, otp})
              if(response.status === 200) {
-                alert("Password Reset Successfully")  
                 // setState(state => ({...state, user: response.data.user, token: response.data.token}))
+                Alert.alert('', 'Password Reset Successfully', [
+                    {text: 'OK', onPress: () => navigation.navigate("ProfileTab", {screen: 'ProfileScreen'})},
+                ]);
              }
            }
            catch(err) {
              setSubmitting(false)
              if(err.response.status === 401) {
-                 alert("Invalid OTP")
+                alert("Invalid OTP")
              }
              else {
-                 alert("Something went wrong")
+                alert("Something went wrong")
              }
            }
      }

@@ -1,12 +1,17 @@
 //rafce
 import { Button } from '@rneui/base';
 import React from 'react';
-import { ScrollView, TouchableOpacity } from 'react-native';
+import { Alert, ScrollView, TouchableOpacity } from 'react-native';
 import { View,Text,StyleSheet,Image } from "react-native";
 import { primaryColor } from '../../styles';
 import { AntDesign } from '@expo/vector-icons';
 import { Fontisto } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import axiosInstance from '../utils';
+import { StoreContext } from '../../App';
+
 
 
 const Profile = ({navigation}) => {
@@ -15,7 +20,19 @@ const Profile = ({navigation}) => {
     const [name, setName] = React.useState("")
     const [password, setPassword]  = React.useState("")
     const [submitting, setSubmitting] = React.useState(false)
+    const { state, setState } = React.useContext(StoreContext)
     
+    const logout = () => {
+        
+        axiosInstance.get("/user/logout")
+        .then(response => {
+          AsyncStorage.removeItem("user")
+          AsyncStorage.removeItem("token")
+          if(response.status === 200) {
+            setState(state => ({...state, token: null, loggedIn: false}))
+          }
+        })
+      }
 
     return (
         <ScrollView
@@ -27,7 +44,7 @@ const Profile = ({navigation}) => {
                 <Text style={{marginTop: 20, marginLeft: 10, fontSize: 20}}>Account</Text>
             </View>
 
-            <TouchableOpacity activeOpacity={1} style={{flexDirection: "row", justifyContent: 'space-between', backgroundColor: "white", borderRadius: 10, marginHorizontal: 20, paddingVertical: 30, marginVertical: 10}}>
+            <TouchableOpacity onPress={() => navigation.navigate("UpdateProfile")} activeOpacity={1} style={{flexDirection: "row", justifyContent: 'space-between', backgroundColor: "white", borderRadius: 10, marginHorizontal: 20, paddingVertical: 30, marginVertical: 10}}>
                 <View style={{flexDirection: "column", justifyContent: "center", marginHorizontal: 20}}>
                     <AntDesign name="user" size={24} color={primaryColor} />
                 </View>
@@ -40,29 +57,23 @@ const Profile = ({navigation}) => {
                 </View>
             </TouchableOpacity>
 
-            <TouchableOpacity activeOpacity={1} style={{flexDirection: "row", justifyContent: 'space-between', backgroundColor: "white", borderRadius: 10, marginHorizontal: 20, paddingVertical: 30, marginVertical: 10}}>
+            <TouchableOpacity onPress={() => navigation.navigate("PasswordReset")} activeOpacity={1} style={{flexDirection: "row", justifyContent: 'space-between', backgroundColor: "white", borderRadius: 10, marginHorizontal: 20, paddingVertical: 30, marginVertical: 10}}>
                 <View style={{flexDirection: "column", justifyContent: "center", marginHorizontal: 20}}>
-                    <Fontisto name="email" size={24} color={primaryColor} />
+                    <AntDesign name="lock" size={24} color={primaryColor} />
                 </View>
                 <View>
-                    <Text style={{fontWeight: "bold", fontSize: 18}}>Change Email Address</Text>
-                    <Text style={{color: "grey"}}>abc@gmail.com</Text>
+                    <Text style={{fontWeight: "bold", fontSize: 18}}>Change Password{"          "}</Text>
+                    <Text style={{color: "grey"}}>last change 1 year ago</Text>
                 </View>
                 <View style={{flexDirection: "column", justifyContent: "center", marginHorizontal: 20}}>
                     <FontAwesome name="chevron-right" size={18} color="black" />
                 </View>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => navigation.navigate("PasswordReset")} activeOpacity={1} style={{flexDirection: "row", justifyContent: 'space-between', backgroundColor: "white", borderRadius: 10, marginHorizontal: 20, paddingVertical: 30, marginVertical: 10}}>
-                <View style={{flexDirection: "column", justifyContent: "center", marginHorizontal: 20}}>
-                    <AntDesign name="lock" size={24} color={primaryColor} />
-                </View>
-                <View>
-                    <Text style={{fontWeight: "bold", fontSize: 18}}>Change Password        </Text>
-                    <Text style={{color: "grey"}}>last change 1 year ago</Text>
-                </View>
-                <View style={{flexDirection: "column", justifyContent: "center", marginHorizontal: 20}}>
-                    <FontAwesome name="chevron-right" size={18} color="black" />
+
+            <TouchableOpacity onPress={() => logout()} activeOpacity={1} style={{flexDirection: 'row', justifyContent: "center"}}>
+                <View  style={{flexDirection: "row", justifyContent: 'center', backgroundColor: "white", width: 80, borderRadius: 100, marginHorizontal: 20, paddingVertical: 20, marginTop: 40}}>
+                <FontAwesome5 name="power-off" size={35} color={primaryColor} />
                 </View>
             </TouchableOpacity>
         </ScrollView>

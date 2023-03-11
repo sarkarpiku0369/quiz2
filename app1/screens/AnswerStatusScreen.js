@@ -14,7 +14,7 @@ import { StoreContext } from '../App';
 const AnswerStatusScreen = ({route, navigation}) => {
     const [selectedButton, setSelectedButton] = React.useState("")
     const { state, setState } = React.useContext(StoreContext)
-    const [ showNextScreen, setShowNextScreen ] = React.useState(false)
+    const [ gameLoss, setGameLoss ] = React.useState(false)
     const {level, remainingAttempt, nextScreenName, answerCorrect} = route.params
 
 
@@ -28,19 +28,19 @@ const AnswerStatusScreen = ({route, navigation}) => {
 
     React.useEffect(() => {
         if(level == 1) {
-            setShowNextScreen(remainingAttempt == 0 && (state.levelOneCorrectAnswerButtons.length >= state.levelOneMinimumCorrectAnswerRequire))
+            setGameLoss(remainingAttempt == 0 && (state.levelOneCorrectAnswerButtons.length >= state.levelOneMinimumCorrectAnswerRequire))
         }
         else if(level == 2) {
-            setShowNextScreen(remainingAttempt == 0 && (state.levelTwoCorrectAnswerButtons.length >= state.levelTwoMinimumCorrectAnswerRequire))
+            setGameLoss(remainingAttempt == 0 && (state.levelTwoCorrectAnswerButtons.length >= state.levelTwoMinimumCorrectAnswerRequire))
         }
         else if(level == 3) {
-            setShowNextScreen(remainingAttempt == 0 && (state.levelThreeCorrectAnswerButtons.length >= state.levelThreeMinimumCorrectAnswerRequire))
+            setGameLoss(remainingAttempt == 0 && (state.levelThreeCorrectAnswerButtons.length >= state.levelThreeMinimumCorrectAnswerRequire))
         }
         else if(level == 4) {
-            setShowNextScreen(remainingAttempt == 0 && (state.levelFourCorrectAnswerButtons.length >= state.levelFourMinimumCorrectAnswerRequire))
+            setGameLoss(remainingAttempt == 0 && (state.levelFourCorrectAnswerButtons.length >= state.levelFourMinimumCorrectAnswerRequire))
         }
         else {
-            setShowNextScreen(remainingAttempt == 0 && (state.levelFiveCorrectAnswerButtons.length >= state.levelFiveMinimumCorrectAnswerRequire))
+            setGameLoss(remainingAttempt == 0 && (state.levelFiveCorrectAnswerButtons.length >= state.levelFiveMinimumCorrectAnswerRequire))
         }
     }, [])
 
@@ -115,7 +115,7 @@ const AnswerStatusScreen = ({route, navigation}) => {
                                         buttonStyle={styles.statusButtonStyle}
                                         containerStyle={{marginVertical: 10}}
                                     />
-                                    {level != 5 && showNextScreen && (
+                                    {level != 5 && gameLoss && (
                                         <Button 
                                             onPress={() => navigation.navigate(nextScreenName)}
                                             title="Go To Next Step"
@@ -124,7 +124,7 @@ const AnswerStatusScreen = ({route, navigation}) => {
                                         />
                                     )}
 
-                                    {level == 5 && showNextScreen && (
+                                    {level == 5 && gameLoss && (
                                         <Button 
                                             onPress={() => navigation.navigate("PrizeTab")}
                                             title="Select Your Prize"
