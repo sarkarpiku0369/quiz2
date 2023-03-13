@@ -78,10 +78,10 @@ const LevelFourQuestion = ({navigation}) => {
                         disabledStyle={{
                             backgroundColor: state.levelFourCorrectAnswerButtons.includes(1) ? primaryColor : "red",
                         }}
-                        disabled={state.levelFourPressedButtons.includes(1)}
+                        disabled={state.levelFourPressedButtons.includes(1) || state.levelFourRemainingAttempt == 0}
                         onPress={() => setSelectedButton(1)}
                     >
-                        {state.levelFourPressedButtons.includes(1) ? (
+                        {state.levelFourPressedButtons.includes(1) || state.levelFourRemainingAttempt == 0 ? (
                             <Feather name="lock" size={24} color="white" />
                         ) : (
                             <Text style={styles.buttonTextStyle}>1</Text>
@@ -94,10 +94,10 @@ const LevelFourQuestion = ({navigation}) => {
                         disabledStyle={{
                             backgroundColor: state.levelFourCorrectAnswerButtons.includes(2) ? primaryColor : "red",
                         }}
-                        disabled={state.levelFourPressedButtons.includes(2)}
+                        disabled={state.levelFourPressedButtons.includes(2) || state.levelFourRemainingAttempt == 0}
                         onPress={() => setSelectedButton(2)}
                     >
-                        {state.levelFourPressedButtons.includes(2) ? (
+                        {state.levelFourPressedButtons.includes(2) || state.levelFourRemainingAttempt == 0 ? (
                             <Feather name="lock" size={24} color="white" />
                         ) : (
                             <Text style={styles.buttonTextStyle}>2</Text>
@@ -110,10 +110,10 @@ const LevelFourQuestion = ({navigation}) => {
                         disabledStyle={{
                             backgroundColor: state.levelFourCorrectAnswerButtons.includes(3) ? primaryColor : "red",
                         }}
-                        disabled={state.levelFourPressedButtons.includes(3)}
+                        disabled={state.levelFourPressedButtons.includes(3) || state.levelFourRemainingAttempt == 0}
                         onPress={() => setSelectedButton(3)}
                     >
-                        {state.levelFourPressedButtons.includes(3) ? (
+                        {state.levelFourPressedButtons.includes(3) || state.levelFourRemainingAttempt == 0 ? (
                             <Feather name="lock" size={24} color="white" />
                         ) : (
                             <Text style={styles.buttonTextStyle}>3</Text>
@@ -128,10 +128,10 @@ const LevelFourQuestion = ({navigation}) => {
                         disabledStyle={{
                             backgroundColor: state.levelFourCorrectAnswerButtons.includes(4) ? primaryColor : "red",
                         }}
-                        disabled={state.levelFourPressedButtons.includes(4)}
+                        disabled={state.levelFourPressedButtons.includes(4) || state.levelFourRemainingAttempt == 0}
                         onPress={() => setSelectedButton(4)}
                     >
-                        {state.levelFourPressedButtons.includes(4) ? (
+                        {state.levelFourPressedButtons.includes(4) || state.levelFourRemainingAttempt == 0 ? (
                             <Feather name="lock" size={24} color="white" />
                         ) : (
                             <Text style={styles.buttonTextStyle}>4</Text>
@@ -144,10 +144,10 @@ const LevelFourQuestion = ({navigation}) => {
                         disabledStyle={{
                             backgroundColor: state.levelFourCorrectAnswerButtons.includes(5) ? primaryColor : "red",
                         }}
-                        disabled={state.levelFourPressedButtons.includes(5)}
+                        disabled={state.levelFourPressedButtons.includes(5) || state.levelFourRemainingAttempt == 0}
                         onPress={() => setSelectedButton(5)}
                     >
-                        {state.levelFourPressedButtons.includes(5) ? (
+                        {state.levelFourPressedButtons.includes(5) || state.levelFourRemainingAttempt == 0 ? (
                             <Feather name="lock" size={24} color="white" />
                         ) : (
                             <Text style={styles.buttonTextStyle}>5</Text>
@@ -160,10 +160,10 @@ const LevelFourQuestion = ({navigation}) => {
                         disabledStyle={{
                             backgroundColor: state.levelFourCorrectAnswerButtons.includes(6) ? primaryColor : "red",
                         }}
-                        disabled={state.levelFourPressedButtons.includes(6)}
+                        disabled={state.levelFourPressedButtons.includes(6) || state.levelFourRemainingAttempt == 0}
                         onPress={() => setSelectedButton(6)}
                     >
-                        {state.levelFourPressedButtons.includes(6) ? (
+                        {state.levelFourPressedButtons.includes(6) || state.levelFourRemainingAttempt == 0 ? (
                             <Feather name="lock" size={24} color="white" />
                         ) : (
                             <Text style={styles.buttonTextStyle}>6</Text>
@@ -178,10 +178,10 @@ const LevelFourQuestion = ({navigation}) => {
                         disabledStyle={{
                             backgroundColor: state.levelFourCorrectAnswerButtons.includes(7) ? primaryColor : "red",
                         }}
-                        disabled={state.levelFourPressedButtons.includes(7)}
+                        disabled={state.levelFourPressedButtons.includes(7) || state.levelFourRemainingAttempt == 0}
                         onPress={() => setSelectedButton(7)}
                     >
-                        {state.levelFourPressedButtons.includes(7) ? (
+                        {state.levelFourPressedButtons.includes(7) || state.levelFourRemainingAttempt == 0 ? (
                             <Feather name="lock" size={24} color="white" />
                         ) : (
                             <Text style={styles.buttonTextStyle}>7</Text>
@@ -194,10 +194,10 @@ const LevelFourQuestion = ({navigation}) => {
                         disabledStyle={{
                             backgroundColor: state.levelFourCorrectAnswerButtons.includes(8) ? primaryColor : "red",
                         }}
-                        disabled={state.levelFourPressedButtons.includes(8)}
+                        disabled={state.levelFourPressedButtons.includes(8) || state.levelFourRemainingAttempt == 0}
                         onPress={() => setSelectedButton(8)}
                     >
-                        {state.levelFourPressedButtons.includes(8) ? (
+                        {state.levelFourPressedButtons.includes(8) || state.levelFourRemainingAttempt == 0 ? (
                             <Feather name="lock" size={24} color="white" />
                         ) : (
                             <Text style={styles.buttonTextStyle}>8</Text>
@@ -210,10 +210,10 @@ const LevelFourQuestion = ({navigation}) => {
                         disabledStyle={{
                             backgroundColor: state.levelFourCorrectAnswerButtons.includes(9) ? primaryColor : "red",
                         }}
-                        disabled={state.levelFourPressedButtons.includes(9)}
+                        disabled={state.levelFourPressedButtons.includes(9) || state.levelFourRemainingAttempt == 0}
                         onPress={() => setSelectedButton(9)}
                     >
-                        {state.levelFourPressedButtons.includes(9) ? (
+                        {state.levelFourPressedButtons.includes(9) || state.levelFourRemainingAttempt == 0 ? (
                             <Feather name="lock" size={24} color="white" />
                         ) : (
                             <Text style={styles.buttonTextStyle}>9</Text>
@@ -228,10 +228,10 @@ const LevelFourQuestion = ({navigation}) => {
                         disabledStyle={{
                             backgroundColor: state.levelFourCorrectAnswerButtons.includes(10) ? primaryColor : "red",
                         }}
-                        disabled={state.levelFourPressedButtons.includes(10)}
+                        disabled={state.levelFourPressedButtons.includes(10) || state.levelFourRemainingAttempt == 0}
                         onPress={() => setSelectedButton(10)}
                     >
-                        {state.levelFourPressedButtons.includes(10) ? (
+                        {state.levelFourPressedButtons.includes(10) || state.levelFourRemainingAttempt == 0 ? (
                             <Feather name="lock" size={24} color="white" />
                         ) : (
                             <Text style={styles.buttonTextStyle}>10</Text>
@@ -244,10 +244,10 @@ const LevelFourQuestion = ({navigation}) => {
                         disabledStyle={{
                             backgroundColor: state.levelFourCorrectAnswerButtons.includes(11) ? primaryColor : "red",
                         }}
-                        disabled={state.levelFourPressedButtons.includes(11)}
+                        disabled={state.levelFourPressedButtons.includes(11) || state.levelFourRemainingAttempt == 0}
                         onPress={() => setSelectedButton(11)}
                     >
-                        {state.levelFourPressedButtons.includes(11) ? (
+                        {state.levelFourPressedButtons.includes(11) || state.levelFourRemainingAttempt == 0 ? (
                             <Feather name="lock" size={24} color="white" />
                         ) : (
                             <Text style={styles.buttonTextStyle}>11</Text>
@@ -260,10 +260,10 @@ const LevelFourQuestion = ({navigation}) => {
                         disabledStyle={{
                             backgroundColor: state.levelFourCorrectAnswerButtons.includes(12) ? primaryColor : "red",
                         }}
-                        disabled={state.levelFourPressedButtons.includes(12)}
+                        disabled={state.levelFourPressedButtons.includes(12) || state.levelFourRemainingAttempt == 0}
                         onPress={() => setSelectedButton(12)}
                     >
-                        {state.levelFourPressedButtons.includes(12) ? (
+                        {state.levelFourPressedButtons.includes(12) || state.levelFourRemainingAttempt == 0 ? (
                             <Feather name="lock" size={24} color="white" />
                         ) : (
                             <Text style={styles.buttonTextStyle}>12</Text>

@@ -90,7 +90,7 @@ const Login = ({navigation}) => {
                     
                     <View style={{flexDirection: "column", alignItems: "center", marginTop: 10}}>
                         <TouchableOpacity onPress={()=> {navigation.navigate("ResetPassword")}} activeOpacity={1}>
-                            <Text style={{color: primaryColor}}>Forgot Password</Text>
+                            <Text style={{color: primaryColor, fontSize: 16, fontWeight: "bold"}}>Forgot Password</Text>
                         </TouchableOpacity>
                         <Text style={{marginTop: 20}}>
                             By continuing, you agree to the Terms of Services</Text>

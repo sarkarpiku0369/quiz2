@@ -21,7 +21,7 @@ const AnswerStatusScreen = ({route, navigation}) => {
     React.useEffect(() => {
         if(remainingAttempt == 0 ) {
             navigation.addListener('beforeRemove', (e) => {
-                e.preventDefault()
+                // e.preventDefault()
             })
         }
     }, [remainingAttempt])
@@ -43,6 +43,13 @@ const AnswerStatusScreen = ({route, navigation}) => {
             setGameLoss(remainingAttempt == 0 && (state.levelFiveCorrectAnswerButtons.length >= state.levelFiveMinimumCorrectAnswerRequire))
         }
     }, [])
+
+
+    React.useEffect(() => {
+        if(!gameLoss) {
+            setState(state => ({...state, gameLoss: true}))
+        }
+    }, [gameLoss])
 
     const back = () => {
         if(remainingAttempt > 0 ) {

@@ -103,9 +103,12 @@ const Registration = ({navigation}) => {
 
                     />
                     <View style={{flexDirection: "column", alignItems: "center", marginTop: 10}}>
-                        <TouchableOpacity onPress={()=> {navigation.navigate("ResetPassword")}} activeOpacity={1}>
-                            <Text style={{color: primaryColor}}>Forgot Password</Text>
-                        </TouchableOpacity>
+                        <View style={{flexDirection: "row"}} activeOpacity={1}>
+                            <Text style={{fontSize: 16, color: "grey", fontWeight: "bold"}}>Already have an account? </Text>
+                            <TouchableOpacity onPress={()=> {navigation.navigate("Login")}} activeOpacity={1}>
+                                <Text style={{color: primaryColor, fontSize: 16, fontWeight: "bold"}}>Login</Text>
+                            </TouchableOpacity>
+                        </View>
                         <Text style={{marginTop: 20}}>
                             By continuing, you agree to the Terms of Services</Text>
                             <Text>& Privacy Policy.

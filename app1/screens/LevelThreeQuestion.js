@@ -80,10 +80,10 @@ const LevelThreeQuestion = ({navigation}) => {
                             disabledStyle={{
                                 backgroundColor: state.levelThreeCorrectAnswerButtons.includes(1) ? primaryColor : "red",
                             }}
-                            disabled={state.levelThreePressedButtons.includes(1)}
+                            disabled={state.levelThreePressedButtons.includes(1) || state.levelThreeRemainingAttempt == 0}
                             onPress={() => setSelectedButton(1)}
                         >
-                            {state.levelThreePressedButtons.includes(1) ? (
+                            {state.levelThreePressedButtons.includes(1) || state.levelThreeRemainingAttempt == 0 ? (
                                 <Feather name="lock" size={24} color="white" />
                             ) : (
                                 <Text style={styles.buttonTextStyle}>1</Text>
@@ -96,10 +96,10 @@ const LevelThreeQuestion = ({navigation}) => {
                             disabledStyle={{
                                 backgroundColor: state.levelThreeCorrectAnswerButtons.includes(2) ? primaryColor : "red",
                             }}
-                            disabled={state.levelThreePressedButtons.includes(2)}
+                            disabled={state.levelThreePressedButtons.includes(2) || state.levelThreeRemainingAttempt == 0}
                             onPress={() => setSelectedButton(2)}
                         >
-                            {state.levelThreePressedButtons.includes(2) ? (
+                            {state.levelThreePressedButtons.includes(2) || state.levelThreeRemainingAttempt == 0 ? (
                                 <Feather name="lock" size={24} color="white" />
                             ) : (
                                 <Text style={styles.buttonTextStyle}>2</Text>
@@ -112,10 +112,10 @@ const LevelThreeQuestion = ({navigation}) => {
                             disabledStyle={{
                                 backgroundColor: state.levelThreeCorrectAnswerButtons.includes(3) ? primaryColor : "red",
                             }}
-                            disabled={state.levelThreePressedButtons.includes(3)}
+                            disabled={state.levelThreePressedButtons.includes(3) || state.levelThreeRemainingAttempt == 0}
                             onPress={() => setSelectedButton(3)}
                         >
-                            {state.levelThreePressedButtons.includes(3) ? (
+                            {state.levelThreePressedButtons.includes(3) || state.levelThreeRemainingAttempt == 0 ? (
                                 <Feather name="lock" size={24} color="white" />
                             ) : (
                                 <Text style={styles.buttonTextStyle}>3</Text>
@@ -130,10 +130,10 @@ const LevelThreeQuestion = ({navigation}) => {
                             disabledStyle={{
                                 backgroundColor: state.levelThreeCorrectAnswerButtons.includes(4) ? primaryColor : "red",
                             }}
-                            disabled={state.levelThreePressedButtons.includes(4)}
+                            disabled={state.levelThreePressedButtons.includes(4) || state.levelThreeRemainingAttempt == 0}
                             onPress={() => setSelectedButton(4)}
                         >
-                            {state.levelThreePressedButtons.includes(4) ? (
+                            {state.levelThreePressedButtons.includes(4) || state.levelThreeRemainingAttempt == 0 ? (
                                 <Feather name="lock" size={24} color="white" />
                             ) : (
                                 <Text style={styles.buttonTextStyle}>4</Text>
@@ -146,10 +146,10 @@ const LevelThreeQuestion = ({navigation}) => {
                             disabledStyle={{
                                 backgroundColor: state.levelThreeCorrectAnswerButtons.includes(5) ? primaryColor : "red",
                             }}
-                            disabled={state.levelThreePressedButtons.includes(5)}
+                            disabled={state.levelThreePressedButtons.includes(5) || state.levelThreeRemainingAttempt == 0}
                             onPress={() => setSelectedButton(5)}
                         >
-                            {state.levelThreePressedButtons.includes(5) ? (
+                            {state.levelThreePressedButtons.includes(5) || state.levelThreeRemainingAttempt == 0 ? (
                                 <Feather name="lock" size={24} color="white" />
                             ) : (
                                 <Text style={styles.buttonTextStyle}>5</Text>
@@ -162,10 +162,10 @@ const LevelThreeQuestion = ({navigation}) => {
                             disabledStyle={{
                                 backgroundColor: state.levelThreeCorrectAnswerButtons.includes(6) ? primaryColor : "red",
                             }}
-                            disabled={state.levelThreePressedButtons.includes(6)}
+                            disabled={state.levelThreePressedButtons.includes(6) || state.levelThreeRemainingAttempt == 0}
                             onPress={() => setSelectedButton(6)}
                         >
-                            {state.levelThreePressedButtons.includes(6) ? (
+                            {state.levelThreePressedButtons.includes(6) || state.levelThreeRemainingAttempt == 0 ? (
                                 <Feather name="lock" size={24} color="white" />
                             ) : (
                                 <Text style={styles.buttonTextStyle}>6</Text>
@@ -180,10 +180,10 @@ const LevelThreeQuestion = ({navigation}) => {
                             disabledStyle={{
                                 backgroundColor: state.levelThreeCorrectAnswerButtons.includes(7) ? primaryColor : "red",
                             }}
-                            disabled={state.levelThreePressedButtons.includes(7)}
+                            disabled={state.levelThreePressedButtons.includes(7) || state.levelThreeRemainingAttempt == 0}
                             onPress={() => setSelectedButton(7)}
                         >
-                            {state.levelThreePressedButtons.includes(7) ? (
+                            {state.levelThreePressedButtons.includes(7) || state.levelThreeRemainingAttempt == 0 ? (
                                 <Feather name="lock" size={24} color="white" />
                             ) : (
                                 <Text style={styles.buttonTextStyle}>7</Text>
@@ -196,10 +196,10 @@ const LevelThreeQuestion = ({navigation}) => {
                             disabledStyle={{
                                 backgroundColor: state.levelThreeCorrectAnswerButtons.includes(8) ? primaryColor : "red",
                             }}
-                            disabled={state.levelThreePressedButtons.includes(8)}
+                            disabled={state.levelThreePressedButtons.includes(8) || state.levelThreeRemainingAttempt == 0}
                             onPress={() => setSelectedButton(8)}
                         >
-                            {state.levelThreePressedButtons.includes(8) ? (
+                            {state.levelThreePressedButtons.includes(8) || state.levelThreeRemainingAttempt == 0 ? (
                                 <Feather name="lock" size={24} color="white" />
                             ) : (
                                 <Text style={styles.buttonTextStyle}>8</Text>
@@ -212,10 +212,10 @@ const LevelThreeQuestion = ({navigation}) => {
                             disabledStyle={{
                                 backgroundColor: state.levelThreeCorrectAnswerButtons.includes(9) ? primaryColor : "red",
                             }}
-                            disabled={state.levelThreePressedButtons.includes(9)}
+                            disabled={state.levelThreePressedButtons.includes(9) || state.levelThreeRemainingAttempt == 0}
                             onPress={() => setSelectedButton(9)}
                         >
-                            {state.levelThreePressedButtons.includes(9) ? (
+                            {state.levelThreePressedButtons.includes(9) || state.levelThreeRemainingAttempt == 0 ? (
                                 <Feather name="lock" size={24} color="white" />
                             ) : (
                                 <Text style={styles.buttonTextStyle}>9</Text>
@@ -230,10 +230,10 @@ const LevelThreeQuestion = ({navigation}) => {
                             disabledStyle={{
                                 backgroundColor: state.levelThreeCorrectAnswerButtons.includes(10) ? primaryColor : "red",
                             }}
-                            disabled={state.levelThreePressedButtons.includes(10)}
+                            disabled={state.levelThreePressedButtons.includes(10) || state.levelThreeRemainingAttempt == 0}
                             onPress={() => setSelectedButton(10)}
                         >
-                            {state.levelThreePressedButtons.includes(10) ? (
+                            {state.levelThreePressedButtons.includes(10) || state.levelThreeRemainingAttempt == 0 ? (
                                 <Feather name="lock" size={24} color="white" />
                             ) : (
                                 <Text style={styles.buttonTextStyle}>10</Text>
@@ -246,10 +246,10 @@ const LevelThreeQuestion = ({navigation}) => {
                             disabledStyle={{
                                 backgroundColor: state.levelThreeCorrectAnswerButtons.includes(11) ? primaryColor : "red",
                             }}
-                            disabled={state.levelThreePressedButtons.includes(11)}
+                            disabled={state.levelThreePressedButtons.includes(11) || state.levelThreeRemainingAttempt == 0}
                             onPress={() => setSelectedButton(11)}
                         >
-                            {state.levelThreePressedButtons.includes(11) ? (
+                            {state.levelThreePressedButtons.includes(11) || state.levelThreeRemainingAttempt == 0 ? (
                                 <Feather name="lock" size={24} color="white" />
                             ) : (
                                 <Text style={styles.buttonTextStyle}>11</Text>
@@ -262,10 +262,10 @@ const LevelThreeQuestion = ({navigation}) => {
                             disabledStyle={{
                                 backgroundColor: state.levelThreeCorrectAnswerButtons.includes(12) ? primaryColor : "red",
                             }}
-                            disabled={state.levelThreePressedButtons.includes(12)}
+                            disabled={state.levelThreePressedButtons.includes(12) || state.levelThreeRemainingAttempt == 0}
                             onPress={() => setSelectedButton(12)}
                         >
-                            {state.levelThreePressedButtons.includes(12) ? (
+                            {state.levelThreePressedButtons.includes(12) || state.levelThreeRemainingAttempt == 0 ? (
                                 <Feather name="lock" size={24} color="white" />
                             ) : (
                                 <Text style={styles.buttonTextStyle}>12</Text>

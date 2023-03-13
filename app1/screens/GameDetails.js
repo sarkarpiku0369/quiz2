@@ -15,52 +15,6 @@ const GameDetails = ({navigation}) => {
     const {state, setState} = React.useContext(StoreContext)
 
     const startGame = () => {
-        setState(state => ({...state, 
-            gameStarted: false,
-            gameEnd: false,
-            prizeSelected: false,
-        
-            levelOneRemainingAttempt: 2,
-            levelOneTouched: false,
-            levelOnePassed: false,
-            levelOnePressedButtons: [],
-            levelOneCorrectAnswerButtons: [],
-            levelOneWrongAnswerButtons: [],
-            levelOneMinimumCorrectAnswerRequire: 2,
-        
-            levelTwoRemainingAttempt: 3,
-            levelTwoTouched: false,
-            levelTwoPassed: false,
-            levelTwoPressedButtons: [],
-            levelTwoCorrectAnswerButtons: [],
-            levelTwoWrongAnswerButtons: [],
-            levelTwoMinimumCorrectAnswerRequire: 2,
-        
-            levelThreeRemainingAttempt: 3,
-            levelThreeTouched: false,
-            levelThreePassed: false,
-            levelThreePressedButtons: [],
-            levelThreeCorrectAnswerButtons: [],
-            levelThreeWrongAnswerButtons: [],
-            levelThreeMinimumCorrectAnswerRequire: 2,
-        
-            levelFourRemainingAttempt: 3,
-            levelFourTouched: false,
-            levelFourPassed: false,
-            levelFourPressedButtons: [],
-            levelFourCorrectAnswerButtons: [],
-            levelFourWrongAnswerButtons: [],
-            levelFourMinimumCorrectAnswerRequire: 2,
-        
-            levelFiveRemainingAttempt: 3,
-            levelFiveTouched: false,
-            levelFivePassed: false,
-            levelFivePressedButtons: [],
-            levelFiveCorrectAnswerButtons: [],
-            levelFiveWrongAnswerButtons: [],
-            levelFiveMinimumCorrectAnswerRequire: 2
-        
-        }))
         navigation.navigate("LevelOneQuestionScreen")
     }
 
@@ -72,13 +26,18 @@ const GameDetails = ({navigation}) => {
         showsVerticalScrollIndicator={false}
     >
         <View style={globalStyles.innerContainer}>
-            <View style={[globalStyles.topView, {marginBottom: 40}]}>
+            <View style={[globalStyles.topView, {marginBottom: 20}]}>
                 <View style={[globalStyles.header]}>
                     <View style={{marginTop: 10}}>
                         <BackButton />
                     </View>
                     <Text style={globalStyles.headerText}>Game Details</Text>
                     <Text>{""}</Text>
+                </View>
+                
+                <View style={{marginTop: 30, marginHorizontal: 15}}>
+                    <Text style={{fontSize: 18, color: "white"}}>How to Play This Game ?</Text>
+                    <Text style={{fontSize: 18, color: "white"}}>Level 6 = Win Prize</Text>
                 </View>
             </View>
             <View style={globalStyles.bottomView}>
@@ -88,18 +47,18 @@ const GameDetails = ({navigation}) => {
                     <View style={{padding: 10, borderRadius: 100, backgroundColor: "#333333"}}>
                         <MaterialIcons name="text-snippet" size={30} color="white" />
                     </View>
-                    <View style={{marginBottom: 20, marginLeft: 15}}>
+                    <View style={{marginVertical: 10, marginLeft: 15}}>
                         <Text style={{fontSize: 16, fontWeight:'bold'}}>4 Question</Text>
                         <Text style={{fontSize: 14}}>Next Level  for a correct answer</Text>
                     </View>
                 </View>
 
                 <View style={{flexDirection: "row", alignItems: "center", marginTop: 15}}>
-                <View style={{padding: 10, borderRadius: 100, backgroundColor: "#333333"}}>
+                    <View style={{padding: 10, borderRadius: 100, backgroundColor: "#333333"}}>
                         <Fontisto name="clock" size={30} color="white" />
                     </View>
-                    <View style={{marginBottom: 20, marginLeft: 15}}>
-                        <Text style={{fontSize: 16, fontWeight:'bold'}}>1 hour 15 min</Text>
+                    <View style={{marginVertical: 10, marginLeft: 15}}>
+                        <Text style={{fontSize: 16, fontWeight:'bold'}}>10 Second</Text>
                         <Text style={{fontSize: 14}}>Total duration of the quiz</Text>
                     </View>
                 </View>
@@ -108,7 +67,7 @@ const GameDetails = ({navigation}) => {
                 <View style={{padding: 10, borderRadius: 100, backgroundColor: "#333333"}}>
                         <Ionicons name="trophy-outline" size={30} color="white" />
                     </View>
-                    <View style={{marginBottom: 20, marginLeft: 15}}>
+                    <View style={{marginVertical: 10, marginLeft: 15}}>
                         <Text style={{fontSize: 16, fontWeight:'bold'}}>Win Prize</Text>
                         <Text style={{fontSize: 14}}>Complete level 5 win your prize</Text>
                     </View>
@@ -143,9 +102,7 @@ Start
 </View>
 
             </View>
-            
         </View>
-
     </ScrollView>
    </SafeAreaView>
   )

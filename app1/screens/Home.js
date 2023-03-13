@@ -27,7 +27,7 @@ const Home = ({navigation}) => {
         else if (hrs >= 17 && hrs <= 21)
             setGreet('GOOD EVENING');
         else 
-            setGreet('GOOD NIGHT');
+            setGreet('GOOD EVENING');
         
         setLoading(true)
         axiosInstance.get("/all-banner")
@@ -53,12 +53,116 @@ const Home = ({navigation}) => {
         if(state.loggedIn == false) {
         }
     }
+
+    const startGame = () => {
+        setState(state => ({...state, 
+            gameStarted: false,
+            gameEnd: false,
+            prizeSelected: false,
+            gameLoss: false,
+        
+            levelOneRemainingAttempt: 2,
+            levelOneTouched: false,
+            levelOnePassed: false,
+            levelOnePressedButtons: [],
+            levelOneCorrectAnswerButtons: [],
+            levelOneWrongAnswerButtons: [],
+            levelOneMinimumCorrectAnswerRequire: 2,
+        
+            levelTwoRemainingAttempt: 3,
+            levelTwoTouched: false,
+            levelTwoPassed: false,
+            levelTwoPressedButtons: [],
+            levelTwoCorrectAnswerButtons: [],
+            levelTwoWrongAnswerButtons: [],
+            levelTwoMinimumCorrectAnswerRequire: 2,
+        
+            levelThreeRemainingAttempt: 3,
+            levelThreeTouched: false,
+            levelThreePassed: false,
+            levelThreePressedButtons: [],
+            levelThreeCorrectAnswerButtons: [],
+            levelThreeWrongAnswerButtons: [],
+            levelThreeMinimumCorrectAnswerRequire: 2,
+        
+            levelFourRemainingAttempt: 3,
+            levelFourTouched: false,
+            levelFourPassed: false,
+            levelFourPressedButtons: [],
+            levelFourCorrectAnswerButtons: [],
+            levelFourWrongAnswerButtons: [],
+            levelFourMinimumCorrectAnswerRequire: 2,
+        
+            levelFiveRemainingAttempt: 3,
+            levelFiveTouched: false,
+            levelFivePassed: false,
+            levelFivePressedButtons: [],
+            levelFiveCorrectAnswerButtons: [],
+            levelFiveWrongAnswerButtons: [],
+            levelFiveMinimumCorrectAnswerRequire: 2
+        
+        }))
+
+        navigation.navigate("LevelOneQuestionScreen")
+    }
     
+    const gameDetail = () => {
+        setState(state => ({...state, 
+            gameStarted: false,
+            gameEnd: false,
+            prizeSelected: false,
+            gameLoss: false,
+        
+            levelOneRemainingAttempt: 2,
+            levelOneTouched: false,
+            levelOnePassed: false,
+            levelOnePressedButtons: [],
+            levelOneCorrectAnswerButtons: [],
+            levelOneWrongAnswerButtons: [],
+            levelOneMinimumCorrectAnswerRequire: 2,
+        
+            levelTwoRemainingAttempt: 3,
+            levelTwoTouched: false,
+            levelTwoPassed: false,
+            levelTwoPressedButtons: [],
+            levelTwoCorrectAnswerButtons: [],
+            levelTwoWrongAnswerButtons: [],
+            levelTwoMinimumCorrectAnswerRequire: 2,
+        
+            levelThreeRemainingAttempt: 3,
+            levelThreeTouched: false,
+            levelThreePassed: false,
+            levelThreePressedButtons: [],
+            levelThreeCorrectAnswerButtons: [],
+            levelThreeWrongAnswerButtons: [],
+            levelThreeMinimumCorrectAnswerRequire: 2,
+        
+            levelFourRemainingAttempt: 3,
+            levelFourTouched: false,
+            levelFourPassed: false,
+            levelFourPressedButtons: [],
+            levelFourCorrectAnswerButtons: [],
+            levelFourWrongAnswerButtons: [],
+            levelFourMinimumCorrectAnswerRequire: 2,
+        
+            levelFiveRemainingAttempt: 3,
+            levelFiveTouched: false,
+            levelFivePassed: false,
+            levelFivePressedButtons: [],
+            levelFiveCorrectAnswerButtons: [],
+            levelFiveWrongAnswerButtons: [],
+            levelFiveMinimumCorrectAnswerRequire: 2
+        
+        }))
+
+        navigation.navigate("HomeScreen")
+    }
+
     checkLoggedInStatus()
 
     return (
         <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>
-            <View style={{flex:0.4, paddingTop: 10}}>
+            <View style={{flex:0.35, paddingTop: 10}}>
                 <View style={{marginHorizontal: 20, marginBottom: 10}}>
                     <View style={{flexDirection: "row", marginBottom: 5}}>
                         <Feather name="sun" style={styles.sun} />
@@ -88,22 +192,25 @@ const Home = ({navigation}) => {
                 </View>
             </View>
             
-            <View style={{flex: 0.6, flexDirection: "column", backgroundColor: "white", borderTopLeftRadius: 31, borderTopRightRadius: 31, padding: 14}}>
-                <View style={{flexDirection: "row", justifyContent: "space-between"}}>
-                    <Text style={{fontSize: 18, fontWeight: "bold"}}>How to play this game ?</Text>
-                    <Text style={{fontSize: 16, color: primaryColor}}>Ses All Winners</Text>
+            <View style={{flex: 0.65, flexDirection: "column", backgroundColor: "white", borderTopLeftRadius: 31, borderTopRightRadius: 31, padding: 14}}>
+                <View style={{flexDirection: "row", justifyContent: "space-between", marginHorizontal: 5}}>
+                    <Text style={{fontSize: 18, fontWeight: "bold", marginTop: 15}}>How to play this game ?</Text>
+                    <Text style={{fontSize: 16, color: primaryColor, marginTop: 15}}>Ses All Winners</Text>
                 </View>
-                <View style={{flexDirection: "row", justifyContent: "center", marginTop: 30}}>
-                    <Image 
+                <TouchableOpacity activeOpacity={1} style={{flexDirection: "row", justifyContent: "center"}} onPress={() => gameDetail()}>
+                    <Image
+                        style={{width: "100%"}}
+                        resizeMode="contain"
                         source={require("../assets/quizbanner.png")}
                     />
-                </View>
-                <View style={{flexDirection: "row", justifyContent: "center", alignItems: "flex-start", marginVertical: 20}}>
-                <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")} activeOpacity={0.5}>
-                    <Image style={{width: 180, height: 180, resizeMode: "center"}}
-                        source={require("../assets/playnotbtn.png")}
-                        
-                    />
+                </TouchableOpacity>
+
+                <View style={{flexDirection: "row", justifyContent: "center", alignItems: "flex-start"}}>
+                    <TouchableOpacity onPress={() => startGame()} activeOpacity={0.5}>
+                        <Image style={{width: 175, height: 175, resizeMode: "center"}}
+                            source={require("../assets/playnotbtn.png")}
+                            
+                        />
                     </TouchableOpacity>
                 </View>
             </View>

@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Quiz Game",
+    "name": "Lral Quiz",
     "slug": "quiz",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -22,17 +22,17 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.piku0369.quiz"
+      "package": "com.lralquiz.quiz"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {
-        "projectId": "46eeb889-507c-451d-b1f5-4f32f0ed48e2"
+        "projectId": "03c754b9-32b6-4cf1-9197-65151e3a0216"
       }
     }
   }

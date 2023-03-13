@@ -30,7 +30,7 @@ const LevelOneQuestion = ({navigation}) => {
     React.useEffect(() => {
         setState(state => ({...state, levelOneTouched: true}))
         setLoading(true)
-        axiosInstance.get("/question?level=2")
+        axiosInstance.get("/question?level=1")
         .then(response => {
             if(response.status == 200) {
                 setQuestions(response.data.questions)
@@ -82,10 +82,10 @@ const LevelOneQuestion = ({navigation}) => {
                                     backgroundColor: state.levelOneCorrectAnswerButtons.includes(1) ? primaryColor : "red",
                                 }}
 
-                                disabled={state.levelOnePressedButtons.includes(1)}
+                                disabled={state.levelOnePressedButtons.includes(1) || state.levelOneRemainingAttempt == 0}
                                 onPress={() => setSelectedButton(1)}
                             >
-                                {state.levelOnePressedButtons.includes(1) ? (
+                                {state.levelOnePressedButtons.includes(1) || state.levelOneRemainingAttempt == 0 ? (
                                     <Feather name="lock" size={24} color="white" />
                                 ) : (
                                     <Text style={styles.buttonTextStyle}>1</Text>
@@ -98,10 +98,10 @@ const LevelOneQuestion = ({navigation}) => {
                                 disabledStyle={{
                                     backgroundColor: state.levelOneCorrectAnswerButtons.includes(2) ? primaryColor : "red",
                                 }}
-                                disabled={state.levelOnePressedButtons.includes(2)}
+                                disabled={state.levelOnePressedButtons.includes(2) || state.levelOneRemainingAttempt == 0}
                                 onPress={() => setSelectedButton(2)}
                             >
-                                {state.levelOnePressedButtons.includes(2) ? (
+                                {state.levelOnePressedButtons.includes(2) || state.levelOneRemainingAttempt == 0 ? (
                                     <Feather name="lock" size={24} color="white" />
                                 ) : (
                                     <Text style={styles.buttonTextStyle}>2</Text>
@@ -114,10 +114,10 @@ const LevelOneQuestion = ({navigation}) => {
                                 disabledStyle={{
                                     backgroundColor: state.levelOneCorrectAnswerButtons.includes(3) ? primaryColor : "red",
                                 }}
-                                disabled={state.levelOnePressedButtons.includes(3)}
+                                disabled={state.levelOnePressedButtons.includes(3) || state.levelOneRemainingAttempt == 0}
                                 onPress={() => setSelectedButton(3)}
                             >
-                                {state.levelOnePressedButtons.includes(3) ? (
+                                {state.levelOnePressedButtons.includes(3) || state.levelOneRemainingAttempt == 0 ? (
                                     <Feather name="lock" size={24} color="white" />
                                 ) : (
                                     <Text style={styles.buttonTextStyle}>3</Text>
@@ -129,13 +129,13 @@ const LevelOneQuestion = ({navigation}) => {
                             <Button 
                                 containerStyle={styles.buttonStyle}
                                 buttonStyle={styles.buttonStyle}
-                                disabled={state.levelOnePressedButtons.includes(4)}
+                                disabled={state.levelOnePressedButtons.includes(4) || state.levelOneRemainingAttempt == 0}
                                 disabledStyle={{
                                     backgroundColor: state.levelOneCorrectAnswerButtons.includes(4) ? primaryColor : "red",
                                 }}
                                 onPress={() => setSelectedButton(4)}
                             >
-                                {state.levelOnePressedButtons.includes(4) ? (
+                                {state.levelOnePressedButtons.includes(4) || state.levelOneRemainingAttempt == 0 ? (
                                     <Feather name="lock" size={24} color="white" />
                                 ) : (
                                     <Text style={styles.buttonTextStyle}>4</Text>
@@ -145,13 +145,13 @@ const LevelOneQuestion = ({navigation}) => {
                             <Button 
                                 containerStyle={styles.buttonStyle}
                                 buttonStyle={styles.buttonStyle}
-                                disabled={state.levelOnePressedButtons.includes(5)}
+                                disabled={state.levelOnePressedButtons.includes(5) || state.levelOneRemainingAttempt == 0}
                                 disabledStyle={{
                                     backgroundColor: state.levelOneCorrectAnswerButtons.includes(5) ? primaryColor : "red",
                                 }}
                                 onPress={() => setSelectedButton(5)}
                             >
-                                {state.levelOnePressedButtons.includes(5) ? (
+                                {state.levelOnePressedButtons.includes(5) || state.levelOneRemainingAttempt == 0 ? (
                                     <Feather name="lock" size={24} color="white" />
                                 ) : (
                                     <Text style={styles.buttonTextStyle}>5</Text>
@@ -161,13 +161,13 @@ const LevelOneQuestion = ({navigation}) => {
                             <Button 
                                 containerStyle={styles.buttonStyle}
                                 buttonStyle={styles.buttonStyle}
-                                disabled={state.levelOnePressedButtons.includes(6)}
+                                disabled={state.levelOnePressedButtons.includes(6) || state.levelOneRemainingAttempt == 0}
                                 disabledStyle={{
                                     backgroundColor: state.levelOneCorrectAnswerButtons.includes(5) ? primaryColor : "red",
                                 }}
                                 onPress={() => setSelectedButton(6)}
                             >
-                                {state.levelOnePressedButtons.includes(6) ? (
+                                {state.levelOnePressedButtons.includes(6)  || state.levelOneRemainingAttempt == 0 ? (
                                     <Feather name="lock" size={24} color="white" />
                                 ) : (
                                     <Text style={styles.buttonTextStyle}>6</Text>

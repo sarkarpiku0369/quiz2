@@ -7,6 +7,7 @@ import { StoreContext } from "../App"
 import { Feather } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
+import { Button } from '@rneui/base';
 
 const MyStatus = ({navigation}) => {
     const [selectedButton, setSelectedButton] = React.useState("")
@@ -29,18 +30,26 @@ const MyStatus = ({navigation}) => {
                     
                     <TouchableOpacity activeOpacity={1} style={{flexDirection: "column", alignItems: "center", backgroundColor: "#3AB54A", marginBottom: 20, marginHorizontal: 20, paddingVertical: 20, borderRadius: 20}}>
                         {state.levelOneTouched ? (
-                            <View style={{flexDirection: 'row', justifyContent: "space-between", alignItems: 'center'}}>
-                                <View style={{flexDirection: "column", alignItems: "center"}}>
-                                    <Ionicons name="ios-checkmark-circle" size={40} color="white" />
-                                    <Text style={{fontSize: 25, color: "white", fontWeight: "bold"}}>{state.levelOneCorrectAnswerButtons.length}</Text>
-                                    <Text style={{fontSize: 20, color: "white", fontWeight: "bold"}}>Correct</Text>
+                            <>
+                                <View style={{flexDirection: 'row', justifyContent: "space-between", alignItems: 'center'}}>
+                                    <View style={{flexDirection: "column", alignItems: "center"}}>
+                                        <Ionicons name="ios-checkmark-circle" size={40} color="white" />
+                                        <Text style={{fontSize: 25, color: "white", fontWeight: "bold"}}>{state.levelOneCorrectAnswerButtons.length}</Text>
+                                        <Text style={{fontSize: 20, color: "white", fontWeight: "bold"}}>Correct</Text>
+                                    </View>
+                                    <View style={{flexDirection: "column", alignItems: "center", marginLeft: 50}}>
+                                        <Entypo name="circle-with-cross" size={40} color="#FFDE1D" />
+                                        <Text style={{fontSize: 25, color: "#FFDE1D", fontWeight: "bold"}}>{state.levelOneWrongAnswerButtons.length}</Text>
+                                        <Text style={{fontSize: 20, color: "#FFDE1D", fontWeight: "bold"}}>Wrong</Text>
+                                    </View>
                                 </View>
-                                <View style={{flexDirection: "column", alignItems: "center", marginLeft: 50}}>
-                                    <Entypo name="circle-with-cross" size={40} color="white" />
-                                    <Text style={{fontSize: 25, color: "white", fontWeight: "bold"}}>{state.levelOneWrongAnswerButtons.length}</Text>
-                                    <Text style={{fontSize: 20, color: "white", fontWeight: "bold"}}>Wrong</Text>
-                                </View>
-                            </View>
+                                {state.gameLoss && (
+                                    <TouchableOpacity onPress={() => navigation.navigate("Home", {screen: 'Home'})} activeOpacity={1} style={{flexDirection: "row", justifyContent: "center", alignItems: "center", marginTop: 10}}>
+                                        <Ionicons name="ios-reload" size={15} color="white" />
+                                        <Text style={{color: "white", fontSize: 15, marginLeft: 10}}>Try again</Text>
+                                    </TouchableOpacity>
+                                )}
+                            </>
                         ): (
                             <>
                                 <View style={{flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
@@ -53,18 +62,26 @@ const MyStatus = ({navigation}) => {
                     
                     <TouchableOpacity activeOpacity={1} style={{flexDirection: "column", alignItems: "center", backgroundColor: "#3AB54A", marginBottom: 20, marginHorizontal: 20, paddingVertical: 20, borderRadius: 20}}>
                         {state.levelTwoTouched ? (
-                            <View style={{flexDirection: 'row', justifyContent: "space-between", alignItems: 'center'}}>
-                                <View style={{flexDirection: "column", alignItems: "center"}}>
-                                    <Ionicons name="ios-checkmark-circle" size={40} color="white" />
-                                    <Text style={{fontSize: 25, color: "white", fontWeight: "bold"}}>{state.levelTwoCorrectAnswerButtons.length}</Text>
-                                    <Text style={{fontSize: 20, color: "white", fontWeight: "bold"}}>Correct</Text>
+                            <>
+                                <View style={{flexDirection: 'row', justifyContent: "space-between", alignItems: 'center'}}>
+                                    <View style={{flexDirection: "column", alignItems: "center"}}>
+                                        <Ionicons name="ios-checkmark-circle" size={40} color="white" />
+                                        <Text style={{fontSize: 25, color: "white", fontWeight: "bold"}}>{state.levelTwoCorrectAnswerButtons.length}</Text>
+                                        <Text style={{fontSize: 20, color: "white", fontWeight: "bold"}}>Correct</Text>
+                                    </View>
+                                    <View style={{flexDirection: "column", alignItems: "center", marginLeft: 50}}>
+                                        <Entypo name="circle-with-cross" size={40} color="#FFDE1D" />
+                                        <Text style={{fontSize: 25, color: "#FFDE1D", fontWeight: "bold"}}>{state.levelTwoCorrectAnswerButtons.length}</Text>
+                                        <Text style={{fontSize: 20, color: "#FFDE1D", fontWeight: "bold"}}>Wrong</Text>
+                                    </View>
                                 </View>
-                                <View style={{flexDirection: "column", alignItems: "center", marginLeft: 50}}>
-                                    <Entypo name="circle-with-cross" size={40} color="white" />
-                                    <Text style={{fontSize: 25, color: "white", fontWeight: "bold"}}>{state.levelTwoCorrectAnswerButtons.length}</Text>
-                                    <Text style={{fontSize: 20, color: "white", fontWeight: "bold"}}>Wrong</Text>
-                                </View>
-                            </View>
+                                {state.gameLoss && (
+                                    <TouchableOpacity onPress={() => navigation.navigate("Home", {screen: 'Home'})} activeOpacity={1} style={{flexDirection: "row", justifyContent: "center", alignItems: "center", marginTop: 10}}>
+                                        <Ionicons name="ios-reload" size={15} color="white" />
+                                        <Text style={{color: "white", fontSize: 15, marginLeft: 10}}>Try again</Text>
+                                    </TouchableOpacity>
+                                )}
+                            </>
                         ): (
                             <>
                                 <View style={{flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
@@ -77,18 +94,26 @@ const MyStatus = ({navigation}) => {
                     
                     <TouchableOpacity activeOpacity={1} style={{flexDirection: "column", alignItems: "center", backgroundColor: "#3AB54A", marginBottom: 20, marginHorizontal: 20, paddingVertical: 20, borderRadius: 20}}>
                         {state.levelThreeTouched ? (
-                            <View style={{flexDirection: 'row', justifyContent: "space-between", alignItems: 'center'}}>
-                                <View style={{flexDirection: "column", alignItems: "center"}}>
-                                    <Ionicons name="ios-checkmark-circle" size={40} color="white" />
-                                    <Text style={{fontSize: 25, color: "white", fontWeight: "bold"}}>{state.levelThreeCorrectAnswerButtons.length}</Text>
-                                    <Text style={{fontSize: 20, color: "white", fontWeight: "bold"}}>Correct</Text>
+                            <>
+                                <View style={{flexDirection: 'row', justifyContent: "space-between", alignItems: 'center'}}>
+                                    <View style={{flexDirection: "column", alignItems: "center"}}>
+                                        <Ionicons name="ios-checkmark-circle" size={40} color="white" />
+                                        <Text style={{fontSize: 25, color: "white", fontWeight: "bold"}}>{state.levelThreeCorrectAnswerButtons.length}</Text>
+                                        <Text style={{fontSize: 20, color: "white", fontWeight: "bold"}}>Correct</Text>
+                                    </View>
+                                    <View style={{flexDirection: "column", alignItems: "center", marginLeft: 50}}>
+                                        <Entypo name="circle-with-cross" size={40} color="#FFDE1D" />
+                                        <Text style={{fontSize: 25, color: "#FFDE1D", fontWeight: "bold"}}>{state.levelThreeCorrectAnswerButtons.length}</Text>
+                                        <Text style={{fontSize: 20, color: "#FFDE1D", fontWeight: "bold"}}>Wrong</Text>
+                                    </View>
                                 </View>
-                                <View style={{flexDirection: "column", alignItems: "center", marginLeft: 50}}>
-                                    <Entypo name="circle-with-cross" size={40} color="white" />
-                                    <Text style={{fontSize: 25, color: "white", fontWeight: "bold"}}>{state.levelThreeCorrectAnswerButtons.length}</Text>
-                                    <Text style={{fontSize: 20, color: "white", fontWeight: "bold"}}>Wrong</Text>
-                                </View>
-                            </View>
+                                {state.gameLoss && (
+                                    <TouchableOpacity onPress={() => navigation.navigate("Home", {screen: 'Home'})} activeOpacity={1} style={{flexDirection: "row", justifyContent: "center", alignItems: "center", marginTop: 10}}>
+                                        <Ionicons name="ios-reload" size={15} color="white" />
+                                        <Text style={{color: "white", fontSize: 15, marginLeft: 10}}>Try again</Text>
+                                    </TouchableOpacity>
+                                )}
+                            </>
                         ): (
                             <>
                                 <View style={{flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
@@ -101,18 +126,26 @@ const MyStatus = ({navigation}) => {
 
                     <TouchableOpacity activeOpacity={1} style={{flexDirection: "column", alignItems: "center", backgroundColor: "#3AB54A", marginBottom: 20, marginHorizontal: 20, paddingVertical: 20, borderRadius: 20}}>
                         {state.levelFourTouched ? (
-                            <View style={{flexDirection: 'row', justifyContent: "space-between", alignItems: 'center'}}>
-                                <View style={{flexDirection: "column", alignItems: "center"}}>
-                                    <Ionicons name="ios-checkmark-circle" size={40} color="white" />
-                                    <Text style={{fontSize: 25, color: "white", fontWeight: "bold"}}>{state.levelFourCorrectAnswerButtons.length}</Text>
-                                    <Text style={{fontSize: 20, color: "white", fontWeight: "bold"}}>Correct</Text>
+                            <>
+                                <View style={{flexDirection: 'row', justifyContent: "space-between", alignItems: 'center'}}>
+                                    <View style={{flexDirection: "column", alignItems: "center"}}>
+                                        <Ionicons name="ios-checkmark-circle" size={40} color="white" />
+                                        <Text style={{fontSize: 25, color: "white", fontWeight: "bold"}}>{state.levelFourCorrectAnswerButtons.length}</Text>
+                                        <Text style={{fontSize: 20, color: "white", fontWeight: "bold"}}>Correct</Text>
+                                    </View>
+                                    <View style={{flexDirection: "column", alignItems: "center", marginLeft: 50}}>
+                                        <Entypo name="circle-with-cross" size={40} color="#FFDE1D" />
+                                        <Text style={{fontSize: 25, color: "#FFDE1D", fontWeight: "bold"}}>{state.levelFourCorrectAnswerButtons.length}</Text>
+                                        <Text style={{fontSize: 20, color: "#FFDE1D", fontWeight: "bold"}}>Wrong</Text>
+                                    </View>
                                 </View>
-                                <View style={{flexDirection: "column", alignItems: "center", marginLeft: 50}}>
-                                    <Entypo name="circle-with-cross" size={40} color="white" />
-                                    <Text style={{fontSize: 25, color: "white", fontWeight: "bold"}}>{state.levelFourCorrectAnswerButtons.length}</Text>
-                                    <Text style={{fontSize: 20, color: "white", fontWeight: "bold"}}>Wrong</Text>
-                                </View>
-                            </View>
+                                {state.gameLoss && (
+                                    <TouchableOpacity onPress={() => navigation.navigate("Home", {screen: 'Home'})} activeOpacity={1} style={{flexDirection: "row", justifyContent: "center", alignItems: "center", marginTop: 10}}>
+                                        <Ionicons name="ios-reload" size={15} color="white" />
+                                        <Text style={{color: "white", fontSize: 15, marginLeft: 10}}>Try again</Text>
+                                    </TouchableOpacity>
+                                )}
+                            </>
                         ): (
                             <>
                                 <View style={{flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
@@ -125,18 +158,26 @@ const MyStatus = ({navigation}) => {
 
                     <TouchableOpacity activeOpacity={1} style={{flexDirection: "column", alignItems: "center", backgroundColor: "#3AB54A", marginBottom: 60, marginHorizontal: 20, paddingVertical: 20, borderRadius: 20}}>
                         {state.levelFiveTouched ? (
-                            <View style={{flexDirection: 'row', justifyContent: "space-between", alignItems: 'center'}}>
-                                <View style={{flexDirection: "column", alignItems: "center"}}>
-                                    <Ionicons name="ios-checkmark-circle" size={40} color="white" />
-                                    <Text style={{fontSize: 25, color: "white", fontWeight: "bold"}}>{state.levelFiveCorrectAnswerButtons.length}</Text>
-                                    <Text style={{fontSize: 20, color: "white", fontWeight: "bold"}}>Correct</Text>
+                            <>
+                                <View style={{flexDirection: 'row', justifyContent: "space-between", alignItems: 'center'}}>
+                                    <View style={{flexDirection: "column", alignItems: "center"}}>
+                                        <Ionicons name="ios-checkmark-circle" size={40} color="white" />
+                                        <Text style={{fontSize: 25, color: "white", fontWeight: "bold"}}>{state.levelFiveCorrectAnswerButtons.length}</Text>
+                                        <Text style={{fontSize: 20, color: "white", fontWeight: "bold"}}>Correct</Text>
+                                    </View>
+                                    <View style={{flexDirection: "column", alignItems: "center", marginLeft: 50}}>
+                                        <Entypo name="circle-with-cross" size={40} color="#FFDE1D" />
+                                        <Text style={{fontSize: 25, color: "#FFDE1D", fontWeight: "bold"}}>{state.levelFiveCorrectAnswerButtons.length}</Text>
+                                        <Text style={{fontSize: 20, color: "#FFDE1D", fontWeight: "bold"}}>Wrong</Text>
+                                    </View>
                                 </View>
-                                <View style={{flexDirection: "column", alignItems: "center", marginLeft: 50}}>
-                                    <Entypo name="circle-with-cross" size={40} color="white" />
-                                    <Text style={{fontSize: 25, color: "white", fontWeight: "bold"}}>{state.levelFiveCorrectAnswerButtons.length}</Text>
-                                    <Text style={{fontSize: 20, color: "white", fontWeight: "bold"}}>Wrong</Text>
-                                </View>
-                            </View>
+                                {state.gameLoss && (
+                                    <TouchableOpacity onPress={() => navigation.navigate("Home", {screen: 'Home'})} activeOpacity={1} style={{flexDirection: "row", justifyContent: "center", alignItems: "center", marginTop: 10}}>
+                                        <Ionicons name="ios-reload" size={15} color="white" />
+                                        <Text style={{color: "white", fontSize: 15, marginLeft: 10}}>Try again</Text>
+                                    </TouchableOpacity>
+                                )}
+                            </>
                         ): (
                             <>
                                 <View style={{flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
