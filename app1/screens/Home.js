@@ -162,7 +162,7 @@ const Home = ({navigation}) => {
 
     return (
         <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>
-            <View style={{flex:0.35, paddingTop: 10}}>
+            <View style={{flex:0.38, paddingTop: 10}}>
                 <View style={{marginHorizontal: 20, marginBottom: 10}}>
                     <View style={{flexDirection: "row", marginBottom: 5}}>
                         <Feather name="sun" style={styles.sun} />
@@ -192,12 +192,12 @@ const Home = ({navigation}) => {
                 </View>
             </View>
             
-            <View style={{flex: 0.65, flexDirection: "column", backgroundColor: "white", borderTopLeftRadius: 31, borderTopRightRadius: 31, padding: 14}}>
+            <View style={{flex: 0.62, flexDirection: "column", backgroundColor: "white", borderTopLeftRadius: 31, borderTopRightRadius: 31, padding: 14}}>
                 <View style={{flexDirection: "row", justifyContent: "space-between", marginHorizontal: 5}}>
-                    <Text style={{fontSize: 18, fontWeight: "bold", marginTop: 15}}>How to play this game ?</Text>
-                    <Text style={{fontSize: 16, color: primaryColor, marginTop: 15}}>Ses All Winners</Text>
+                    <Text style={{fontSize: 18, fontWeight: "bold", marginTop: 10}}>How to play this game ?</Text>
+                    <Text style={{fontSize: 16, color: primaryColor, marginTop: 10}}>Ses All Winners</Text>
                 </View>
-                <TouchableOpacity activeOpacity={1} style={{flexDirection: "row", justifyContent: "center"}} onPress={() => gameDetail()}>
+                <TouchableOpacity activeOpacity={1} style={{flexDirection: "row", justifyContent: "center", bottom: 12}} onPress={() => gameDetail()}>
                     <Image
                         style={{width: "100%"}}
                         resizeMode="contain"
@@ -205,7 +205,7 @@ const Home = ({navigation}) => {
                     />
                 </TouchableOpacity>
 
-                <View style={{flexDirection: "row", justifyContent: "center", alignItems: "flex-start"}}>
+                <View style={{flexDirection: "row", justifyContent: "center", alignItems: "flex-start",  bottom: 22}}>
                     <TouchableOpacity onPress={() => startGame()} activeOpacity={0.5}>
                         <Image style={{width: 175, height: 175, resizeMode: "center"}}
                             source={require("../assets/playnotbtn.png")}
