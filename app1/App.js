@@ -1,16 +1,9 @@
 import { StyleSheet } from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import AppTab from './navigator/tabs/AppTab';
 import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import axiosInstance from './screens/utils';
-import { useNavigation } from '@react-navigation/native';
 import AuthDecide from './screens/AuthDecide';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import Splash1 from './screens/Splash1';
-import Splash2 from './screens/Splash2';
-import Splash from './screens/Splash';
 
 
 export const StoreContext = React.createContext(null)

@@ -1,19 +1,53 @@
-import { BackgroundImage } from '@rneui/base'
+import { BackgroundImage, Icon } from '@rneui/base'
 import React from 'react';
-import { ScrollView, StyleSheet, View, Text, Image } from 'react-native';
-// import { SliderBox } from 'react-native-image-slider-box';
+import { ScrollView, StyleSheet, View, Text, Image, ActivityIndicator } from 'react-native';
+import { ImageSlider } from "react-native-image-slider-banner";
 import SafeAreaView from 'react-native-safe-area-view';
 import { primaryColor } from '../styles';
 import { Feather } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native';
 import { StoreContext } from '../App';
-//import { SliderBox } from 'react-native-image-slider-box';
-//import Carousel from 'react-native-basic-carousel'
+import axiosInstance from './utils';
 
 const Home = ({navigation}) => {
 
     const {state, setState} = React.useContext(StoreContext)
-    
+    const [greet, setGreet] = React.useState("")
+    const [loading, setLoading] = React.useState(true)
+    const [banners, setBanners] = React.useState([])
+
+    React.useEffect(() => {
+        var myDate = new Date();
+        var hrs = myDate.getHours();
+
+        if (hrs < 12)
+            setGreet('GOOD MORNING')
+        else if (hrs >= 12 && hrs <= 17)
+            setGreet('GOOD AFTERNOON');
+        else if (hrs >= 17 && hrs <= 21)
+            setGreet('GOOD EVENING');
+        else 
+            setGreet('GOOD EVENING');
+        
+        setLoading(true)
+        axiosInstance.get("/all-banner")
+        .then(response => {
+            if(response.status == 200) {
+                const prizes = response.data.prizes
+                let prize_list = []
+
+                for(let i = 0 ; i < prizes.length ; i++) {
+                    prize_list.push({
+                        img: `https://yeammi.com/banners/${prizes[i].image}`
+                    })
+                }
+
+                setBanners(prize_list)
+                setLoading(false)
+            }
+        })
+    }, [])
+
     function checkLoggedInStatus() {
         if(state.loggedIn == false) {
         }
@@ -22,56 +56,163 @@ const Home = ({navigation}) => {
     checkLoggedInStatus()
 
 
-    // React.useEffect(() => {
+    function showGameDetail() {
+        setState(state => ({...state, 
+            gameStarted: false,
+            gameEnd: false,
+            prizeSelected: false,
+            gameLoss: false,
         
-    // }, [])
-
-    // const images = [
-    //     require("../assets/slider-1.png"),
-    //     require("../assets/slider-2.png"),
-    //     require("../assets/slider-3.png")
-       
-    // ]
-
-
-
-  return (
-    <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>
-        <View style={{flex:0.4, paddingHorizontal:20, paddingTop: 10}}>
-            <View style={{flexDirection: "row", marginBottom: 5}}>
-                <Feather name="sun" style={styles.sun} />
-                <Text style={styles.good}>GOOD EVENING</Text>
-            </View>
-            <Text style={styles.mcarol}>Madelyn Carol</Text>
+            levelOneRemainingAttempt: 2,
+            levelOneTouched: false,
+            levelOnePassed: false,
+            levelOnePressedButtons: [],
+            levelOneCorrectAnswerButtons: [],
+            levelOneWrongAnswerButtons: [],
+            levelOneMinimumCorrectAnswerRequire: 2,
         
-        <View style={{justifyContent:"center",alignItems:"center"}}>
-             <View style={{paddingHorizontal:10,paddingVertical:10,}}>
-                <Image source={require("../assets/slider-1.png")} style={{height: 200, width: 300}} resizeMode="contain" />
-            </View>
-        </View>
+            levelTwoRemainingAttempt: 3,
+            levelTwoTouched: false,
+            levelTwoPassed: false,
+            levelTwoPressedButtons: [],
+            levelTwoCorrectAnswerButtons: [],
+            levelTwoWrongAnswerButtons: [],
+            levelTwoMinimumCorrectAnswerRequire: 2,
         
-        </View>
-        <View style={{flex: 0.6, flexDirection: "column", backgroundColor: "white", borderTopLeftRadius: 31, borderTopRightRadius: 31, padding: 14}}>
-            <View style={{flexDirection: "row", justifyContent: "space-between"}}>
-                <Text style={{fontSize: 18, fontWeight: "bold"}}>How to play this game ?</Text>
-                <Text style={{fontSize: 16, color: primaryColor}}>Ses All Winners</Text>
+            levelThreeRemainingAttempt: 3,
+            levelThreeTouched: false,
+            levelThreePassed: false,
+            levelThreePressedButtons: [],
+            levelThreeCorrectAnswerButtons: [],
+            levelThreeWrongAnswerButtons: [],
+            levelThreeMinimumCorrectAnswerRequire: 2,
+        
+            levelFourRemainingAttempt: 3,
+            levelFourTouched: false,
+            levelFourPassed: false,
+            levelFourPressedButtons: [],
+            levelFourCorrectAnswerButtons: [],
+            levelFourWrongAnswerButtons: [],
+            levelFourMinimumCorrectAnswerRequire: 2,
+        
+            levelFiveRemainingAttempt: 3,
+            levelFiveTouched: false,
+            levelFivePassed: false,
+            levelFivePressedButtons: [],
+            levelFiveCorrectAnswerButtons: [],
+            levelFiveWrongAnswerButtons: [],
+            levelFiveMinimumCorrectAnswerRequire: 2
+        
+        }))
+
+        navigation.navigate("HomeScreen")
+    }
+
+    function startGame() {
+        setState(state => ({...state, 
+            gameStarted: false,
+            gameEnd: false,
+            prizeSelected: false,
+            gameLoss: false,
+        
+            levelOneRemainingAttempt: 2,
+            levelOneTouched: false,
+            levelOnePassed: false,
+            levelOnePressedButtons: [],
+            levelOneCorrectAnswerButtons: [],
+            levelOneWrongAnswerButtons: [],
+            levelOneMinimumCorrectAnswerRequire: 2,
+        
+            levelTwoRemainingAttempt: 3,
+            levelTwoTouched: false,
+            levelTwoPassed: false,
+            levelTwoPressedButtons: [],
+            levelTwoCorrectAnswerButtons: [],
+            levelTwoWrongAnswerButtons: [],
+            levelTwoMinimumCorrectAnswerRequire: 2,
+        
+            levelThreeRemainingAttempt: 3,
+            levelThreeTouched: false,
+            levelThreePassed: false,
+            levelThreePressedButtons: [],
+            levelThreeCorrectAnswerButtons: [],
+            levelThreeWrongAnswerButtons: [],
+            levelThreeMinimumCorrectAnswerRequire: 2,
+        
+            levelFourRemainingAttempt: 3,
+            levelFourTouched: false,
+            levelFourPassed: false,
+            levelFourPressedButtons: [],
+            levelFourCorrectAnswerButtons: [],
+            levelFourWrongAnswerButtons: [],
+            levelFourMinimumCorrectAnswerRequire: 2,
+        
+            levelFiveRemainingAttempt: 3,
+            levelFiveTouched: false,
+            levelFivePassed: false,
+            levelFivePressedButtons: [],
+            levelFiveCorrectAnswerButtons: [],
+            levelFiveWrongAnswerButtons: [],
+            levelFiveMinimumCorrectAnswerRequire: 2
+        
+        }))
+        
+        navigation.navigate("LevelOneQuestionScreen")
+    }
+
+    return (
+        <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>
+            <View style={{flex:0.35, paddingTop: 10}}>
+                <View style={{marginHorizontal: 20, marginBottom: 10}}>
+                    <View style={{flexDirection: "row", marginBottom: 5}}>
+                        <Feather name="sun" style={styles.sun} />
+                        <Text style={styles.good}>{greet}</Text>
+                    </View>
+                    <Text style={styles.mcarol}>{state.user.name}</Text>
+                </View>
+            
+                <View>
+                    {loading ? (
+                        <ActivityIndicator />
+                    ) : (
+                        <ImageSlider 
+                        data={banners}
+                        // localImg
+                        autoPlay={true}   
+                        showHeader={false}
+                        preview={false}
+                        onItemChanged={(item) => {}}
+                        headerLeftComponent={<Icon name="arrow-back" color="#fff" size={34} onPress={() => Alert.alert("alert")} />}
+                        headerCenterComponent={<Text style={{ color: '#fff', fontSize: 24, fontWeight: 'bold' }}>Header</Text>}
+                        headerStyle={{ padding: 10, backgroundColor: 'rgba(0,0,0, 0.6)', }}
+                        caroselImageStyle={{ resizeMode: 'contain' }}
+                        closeIconColor="#fff"
+                    />
+                    )}
+                </View>
             </View>
-            <View style={{flexDirection: "row", justifyContent: "center", marginTop: 30, marginBottom: 20}}>
-                <Image 
-                    source={require("../assets/quizbanner.png")}
-                />
-            </View>
-            <View style={{flexDirection: "row", justifyContent: "center", marginVertical: 20}}>
-               <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")} activeOpacity={0.5}>
-                <Image style={{width:350,height:200,resizeMode:"contain"}}
-                    source={require("../assets/playnotbtn.png")}
-                    
-                />
+            
+            <View style={{flex: 0.65, flexDirection: "column", backgroundColor: "white", borderTopLeftRadius: 31, borderTopRightRadius: 31, padding: 14}}>
+                <View style={{flexDirection: "row", justifyContent: "space-between", marginTop: 10, marginHorizontal: 10}}>
+                    <Text style={{fontSize: 18, fontWeight: "bold"}}>How to play this game ?</Text>
+                    <Text style={{fontSize: 16, color: primaryColor}}>Ses All Winners</Text>
+                </View>
+                <TouchableOpacity activeOpacity={1} onPress={() => showGameDetail()} style={{flexDirection: "row", justifyContent: "center", marginTop: 30}}>
+                    <Image 
+                        source={require("../assets/quizbanner.png")}
+                    />
                 </TouchableOpacity>
+                <View style={{flexDirection: "row", justifyContent: "center", alignItems: "flex-start", marginVertical: 20}}>
+                <TouchableOpacity onPress={() => startGame()} activeOpacity={0.5}>
+                    <Image style={{width: 180, height: 180, resizeMode: "center"}}
+                        source={require("../assets/playnotbtn.png")}
+                        
+                    />
+                    </TouchableOpacity>
+                </View>
             </View>
-        </View>
-    </SafeAreaView>
-  )
+        </SafeAreaView>
+    )
 }
 const styles = StyleSheet.create({
        container: { 

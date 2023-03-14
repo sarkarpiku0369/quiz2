@@ -1,17 +1,35 @@
-import { Button, Text } from '@rneui/base'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import React from 'react'
 import { Image, StyleSheet, View } from 'react-native'
 import SafeAreaView from 'react-native-safe-area-view'
-import { primaryColor, secondaryColor } from '../styles'
-import { Entypo } from '@expo/vector-icons';
-import { FontAwesome } from '@expo/vector-icons';
+import { secondaryColor } from '../styles'
 
 const Splash = ({navigation}) => {
 
     React.useEffect(() => {
-        setTimeout(() => {
-            navigation.navigate("Splash1")
-        }, 4000)
+
+        (async () => {
+            try{
+                const touched = await AsyncStorage.getItem("touched")
+                if(touched == "Y") {
+                    navigation.navigate("Main")
+                }
+                else {
+                    setTimeout(() => {
+                        AsyncStorage.setItem("touched", "Y")
+                        navigation.navigate("Splash1")
+                    }, 4000)
+                }
+            }
+            catch(err){
+                setTimeout(() => {
+                    AsyncStorage.setItem("touched", "Y")
+                    navigation.navigate("Splash1")
+                }, 4000)
+            }
+        })()
+
+
     }, [])
 
     return (

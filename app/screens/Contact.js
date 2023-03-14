@@ -8,72 +8,93 @@ import { primaryColor } from '../styles';
 import BackButton from '../components/BackButton';
 import { Button } from '@rneui/base';
 import { AntDesign } from '@expo/vector-icons';
+import axiosInstance from './utils';
 
-const Contact = ({navigation}) => {
+const Contact = ({route, navigation}) => {
     const [selectedButton, setSelectedButton] = React.useState("")
 
+    const [submitting, setSubmitting] = React.useState(false)
     const [name, setName] = React.useState("")
     const [phone, setPhone] = React.useState("")
     const [email, setEmail] = React.useState("")
+
+    const {item} = route.params
 
     React.useEffect(() => {
         if(selectedButton != "") {
             navigation.navigate("LevelOneAnswerScreen")
         }
     })
+
+    const handleSubmit = () => {
+        setSubmitting(true)
+        axiosInstance.post("/winner", {prize_id: item.id, name, email, phone})
+        .then(response => {
+            if(response.status == 200) {
+                navigation.navigate("ThankYou")
+                setSubmitting(false)
+            }
+            else {
+                alert("Something Went Wrong!")
+            }
+        })
+        .catch(error => {
+            alert("Something Went Wrong!")
+        })
+    }
     
-  return (
-   <SafeAreaView style={styles.container}>
-        <View style={{flex: 1, justifyContent: "center"}}>
-            <View style={{flexDirection: "column", alignItems: "center"}}>
-                <Image 
-                    source={require("../assets/Illustration.png")}
+    return (
+    <SafeAreaView style={styles.container}>
+            <View style={{flex: 1, justifyContent: "center"}}>
+                <View style={{flexDirection: "column", alignItems: "center"}}>
+                    <Image 
+                        source={require("../assets/Illustration.png")}
+                    />
+                </View>
+                <View style={styles.subbody}>
+
+                    <View style={{flexDirection: "row", backgroundColor: "white", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 10, borderRadius: 50, marginVertical: 10}}>
+                        <TextInput style = {styles.input}
+                            underlineColorAndroid = "transparent"
+                            placeholder = "Name"
+                            placeholderTextColor = "#858494"
+                            autoCapitalize = "none"
+                            onChangeText={(text) => setName(text)}
+                        />
+                    </View>
+
+                    <View style={{flexDirection: "row", backgroundColor: "white", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 10, borderRadius: 50, marginVertical: 10}}>
+                        <TextInput style = {styles.input}
+                            underlineColorAndroid = "transparent"
+                            placeholder = "Phone Number"
+                            placeholderTextColor = "#858494"
+                            autoCapitalize = "none"
+                            onChangeText={(text) => setPhone(text)}
+                        />
+                    </View>
+
+                    <View style={{flexDirection: "row", backgroundColor: "white", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 10, borderRadius: 50, marginVertical: 10}}>
+                        <TextInput style = {styles.input}
+                            underlineColorAndroid = "transparent"
+                            placeholder = "Email Address"
+                            placeholderTextColor = "#858494"
+                            autoCapitalize = "none"
+                            onChangeText={(text) => setEmail(text)}
+                        />
+                    </View>
+
+                <Button
+                    buttonStyle={styles.submitButton}
+                    title="Submit"
+                    onPress={() => handleSubmit()}
+
+                    
                 />
+                </View>
             </View>
-            <View style={styles.subbody}>
 
-                <View style={{flexDirection: "row", backgroundColor: "white", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 10, borderRadius: 50, marginVertical: 10}}>
-                    <TextInput style = {styles.input}
-                        underlineColorAndroid = "transparent"
-                        placeholder = "Name"
-                        placeholderTextColor = "#858494"
-                        autoCapitalize = "none"
-                        onChangeText={(text) => setName(text)}
-                    />
-                </View>
-
-                <View style={{flexDirection: "row", backgroundColor: "white", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 10, borderRadius: 50, marginVertical: 10}}>
-                    <TextInput style = {styles.input}
-                        underlineColorAndroid = "transparent"
-                        placeholder = "Phone Number"
-                        placeholderTextColor = "#858494"
-                        autoCapitalize = "none"
-                        onChangeText={(text) => setPhone(text)}
-                    />
-                </View>
-
-                <View style={{flexDirection: "row", backgroundColor: "white", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 10, borderRadius: 50, marginVertical: 10}}>
-                    <TextInput style = {styles.input}
-                        underlineColorAndroid = "transparent"
-                        placeholder = "Email Address"
-                        placeholderTextColor = "#858494"
-                        autoCapitalize = "none"
-                        onChangeText={(text) => setEmail(text)}
-                    />
-                </View>
-
-            <Button
-                buttonStyle={styles.submitButton}
-                title="Submit"
-                onPress={() => navigation.navigate("ThankYou")}
-
-                
-            />
-            </View>
-         </View>
-
-   </SafeAreaView>
-  )
+    </SafeAreaView>
+    )
 }
 
 const styles = StyleSheet.create({

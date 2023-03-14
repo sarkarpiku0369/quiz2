@@ -25,14 +25,15 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.piku0369.quiz"
+      "package": "com.lralquiz.quiz"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
+    "owner": "raktimbanerje",
     "extra": {
       "eas": {
-        "projectId": "46eeb889-507c-451d-b1f5-4f32f0ed48e2"
+        "projectId": "f6b8e7fe-740f-482c-951c-a53b3a37274d"
       }
     }
   }

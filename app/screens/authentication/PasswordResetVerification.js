@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { Button, Input, Text } from "@rneui/base"
-import { StyleSheet, View } from 'react-native'
+import { Alert, StyleSheet, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { AntDesign } from '@expo/vector-icons'; 
 import { primaryColor } from '../../styles';
@@ -8,11 +8,11 @@ import axiosInstance from '../utils';
 import { StoreContext } from '../../App';
 
 
-const ResetVerification = ({route, navigation}) => {
+const PasswordResetVerification = ({route, navigation}) => {
     
     const {state, setState} = React.useContext(StoreContext)
 
-    const {email} = route.params
+    const {password} = route.params
 
     const pin1Ref = useRef(null)
     const pin2Ref = useRef(null)
@@ -32,18 +32,21 @@ const ResetVerification = ({route, navigation}) => {
          const otp = `${pin1}${pin2}${pin3}${pin4}`
          try {
              setSubmitting(false)
-             const response = await axiosInstance.post('/user/verify', {email, otp})
-             if(response.status === 200) {  
-                navigation.navigate("PasswordChange", {email})
+             const response = await axiosInstance.post('/user/reset-password', {password, otp})
+             if(response.status === 200) {
+                // setState(state => ({...state, user: response.data.user, token: response.data.token}))
+                Alert.alert('', 'Password Reset Successfully', [
+                    {text: 'OK', onPress: () => navigation.navigate("ProfileTab", {screen: 'ProfileScreen'})},
+                ]);
              }
            }
            catch(err) {
              setSubmitting(false)
              if(err.response.status === 401) {
-                 alert("Invalid OTP")
+                alert("Invalid OTP")
              }
              else {
-                 alert("Something went wrong")
+                alert("Something went wrong")
              }
            }
      }
@@ -109,20 +112,15 @@ const ResetVerification = ({route, navigation}) => {
                     </View>
                 </View>
             </View>
-            
-            {/* {hasError && (
-                <View style={{backgroundColor: "#fb5151", padding: 8, margin: 12, borderRadius: 4}}>
-                {error.map((err, index) => (
-                    <Text key={index} style={{color: "white", fontSize: 16}}>{err}</Text>
-                ))}
-                </View>
-            )} */}
 
             <Button 
                 buttonStyle={styles.buttonStyle}
+                disabledStyle={{
+                    backgroundColor: state.levelOneCorrectAnswerButtons.includes(1) ? primaryColor : "red",
+                }} 
                 onPress={submit} 
                 loading={submitting} 
-                disabled={submitting}>Reset Password</Button>
+                disabled={submitting}>Next</Button>
         </SafeAreaView>
     )
 }
@@ -173,4 +171,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default ResetVerification
+export default PasswordResetVerification

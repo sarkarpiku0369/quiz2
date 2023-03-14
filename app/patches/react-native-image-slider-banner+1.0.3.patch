@@ -1,0 +1,46 @@
+diff --git a/node_modules/react-native-image-slider-banner/src/indicator.tsx b/node_modules/react-native-image-slider-banner/src/indicator.tsx
+index 4df40bd..1cff005 100644
+--- a/node_modules/react-native-image-slider-banner/src/indicator.tsx
++++ b/node_modules/react-native-image-slider-banner/src/indicator.tsx
+@@ -37,21 +37,21 @@ const styles = StyleSheet.create({
+         alignSelf: 'center',
+         justifyContent: 'center',
+         position: 'absolute',
+-        bottom: 20
++        bottom: 1
+     },
+     activeIndicatorStyle : {
+-        height: 5,
+-        width: 20,
++        height: 10,
++        width: 10,
+         borderRadius: 100,
+-        backgroundColor: "#62b5f0",
++        backgroundColor: "#3AB54A",
+         margin: 5
+     },
+     inActiveIndicatorStyle: {
+         height: 10,
+         width: 10,
++        borderColor: "#3AB54A",
++        borderWidth: 2,
+         borderRadius: 100,
+-        backgroundColor: "rgb(223, 231, 245)",
+         margin: 5
+-
+     }
+ })
+\ No newline at end of file
+diff --git a/node_modules/react-native-image-slider-banner/src/style.tsx b/node_modules/react-native-image-slider-banner/src/style.tsx
+index bee5327..d1cd0d3 100644
+--- a/node_modules/react-native-image-slider-banner/src/style.tsx
++++ b/node_modules/react-native-image-slider-banner/src/style.tsx
+@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
+     caroselImageStyle : {
+         width: width, 
+         resizeMode: 'contain', 
+-        height: 300
++        height: 150
+     },
+     previewImageContainerStyle: {
+         width, 

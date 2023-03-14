@@ -7,35 +7,69 @@ import { Avatar, Button, ButtonGroup } from '@rneui/base';
 import { primaryColor } from '../styles';
 import BackButton from '../components/BackButton';
 import { AntDesign } from '@expo/vector-icons'; 
+import { Ionicons } from '@expo/vector-icons';
+import { StoreContext } from '../App';
 
 
 const AnswerStatusScreen = ({route, navigation}) => {
     const [selectedButton, setSelectedButton] = React.useState("")
+    const { state, setState } = React.useContext(StoreContext)
+    const [ gameLoss, setGameLoss ] = React.useState(false)
     const {level, remainingAttempt, nextScreenName, answerCorrect} = route.params
 
-    // React.useEffect(() => {
-    //     navigation.addListener('beforeRemove', (e) => {
-    //         e.preventDefault()
-            
-    //         if(remainingAttempt > 0 ) {
-    //             if(level == 1) {
-    //                 navigation.navigate("LevelOneQuestionScreen")
-    //             }
-    //             else if(level == 2) {
-    //                 navigation.navigate("LevelTwoQuestionScreen")
-    //             }
-    //             else if(level == 3) {
-    //                 navigation.navigate("LevelThreeQuestionScreen")
-    //             }
-    //             else if(level == 4) {
-    //                 navigation.navigate("LevelFourQuestionScreen")
-    //             }
-    //             else {
-    //                 navigation.navigate("LevelFiveQuestionScreen")
-    //             }
-    //         }
-    //     })
-    // }, [navigation])
+
+    React.useEffect(() => {
+        if(remainingAttempt == 0 ) {
+            navigation.addListener('beforeRemove', (e) => {
+                // e.preventDefault()
+            })
+        }
+    }, [remainingAttempt])
+
+    React.useEffect(() => {
+        if(level == 1) {
+            setGameLoss(remainingAttempt == 0 && (state.levelOneCorrectAnswerButtons.length >= state.levelOneMinimumCorrectAnswerRequire))
+        }
+        else if(level == 2) {
+            setGameLoss(remainingAttempt == 0 && (state.levelTwoCorrectAnswerButtons.length >= state.levelTwoMinimumCorrectAnswerRequire))
+        }
+        else if(level == 3) {
+            setGameLoss(remainingAttempt == 0 && (state.levelThreeCorrectAnswerButtons.length >= state.levelThreeMinimumCorrectAnswerRequire))
+        }
+        else if(level == 4) {
+            setGameLoss(remainingAttempt == 0 && (state.levelFourCorrectAnswerButtons.length >= state.levelFourMinimumCorrectAnswerRequire))
+        }
+        else {
+            setGameLoss(remainingAttempt == 0 && (state.levelFiveCorrectAnswerButtons.length >= state.levelFiveMinimumCorrectAnswerRequire))
+        }
+    }, [])
+
+
+    React.useEffect(() => {
+        if(!gameLoss) {
+            setState(state => ({...state, gameLoss: true}))
+        }
+    }, [gameLoss])
+
+    const back = () => {
+        if(remainingAttempt > 0 ) {
+            if(level == 1) {
+                navigation.navigate("LevelOneQuestionScreen")
+            }
+            else if(level == 2) {
+                navigation.navigate("LevelTwoQuestionScreen")
+            }
+            else if(level == 3) {
+                navigation.navigate("LevelThreeQuestionScreen")
+            }
+            else if(level == 4) {
+                navigation.navigate("LevelFourQuestionScreen")
+            }
+            else {
+                navigation.navigate("LevelFiveQuestionScreen")
+            }
+        }
+    }
 
     return (
         <SafeAreaView style={{flex: 1}} forceInset={{top: "always"}}>
@@ -57,11 +91,23 @@ const AnswerStatusScreen = ({route, navigation}) => {
                                 <View style={{flexDirection: "column", alignItems: "center", paddingTop: 20}}>
                                     <AntDesign name="checkcircleo" size={80} color={primaryColor} />
                                     <Text style={{fontSize: 30, fontWeight: "bold", paddingTop: 10, color: primaryColor}}>Correct</Text>
+                                    {remainingAttempt > 0 && (
+                                        <TouchableOpacity onPress={() => back()} activeOpacity={1} style={{flexDirection: "row", justifyContent: "center", alignItems: "center", marginTop: 10}}>
+                                            <Ionicons name="ios-arrow-back-outline" size={15} color="grey" />
+                                            <Text style={{color: "grey", fontSize: 15, marginLeft: 10}}>Back</Text>
+                                        </TouchableOpacity>
+                                    )}
                                 </View>
                             ) : (
                                 <View style={{flexDirection: "column", alignItems: "center", paddingTop: 20}}>
                                     <Entypo name="cross" size={80} color="red" />
                                     <Text style={{fontSize: 30, fontWeight: "bold", paddingTop: 10, color: "red"}}>Wrong</Text>
+                                    {remainingAttempt > 0 && (
+                                        <TouchableOpacity onPress={() => back()} activeOpacity={1} style={{flexDirection: "row", justifyContent: "center", alignItems: "center", marginTop: 10}}>
+                                            <Ionicons name="ios-reload" size={15} color="grey" />
+                                            <Text style={{color: "grey", fontSize: 15, marginLeft: 10}}>Try Again</Text>
+                                        </TouchableOpacity>
+                                    )}
                                 </View>
                             )}
 
@@ -76,7 +122,7 @@ const AnswerStatusScreen = ({route, navigation}) => {
                                         buttonStyle={styles.statusButtonStyle}
                                         containerStyle={{marginVertical: 10}}
                                     />
-                                    {level != 5 && (
+                                    {level != 5 && gameLoss && (
                                         <Button 
                                             onPress={() => navigation.navigate(nextScreenName)}
                                             title="Go To Next Step"
@@ -85,9 +131,9 @@ const AnswerStatusScreen = ({route, navigation}) => {
                                         />
                                     )}
 
-                                    {level == 5 && (
+                                    {level == 5 && gameLoss && (
                                         <Button 
-                                            onPress={() => navigation.navigate("PrizeTab")}
+                                            onPress={() => navigation.navigate("WinPrize")}
                                             title="Select Your Prize"
                                             buttonStyle={styles.nextStepButtonStyle}
                                             containerStyle={{marginVertical: 10}}

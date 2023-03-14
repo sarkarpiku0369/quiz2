@@ -10,6 +10,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { buttonColor, primaryColor } from '../../styles';
 import axiosInstance from '../utils';
+import { Fontisto } from '@expo/vector-icons';
 
 
 const Registration = ({navigation}) => {
@@ -46,17 +47,17 @@ const Registration = ({navigation}) => {
             showsVerticalScrollIndicator={false}
         >
             <View style={{flex: 1, backgroundColor:"#DCFFE0", padding: 14}}>
-                <View style={{justifyContent: 'center', alignItems: "center"}}>
+                {/* <View style={{justifyContent: 'center', alignItems: "center"}}>
                     <Image 
                         source={require("../../assets/Login.png")}
                     />
-                </View>
+                </View> */}
 
                 <View>
                     <View style={{flexDirection: "column", paddingHorizontal: 15}}>
                         <Text>Email Address</Text>
                         <View style={{flexDirection: "row", backgroundColor: "white", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 10, borderRadius: 50, marginVertical: 10}}>
-                            <MaterialIcons name="email" size={26} color={primaryColor} />
+                            <Fontisto name="email" size={24} color={primaryColor} />
                             <TextInput style = {styles.input}
                                 underlineColorAndroid = "transparent"
                                 placeholder = "Your Email Address"
@@ -66,13 +67,13 @@ const Registration = ({navigation}) => {
                             />
                         </View>
                 </View>
-                <View style={{flexDirection: "column", paddingHorizontal: 15, marginBottom: 20}}>
+                <View style={{flexDirection: "column", paddingHorizontal: 15}}>
                         <Text>Name</Text>
                         <View style={{flexDirection: "row", backgroundColor: "white", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 10, borderRadius: 50, marginVertical: 10}}>
                             <AntDesign name="user" size={24} color={primaryColor} />
                             <TextInput style = {styles.input}
                                 underlineColorAndroid = "transparent"
-                                placeholder = "Your username"
+                                placeholder = "Your Username"
                                 placeholderTextColor = "#858494"
                                 autoCapitalize = "none"
                                 onChangeText={(text) => setName(text)}
@@ -97,17 +98,17 @@ const Registration = ({navigation}) => {
                         loading={submitting} 
                         disabled={submitting}
                         buttonStyle={styles.buttonStyle}
-disabledStyle={{
-    backgroundColor: state.levelOneCorrectAnswerButtons.includes(1) ? primaryColor : "red",
-}}
                         title="Create Account"
                         onPress={() => handleSubmit()}
 
                     />
                     <View style={{flexDirection: "column", alignItems: "center", marginTop: 10}}>
-                        <TouchableOpacity onPress={()=>navigation.navigate("ResetPassword")} activeOpacity={1}>
-                            <Text style={{color: primaryColor}}>Forgot Password</Text>
-                        </TouchableOpacity>
+                        <View style={{flexDirection: "row"}} activeOpacity={1}>
+                            <Text style={{fontSize: 16, color: "grey", fontWeight: "bold"}}>Already have an account? </Text>
+                            <TouchableOpacity onPress={()=> {navigation.navigate("Login")}} activeOpacity={1}>
+                                <Text style={{color: primaryColor, fontSize: 16, fontWeight: "bold"}}>Login</Text>
+                            </TouchableOpacity>
+                        </View>
                         <Text style={{marginTop: 20}}>
                             By continuing, you agree to the Terms of Services</Text>
                             <Text>& Privacy Policy.

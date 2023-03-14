@@ -11,6 +11,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { buttonColor, primaryColor } from '../../styles';
 import axiosInstance from '../utils';
 import { StoreContext } from '../../App';
+import { Fontisto } from '@expo/vector-icons';
 
 const Login = ({navigation}) => {
 
@@ -42,31 +43,29 @@ const Login = ({navigation}) => {
             showsVerticalScrollIndicator={false}
         >
             <View style={{flex: 1, backgroundColor: "#DCFFE0", padding: 14}}>
-                <View style={{justifyContent: 'center', alignItems: "center"}}>
+                {/* <View style={{justifyContent: 'center', alignItems: "center"}}>
                     <Image 
                         source={require("../../assets/Login.png")}
                     />
-                </View>
+                </View> */}
                 <View>
                     <View style={{flexDirection: "column", paddingHorizontal: 15}}>
                         <Text>Email Address</Text>
-                        <TouchableOpacity style={{flexDirection: "row", backgroundColor: "white", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 10, borderRadius: 50, marginVertical: 10}}>
-                        <MaterialIcons name="email" size={26} color={primaryColor} />
-                           
-
-<TextInput 
-        placeholder = "Enter Your Email" 
-       style={styles.input}
-        underlineColorAndroid='transparent'
-        value={email}
-        onChangeText={(text) => setEmail(text)}
-          />
+                        <TouchableOpacity activeOpacity={1} style={{flexDirection: "row", backgroundColor: "white", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 10, borderRadius: 50, marginVertical: 10}}>
+                            <Fontisto name="email" size={24} color={primaryColor} />
+                            <TextInput 
+                                placeholder = "Enter Your Email" 
+                                style={styles.input}
+                                underlineColorAndroid='transparent'
+                                value={email}
+                                onChangeText={(text) => setEmail(text)}
+                            />
                         </TouchableOpacity>
                     </View>
 
                     <View style={{flexDirection: "column", paddingHorizontal: 15, marginBottom: 20}}>
                         <Text>Password</Text>
-                        <TouchableOpacity style={{flexDirection: "row", backgroundColor: "white", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 10, borderRadius: 50, marginVertical: 10}}>
+                        <TouchableOpacity activeOpacity={1} style={{flexDirection: "row", backgroundColor: "white", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 10, borderRadius: 50, marginVertical: 10}}>
                             <AntDesign name="lock" size={24} color={primaryColor} />
                             <TextInput style = {styles.input}
                                 underlineColorAndroid = "transparent"
@@ -90,8 +89,8 @@ const Login = ({navigation}) => {
                     />
                     
                     <View style={{flexDirection: "column", alignItems: "center", marginTop: 10}}>
-                        <TouchableOpacity onPress={()=> navigation.navigate("ResetPassword")} activeOpacity={1}>
-                            <Text style={{color: primaryColor}}>Forgot Password</Text>
+                        <TouchableOpacity onPress={()=> {navigation.navigate("ResetPassword")}} activeOpacity={1}>
+                            <Text style={{color: primaryColor, fontSize: 16, fontWeight: "bold"}}>Forgot Password</Text>
                         </TouchableOpacity>
                         <Text style={{marginTop: 20}}>
                             By continuing, you agree to the Terms of Services</Text>
