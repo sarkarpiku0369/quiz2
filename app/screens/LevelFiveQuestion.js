@@ -29,7 +29,7 @@ const LevelFiveQuestion = ({navigation}) => {
     }, [selectedButton])
 
     React.useEffect(() => {
-        setState(state => ({...state, levelFiveTouched: true}))
+        setState(state => ({...state, levelFiveTouched: true, currentScreen: "LevelFiveQuestionScreen"}))
         setLoading(true)
         axiosInstance.get("/question?level=5")
         .then(response => {

@@ -20,7 +20,7 @@ const Home = ({navigation}) => {
         var myDate = new Date();
         var hrs = myDate.getHours();
 
-        if (hrs < 12)
+        if (hrs >= 6 && hrs < 12)
             setGreet('GOOD MORNING')
         else if (hrs >= 12 && hrs <= 17)
             setGreet('GOOD AFTERNOON');
@@ -62,6 +62,7 @@ const Home = ({navigation}) => {
             gameEnd: false,
             prizeSelected: false,
             gameLoss: false,
+            currentScreen: "",
         
             levelOneRemainingAttempt: 2,
             levelOneTouched: false,
@@ -114,6 +115,7 @@ const Home = ({navigation}) => {
             gameEnd: false,
             prizeSelected: false,
             gameLoss: false,
+            currentScreen: "",
         
             levelOneRemainingAttempt: 2,
             levelOneTouched: false,

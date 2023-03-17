@@ -26,6 +26,7 @@ export default function App() {
     gameStarted: false,
     gameEnd: false,
     prizeSelected: false,
+    currentScreen: "",
 
     levelOneRemainingAttempt: 2,
     levelOneTouched: false,

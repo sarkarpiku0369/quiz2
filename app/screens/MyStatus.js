@@ -14,6 +14,62 @@ const MyStatus = ({navigation}) => {
 
     const { state, setState } = React.useContext(StoreContext)
 
+    const back = () => {
+        if(state.currentScreen == "LevelOneQuestionScreen") {
+            setState(state => ({...state, 
+                levelOneRemainingAttempt: 2,
+                levelOnePassed: false,
+                levelOnePressedButtons: [],
+                levelOneCorrectAnswerButtons: [],
+                levelOneWrongAnswerButtons: [],
+                levelOneMinimumCorrectAnswerRequire: 2,
+            }))
+        }
+        else if(state.currentScreen == "LevelTwoQuestionScreen") {
+            setState(state => ({...state, 
+                levelTwoRemainingAttempt: 3,
+                levelTwoPassed: false,
+                levelTwoPressedButtons: [],
+                levelTwoCorrectAnswerButtons: [],
+                levelTwoWrongAnswerButtons: [],
+                levelTwoMinimumCorrectAnswerRequire: 2,
+            }))
+        }
+        else if(state.currentScreen == "LevelThreeQuestionScreen") {
+            setState(state => ({...state, 
+                levelThreeRemainingAttempt: 3,
+                levelThreePassed: false,
+                levelThreePressedButtons: [],
+                levelThreeCorrectAnswerButtons: [],
+                levelThreeWrongAnswerButtons: [],
+                levelThreeMinimumCorrectAnswerRequire: 2,
+            }))
+        }
+        else if(state.currentScreen == "LevelFourQuestionScreen") {
+            setState(state => ({...state, 
+                levelFourRemainingAttempt: 3,
+                levelFourPassed: false,
+                levelFourPressedButtons: [],
+                levelFourCorrectAnswerButtons: [],
+                levelFourWrongAnswerButtons: [],
+                levelFourMinimumCorrectAnswerRequire: 2,
+            }))
+        }
+        else {
+            setState(state => ({...state, 
+                levelFiveRemainingAttempt: 3,
+                levelFivePassed: false,
+                levelFivePressedButtons: [],
+                levelFiveCorrectAnswerButtons: [],
+                levelFiveWrongAnswerButtons: [],
+                levelFiveMinimumCorrectAnswerRequire: 2,
+            }))
+        }
+
+        
+        navigation.navigate("HomeTab", {screen: state.currentScreen})
+    }
+
     return (
     <SafeAreaView style={{flex: 1}} forceInset={{top: "always"}}>
         <View style={globalStyles.container}>
@@ -43,8 +99,8 @@ const MyStatus = ({navigation}) => {
                                         <Text style={{fontSize: 20, color: "#FFDE1D", fontWeight: "bold"}}>Wrong</Text>
                                     </View>
                                 </View>
-                                {state.gameLoss && (
-                                    <TouchableOpacity onPress={() => navigation.navigate("Home", {screen: 'Home'})} activeOpacity={1} style={{flexDirection: "row", justifyContent: "center", alignItems: "center", marginTop: 10}}>
+                                {state.gameLoss && state.currentScreen == "LevelOneQuestionScreen" && (
+                                    <TouchableOpacity onPress={() => back()} activeOpacity={1} style={{flexDirection: "row", justifyContent: "center", alignItems: "center", marginTop: 10}}>
                                         <Ionicons name="ios-reload" size={15} color="white" />
                                         <Text style={{color: "white", fontSize: 15, marginLeft: 10}}>Try Again</Text>
                                     </TouchableOpacity>
@@ -75,8 +131,8 @@ const MyStatus = ({navigation}) => {
                                         <Text style={{fontSize: 20, color: "#FFDE1D", fontWeight: "bold"}}>Wrong</Text>
                                     </View>
                                 </View>
-                                {state.gameLoss && (
-                                    <TouchableOpacity onPress={() => navigation.navigate("Home", {screen: 'Home'})} activeOpacity={1} style={{flexDirection: "row", justifyContent: "center", alignItems: "center", marginTop: 10}}>
+                                {state.gameLoss && state.currentScreen == "LevelTwoQuestionScreen" && (
+                                    <TouchableOpacity onPress={() => back()} activeOpacity={1} style={{flexDirection: "row", justifyContent: "center", alignItems: "center", marginTop: 10}}>
                                         <Ionicons name="ios-reload" size={15} color="white" />
                                         <Text style={{color: "white", fontSize: 15, marginLeft: 10}}>Try Again</Text>
                                     </TouchableOpacity>
@@ -107,8 +163,8 @@ const MyStatus = ({navigation}) => {
                                         <Text style={{fontSize: 20, color: "#FFDE1D", fontWeight: "bold"}}>Wrong</Text>
                                     </View>
                                 </View>
-                                {state.gameLoss && (
-                                    <TouchableOpacity onPress={() => navigation.navigate("Home", {screen: 'Home'})} activeOpacity={1} style={{flexDirection: "row", justifyContent: "center", alignItems: "center", marginTop: 10}}>
+                                {state.gameLoss && state.currentScreen == "LevelThreeQuestionScreen" &&  (
+                                    <TouchableOpacity onPress={() => back()} activeOpacity={1} style={{flexDirection: "row", justifyContent: "center", alignItems: "center", marginTop: 10}}>
                                         <Ionicons name="ios-reload" size={15} color="white" />
                                         <Text style={{color: "white", fontSize: 15, marginLeft: 10}}>Try Again</Text>
                                     </TouchableOpacity>
@@ -139,8 +195,8 @@ const MyStatus = ({navigation}) => {
                                         <Text style={{fontSize: 20, color: "#FFDE1D", fontWeight: "bold"}}>Wrong</Text>
                                     </View>
                                 </View>
-                                {state.gameLoss && (
-                                    <TouchableOpacity onPress={() => navigation.navigate("Home", {screen: 'Home'})} activeOpacity={1} style={{flexDirection: "row", justifyContent: "center", alignItems: "center", marginTop: 10}}>
+                                {state.gameLoss && state.currentScreen == "LevelFourQuestionScreen" &&  (
+                                    <TouchableOpacity onPress={() => back()} activeOpacity={1} style={{flexDirection: "row", justifyContent: "center", alignItems: "center", marginTop: 10}}>
                                         <Ionicons name="ios-reload" size={15} color="white" />
                                         <Text style={{color: "white", fontSize: 15, marginLeft: 10}}>Try Again</Text>
                                     </TouchableOpacity>
@@ -171,8 +227,8 @@ const MyStatus = ({navigation}) => {
                                         <Text style={{fontSize: 20, color: "#FFDE1D", fontWeight: "bold"}}>Wrong</Text>
                                     </View>
                                 </View>
-                                {state.gameLoss && (
-                                    <TouchableOpacity onPress={() => navigation.navigate("Home", {screen: 'Home'})} activeOpacity={1} style={{flexDirection: "row", justifyContent: "center", alignItems: "center", marginTop: 10}}>
+                                {state.gameLoss && state.currentScreen == "LevelFiveQuestionScreen" &&  (
+                                    <TouchableOpacity onPress={() => back()} activeOpacity={1} style={{flexDirection: "row", justifyContent: "center", alignItems: "center", marginTop: 10}}>
                                         <Ionicons name="ios-reload" size={15} color="white" />
                                         <Text style={{color: "white", fontSize: 15, marginLeft: 10}}>Try Again</Text>
                                     </TouchableOpacity>
